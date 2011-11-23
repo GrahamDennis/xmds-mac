@@ -1,2 +1,3 @@
 BuildScripts/build/*
 BuildScripts/output/*
+BuildScripts/xmds2-checkout/*
