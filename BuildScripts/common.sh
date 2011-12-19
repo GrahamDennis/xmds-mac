@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export PATH=${PWD}/../../output/bin:/usr/bin:/bin:/usr/sbin:/sbin
-
+export OPAL_PREFIX=${PWD}/../../output
 
 function build {
     export CC="/opt/local/bin/gcc-mp-4.5" CXX="/opt/local/bin/g++-mp-4.5"

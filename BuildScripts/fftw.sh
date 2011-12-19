@@ -11,7 +11,7 @@ function build {
     ./configure --prefix=$(PWD)/../../output64 OMPI_CC="${CC}" MPICC="mpicc" CC="${CC}" --disable-static --enable-avx $* && make -j4 && make install
     make clean
     export CC="cc -arch i386"
-    ./configure --prefix=$(PWD)/../../output32 CC="${CC}" OMPI_CC="${CC}" MPICC=`pwd`/../../output32/bin/mpicc --disable-static $* && make -j4 && make install
+    ./configure --prefix=$(PWD)/../../output32 CC="${CC}" OMPI_CC="${CC}" MPICC=mpicc --disable-static $* && make -j4 && make install
 }
 
 
