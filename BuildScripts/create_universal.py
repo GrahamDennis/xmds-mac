@@ -59,6 +59,8 @@ def recursive_diff(relpath):
             header_combine(relpath, filename)
         elif extension in ['.la', '.pc'] or filename in ['libhdf5.settings']:
             pass # Ignore the file
+        elif relpath.startswith('share/openmpi') and extension == '.txt':
+            fixup_mpi_txt(relpath, filename)
         else:
             print "Can't handle different file '%s'" % os.path.join(relpath, filename)
     
@@ -90,6 +92,14 @@ def header_combine(relpath, filename):
     shutil.copy2(os.path.join(base_32, 'include', include_file), os.path.join(base_universal, 'include', 'i386', include_file))
     shutil.copy2(os.path.join(base_64, 'include', include_file), os.path.join(base_universal, 'include', 'x86_64', include_file))
 
+
+def fixup_mpi_txt(relpath, filename):
+    lines = []
+    for line in open(os.path.join(base_64, relpath, filename), 'r').readlines():
+        if line.startswith('compiler='):
+            line = 'compiler=gcc'
+        lines.append(line)
+    open(os.path.join(base_universal, relpath, filename), 'w').write('\n'.join(lines))
 
 def main():
     recursive_diff('lib')
