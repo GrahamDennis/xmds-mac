@@ -34,7 +34,11 @@ def recursive_diff(relpath):
     diff = filecmp.dircmp(os.path.join(base_32, relpath), os.path.join(base_64, relpath))
     if not os.path.exists(os.path.join(base_universal, relpath)):
         os.makedirs(os.path.join(base_universal, relpath))
-    # assert len(diff.left_only) == len(diff.right_only) == 0
+    
+    if len(diff.left_only) > 0 or len(diff.right_only) > 0:
+        print "WARNING: Some files are not in common!"
+        print "left:", diff.left_only
+        print "right:", diff.right_only
     
     # Copy identical files
     for filename in diff.same_files:
@@ -91,7 +95,7 @@ def main():
     recursive_diff('lib')
     recursive_diff('bin')
     recursive_diff('include')
-    
+    recursive_diff('share/openmpi')
     
 
 
