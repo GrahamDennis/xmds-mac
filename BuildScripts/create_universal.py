@@ -1,0 +1,100 @@
+#!/usr/bin/env python
+# encoding: utf-8
+"""
+create_universal.py
+
+Created by Graham Dennis on 2011-12-19.
+Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+"""
+
+import sys
+import os, filecmp, shutil, stat, subprocess
+
+base_32 = 'output32'
+base_64 = 'output64'
+base_universal = 'output'
+
+BASE_HEADER_TEMPLATE = """
+#ifndef %(DEFINE_GUARD)s
+#define %(DEFINE_GUARD)s
+
+#if defined (__i386__)
+#include <i386/%(include_file)s>
+#elif defined (__x86_64__)
+#include <x86_64/%(include_file)s>
+#else
+#error architecture not supported
+#endif
+
+#endif /* %(DEFINE_GUARD)s
+"""
+
+
+def recursive_diff(relpath):
+    diff = filecmp.dircmp(os.path.join(base_32, relpath), os.path.join(base_64, relpath))
+    if not os.path.exists(os.path.join(base_universal, relpath)):
+        os.makedirs(os.path.join(base_universal, relpath))
+    # assert len(diff.left_only) == len(diff.right_only) == 0
+    
+    # Copy identical files
+    for filename in diff.same_files:
+        shutil.copy2(os.path.join(base_32, relpath, filename), os.path.join(base_universal, relpath, filename))
+    
+    # Now deal with different files
+    for filename in diff.diff_files:
+        left_path  = os.path.join(base_32, relpath, filename)
+        out_path = os.path.join(base_universal, relpath, filename)
+        
+        extension = os.path.splitext(filename)[1]
+        if os.path.islink(left_path):
+            if not os.path.exists(out_path):
+                os.symlink(os.readlink(left_path), out_path)
+        elif extension in ['.dylib', '.a', '.so'] or relpath.startswith('bin'):
+            lipo_combine(relpath, filename)
+        elif extension in ['.h']:
+            header_combine(relpath, filename)
+        elif extension in ['.la', '.pc'] or filename in ['libhdf5.settings']:
+            pass # Ignore the file
+        else:
+            print "Can't handle different file '%s'" % os.path.join(relpath, filename)
+    
+    for dirname in diff.common_dirs:
+        recursive_diff(os.path.join(relpath, dirname))
+
+
+def lipo_combine(relpath, filename):
+    subprocess.call(["lipo", "-create", "-arch", "i386",   os.path.join(base_32, relpath, filename),
+                                        "-arch", "x86_64", os.path.join(base_64, relpath, filename),
+                                        "-output", os.path.join(base_universal, relpath, filename)])
+
+
+def header_combine(relpath, filename):
+    include_file = os.path.relpath(os.path.join(relpath, filename), 'include')
+    DEFINE_GUARD = '_MACHINE_' + include_file.replace('/','_').replace('.', '_').upper() + "_"
+    
+    f = open(os.path.join(base_universal, relpath, filename), 'w')
+    f.write(BASE_HEADER_TEMPLATE % dict(DEFINE_GUARD=DEFINE_GUARD, include_file=include_file))
+    f.close()
+    
+    if not os.path.exists(os.path.join(base_universal, 'include', os.path.dirname(include_file))):
+        os.makedirs(os.path.join(base_universal, 'include', os.path.dirname(include_file)))
+    if not os.path.exists(os.path.join(base_universal, 'include', 'i386', os.path.dirname(include_file))):
+        os.makedirs(os.path.join(base_universal, 'include', 'i386', os.path.dirname(include_file)))
+    if not os.path.exists(os.path.join(base_universal, 'include', 'x86_64', os.path.dirname(include_file))):
+        os.makedirs(os.path.join(base_universal, 'include', 'x86_64', os.path.dirname(include_file)))
+    
+    shutil.copy2(os.path.join(base_32, 'include', include_file), os.path.join(base_universal, 'include', 'i386', include_file))
+    shutil.copy2(os.path.join(base_64, 'include', include_file), os.path.join(base_universal, 'include', 'x86_64', include_file))
+
+
+def main():
+    recursive_diff('lib')
+    recursive_diff('bin')
+    recursive_diff('include')
+    
+    
+
+
+if __name__ == '__main__':
+    main()
+

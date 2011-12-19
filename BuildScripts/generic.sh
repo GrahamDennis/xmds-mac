@@ -1,7 +1,5 @@
 #!/bin/bash
 
-export PATH=${PWD}/../../output/bin:/usr/bin:/bin:/usr/sbin:/sbin
+source ../../common.sh;
 
-./configure --prefix=$(PWD)/../../output --disable-static
-make -j4 ;
-make install
+build
