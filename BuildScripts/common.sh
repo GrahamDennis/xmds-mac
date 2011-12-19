@@ -5,6 +5,7 @@ export OPAL_PREFIX=${PWD}/../../output
 
 function build {
     export CC="/opt/local/bin/gcc-mp-4.5" CXX="/opt/local/bin/g++-mp-4.5"
+    make clean
     ./configure --prefix=$(PWD)/../../output64 CC="${CC}" CXX="${CXX}" --disable-static $* && make -j4 && make install
     make clean
     export CC="cc" CXX="c++"

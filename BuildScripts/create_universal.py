@@ -26,7 +26,7 @@ BASE_HEADER_TEMPLATE = """
 #error architecture not supported
 #endif
 
-#endif /* %(DEFINE_GUARD)s
+#endif /* %(DEFINE_GUARD)s */
 """
 
 
