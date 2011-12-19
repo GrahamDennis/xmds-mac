@@ -7,5 +7,5 @@ cd xmds2-checkout
 svn checkout https://xmds.svn.sourceforge.net/svnroot/xmds/trunk/xpdeint .
 
 # Delete the checked out code to reduce size
-find . -delete -not -path \*\.svn\* -and -type f
+find . -not -path \*\.svn\* -and -type f -delete
 cd ..
