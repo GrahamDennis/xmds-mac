@@ -47,11 +47,13 @@ def recursive_diff(relpath):
     # Now deal with different files
     for filename in diff.diff_files:
         left_path  = os.path.join(base_32, relpath, filename)
+        right_path = os.path.join(base_64, relpath, filename)
         out_path = os.path.join(base_universal, relpath, filename)
         
         extension = os.path.splitext(filename)[1]
         if os.path.islink(left_path):
             if not os.path.exists(out_path):
+                assert os.readlink(left_path) == os.readlink(right_path)
                 os.symlink(os.readlink(left_path), out_path)
         elif extension in ['.dylib', '.a', '.so'] or relpath.startswith('bin'):
             lipo_combine(relpath, filename)
