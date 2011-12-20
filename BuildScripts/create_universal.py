@@ -8,11 +8,13 @@ Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 """
 
 import sys
-import os, filecmp, shutil, stat, subprocess
+import os, filecmp, shutil, stat, subprocess, magic
 
 base_32 = 'output32'
 base_64 = 'output64'
 base_universal = 'output'
+
+mime_guesser = magic.Magic(mime=True)
 
 BASE_HEADER_TEMPLATE = """
 #ifndef %(DEFINE_GUARD)s
@@ -55,7 +57,7 @@ def recursive_diff(relpath):
             if not os.path.exists(out_path):
                 assert os.readlink(left_path) == os.readlink(right_path)
                 os.symlink(os.readlink(left_path), out_path)
-        elif extension in ['.dylib', '.a', '.so'] or relpath.startswith('bin'):
+        elif extension in ['.dylib', '.a', '.so'] or mime_guesser.from_file(left_path).startswith('application'):
             lipo_combine(relpath, filename)
         elif extension in ['.h']:
             header_combine(relpath, filename)
