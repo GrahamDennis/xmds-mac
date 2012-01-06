@@ -1,0 +1,29 @@
+#!/bin/bash
+
+XMDS_RESOURCES=`echo "$BASH_SOURCE" | sed -e 's|/share/xmds/xmds-postinst||'`
+XMDS_SUPPORT="${HOME}/Library/XMDS"
+
+rm -rf "${XMDS_SUPPORT}"
+mkdir -p "${XMDS_SUPPORT}"
+
+echo "Installing virtual python environment..."
+python "${XMDS_RESOURCES}/share/xmds/virtualenv.py" --quiet --no-site-packages "${XMDS_SUPPORT}"
+
+source "${XMDS_SUPPORT}/bin/activate"
+
+ln -s /System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python/numpy "${XMDS_SUPPORT}/lib/python2.7/site-packages/numpy"
+
+echo "Installing XMDS2's python dependencies... (this can take a minute or two)"
+pip --quiet install "${XMDS_RESOURCES}/xmds2_requirements.pybundle"
+
+mkdir -p "${XMDS_SUPPORT}/src/xmds2"
+
+echo "Extracting XMDS2..."
+tar -xzf "${XMDS_RESOURCES}/xmds2-svn.tar.bz2" -C "${XMDS_SUPPORT}/src/"
+cd "${XMDS_SUPPORT}/src/xmds2"
+svn revert --recursive --quiet .
+make
+pip install --quiet -e "${XMDS_SUPPORT}/src/xmds2"
+
+# which python
+# python setup.py develop --prefix="${XMDS_SUPPORT}" --quiet

@@ -1,0 +1,7 @@
+lxml
+pygments
+Sphinx
+mpmath
+h5py
+Cheetah
+pyparsing

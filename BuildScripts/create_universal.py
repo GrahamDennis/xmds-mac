@@ -13,6 +13,7 @@ import os, filecmp, shutil, stat, subprocess, magic
 base_32 = 'output32'
 base_64 = 'output64'
 base_universal = 'output'
+base_noarch = 'output_noarch'
 
 mime_guesser = magic.Magic(mime=True)
 
@@ -110,7 +111,7 @@ def main():
     recursive_diff('bin')
     recursive_diff('include')
     recursive_diff('share/openmpi')
-    
+    os.system("cp -r output_noarch/ output/")
 
 
 if __name__ == '__main__':

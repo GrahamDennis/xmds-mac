@@ -10,4 +10,4 @@ svn checkout https://xmds.svn.sourceforge.net/svnroot/xmds/trunk/xmds-devel .
 
 autoreconf;
 
-build --with-fftw3-path=`pwd`/../../output --enable-fftw3 --enable-threads
+build --with-fftw3-path=`pwd`/../../output --enable-fftw3 --enable-threads --program-suffix=1
