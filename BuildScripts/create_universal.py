@@ -102,9 +102,9 @@ def fixup_mpi_txt(relpath, filename):
     lines = []
     for line in open(os.path.join(base_64, relpath, filename), 'r').readlines():
         if line.startswith('compiler='):
-            line = 'compiler=gcc'
+            line = 'compiler=g++\n' if '++' in line else 'compiler=gcc\n'
         lines.append(line)
-    open(os.path.join(base_universal, relpath, filename), 'w').write('\n'.join(lines))
+    open(os.path.join(base_universal, relpath, filename), 'w').write(''.join(lines))
 
 def main():
     recursive_diff('lib')

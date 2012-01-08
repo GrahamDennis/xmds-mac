@@ -1,5 +1,7 @@
 BuildScripts/build/*
 BuildScripts/output/*
-BuildScripts/xmds2-checkout/*
+BuildScripts/xmds2/*
 BuildScripts/output32/*
 BuildScripts/output64/*
+*.pyc
+BuildScripts/source/*

@@ -7,23 +7,30 @@ rm -rf "${XMDS_SUPPORT}"
 mkdir -p "${XMDS_SUPPORT}"
 
 echo "Installing virtual python environment..."
-python "${XMDS_RESOURCES}/share/xmds/virtualenv.py" --quiet --no-site-packages "${XMDS_SUPPORT}"
+python "${XMDS_RESOURCES}/share/xmds/virtualenv.py" --quiet --distribute --never-download --extra-search-dir "${XMDS_RESOURCES}" "${XMDS_SUPPORT}"
 
 source "${XMDS_SUPPORT}/bin/activate"
 
 ln -s /System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python/numpy "${XMDS_SUPPORT}/lib/python2.7/site-packages/numpy"
 
 echo "Installing XMDS2's python dependencies... (this can take a minute or two)"
-pip --quiet install "${XMDS_RESOURCES}/xmds2_requirements.pybundle"
+pip --quiet install "${XMDS_RESOURCES}/xmds2-requirements.pybundle"
 
 mkdir -p "${XMDS_SUPPORT}/src/xmds2"
 
 echo "Extracting XMDS2..."
 tar -xzf "${XMDS_RESOURCES}/xmds2-svn.tar.bz2" -C "${XMDS_SUPPORT}/src/"
 cd "${XMDS_SUPPORT}/src/xmds2"
+
+# Upgrade in case the user has installed a later version of svn
+svn upgrade --quiet
 svn revert --recursive --quiet .
-make
+
+echo "Installing XMDS2..."
+make 2>/dev/null
 pip install --quiet -e "${XMDS_SUPPORT}/src/xmds2"
 
-# which python
-# python setup.py develop --prefix="${XMDS_SUPPORT}" --quiet
+echo "Configuring XMDS2..."
+xmds2 --configure --include-path "${XMDS_RESOURCES}/include" --lib-path "${XMDS_RESOURCES}/lib"
+
+echo "... done!"
