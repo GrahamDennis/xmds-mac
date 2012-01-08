@@ -1,12 +1,26 @@
 #!/bin/bash
 
-rm -rf xmds2
-mkdir xmds2
-cd xmds2
+# REVISION=r2478
+REVISION=HEAD
+REPOSITORY=https://xmds.svn.sourceforge.net/svnroot/xmds/trunk/xpdeint
 
-REVISION=r2476
+if [ ! -d xmds2 ]
+    mkdir xmds2
+    cd xmds2
+    /usr/bin/svn checkout -r $REVISION $REPOSITORY .
+else
+    cd xmds2
+    /usr/bin/svn update -r $REVISION
+fi
 
-/usr/bin/svn checkout -r $REVISION https://xmds.svn.sourceforge.net/svnroot/xmds/trunk/xpdeint .
+
+# Build the documentation
+cd admin/userdoc-source;
+make html
+cd ../..;
+cp -r documentation output/share/xmds/
+rm -rf documentation
+
 
 # Delete the checked out code to reduce size
 find . -not -path \*\.svn\* -and -type f -delete

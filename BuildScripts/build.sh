@@ -1,9 +1,13 @@
 #!/bin/bash
 
+# You need libmagic and python-magic installed for this script to work (required by create_universal.py)
+
 OPENMPI_VERSION=1.4.4
 FFTW_VERSION=3.3
 HDF5_VERSION=1.8.8
 GSL_VERSION=1.15
+
+VIRTUALENV_VERSION=1.7
 
 mkdir source/
 cd source/
@@ -14,6 +18,7 @@ curl -O -C - -s http://www.open-mpi.org/software/ompi/v${OPENMPI_VERSION:0:3}/do
 curl -O -C - -s http://fftw.org/fftw-${FFTW_VERSION}.tar.gz
 curl -O -C - -s http://www.hdfgroup.org/ftp/HDF5/current/src/hdf5-${HDF5_VERSION}.tar.bz2
 curl -O -C - -s http://mirror.aarnet.edu.au/pub/gnu/gsl/gsl-${GSL_VERSION}.tar.gz
+curl -O -C - -s http://pypi.python.org/packages/source/v/virtualenv/virtualenv-${VIRTUALENV_VERSION}.tar.gz
 
 cd ..;
 rm -rf build output32 output64;
@@ -41,7 +46,13 @@ cd ..;
 tar -xzf ../source/gsl-${GSL_VERSION}.tar.gz
 cd gsl-${GSL_VERSION};
 ../../gsl.sh;
-cd ../..;
+cd ..;
+
+tar -xzf ../source/virtualenv-${VIRTUALENV_VERSION}.tar.gz
+cd virtualenv-${VIRTUALENV_VERSION}
+cp virtualenv.py ../../output/share/xmds/
+cp virtualenv_support/{distribute-*,pip-*} ../../output/
+cd ../..
 
 ./create_universal.py
 
