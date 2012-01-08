@@ -2,9 +2,10 @@
 
 echo "Updating XMDS2..."
 
+XMDS_SUPPORT="${HOME}/Library/XMDS"
 cd "${XMDS_SUPPORT}/src/xmds2";
 
-svn upgrade --quiet
+svn upgrade --quiet 2>/dev/null
 svn update $*
 
 make

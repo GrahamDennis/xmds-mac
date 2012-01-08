@@ -7,11 +7,14 @@ rm -rf "${XMDS_SUPPORT}"
 mkdir -p "${XMDS_SUPPORT}"
 
 echo "Installing virtual python environment..."
-python "${XMDS_RESOURCES}/share/xmds/virtualenv.py" --quiet --distribute --never-download --extra-search-dir "${XMDS_RESOURCES}" "${XMDS_SUPPORT}"
+/usr/bin/python "${XMDS_RESOURCES}/share/xmds/virtualenv.py" --quiet --distribute --never-download --extra-search-dir "${XMDS_RESOURCES}" "${XMDS_SUPPORT}"
 
+# Use virtual python
 source "${XMDS_SUPPORT}/bin/activate"
 
-ln -s /System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python/numpy "${XMDS_SUPPORT}/lib/python2.7/site-packages/numpy"
+PYTHON_VERSION=`python -c "import sys;print \"%i.%i\" % sys.version_info[0:2]"`
+
+ln -s /System/Library/Frameworks/Python.framework/Versions/${PYTHON_VERSION}/Extras/lib/python/numpy "${XMDS_SUPPORT}/lib/python${PYTHON_VERSION}/site-packages/numpy"
 
 echo "Installing XMDS2's python dependencies... (this can take a minute or two)"
 pip --quiet install "${XMDS_RESOURCES}/xmds2-requirements.pybundle"
@@ -23,7 +26,7 @@ tar -xzf "${XMDS_RESOURCES}/xmds2-svn.tar.bz2" -C "${XMDS_SUPPORT}/src/"
 cd "${XMDS_SUPPORT}/src/xmds2"
 
 # Upgrade in case the user has installed a later version of svn
-svn upgrade --quiet
+svn upgrade --quiet 2>/dev/null
 svn revert --recursive --quiet .
 
 echo "Installing XMDS2..."
