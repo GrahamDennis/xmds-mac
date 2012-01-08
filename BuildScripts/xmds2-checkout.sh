@@ -4,7 +4,8 @@
 REVISION=HEAD
 REPOSITORY=https://xmds.svn.sourceforge.net/svnroot/xmds/trunk/xpdeint
 
-if [ ! -d xmds2 ]
+if [ ! -d xmds2 ];
+then
     mkdir xmds2
     cd xmds2
     /usr/bin/svn checkout -r $REVISION $REPOSITORY .
@@ -18,7 +19,7 @@ fi
 cd admin/userdoc-source;
 make html
 cd ../..;
-cp -r documentation output/share/xmds/
+cp -r documentation ../output/share/xmds/
 rm -rf documentation
 
 

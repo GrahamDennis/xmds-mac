@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo "Updating XMDS2..."
+
+cd "${XMDS_SUPPORT}/src/xmds2";
+
+svn upgrade --quiet
+svn update $*
+
+make
+python setup.py --quiet develop --prefix="${XMDS_SUPPORT}"
+cd admin/userdoc-source
+make html
+
+echo "XMDS2 updated!"
