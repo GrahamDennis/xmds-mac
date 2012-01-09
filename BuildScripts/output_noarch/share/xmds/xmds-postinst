@@ -3,6 +3,7 @@
 XMDS_RESOURCES=`echo "$BASH_SOURCE" | sed -e 's|/share/xmds/xmds-postinst||'`
 XMDS_SUPPORT="${HOME}/Library/XMDS"
 
+chmod -R u+w "${XMDS_SUPPORT}"
 rm -rf "${XMDS_SUPPORT}"
 mkdir -p "${XMDS_SUPPORT}"
 
@@ -32,6 +33,8 @@ svn revert --recursive --quiet .
 echo "Installing XMDS2..."
 make 2>/dev/null
 pip install --quiet -e "${XMDS_SUPPORT}/src/xmds2"
+
+chmod -R a-w "${XMDS_SUPPORT}/lib/python${PYTHON_VERSION}/site-packages"
 
 echo "Configuring XMDS2..."
 xmds2 --configure --include-path "${XMDS_RESOURCES}/include" --lib-path "${XMDS_RESOURCES}/lib"

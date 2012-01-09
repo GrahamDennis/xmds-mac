@@ -9,7 +9,15 @@ svn upgrade --quiet 2>/dev/null
 svn update $*
 
 make
+
+# Make site-packages writeable
+chmod -R u+w "${XMDS_SUPPORT}/lib/python${PYTHON_VERSION}/site-packages"
+
 python setup.py --quiet develop --prefix="${XMDS_SUPPORT}"
+
+# Remove write flag from site-packages
+chmod -R a-w "${XMDS_SUPPORT}/lib/python${PYTHON_VERSION}/site-packages"
+
 cd admin/userdoc-source
 make html
 
