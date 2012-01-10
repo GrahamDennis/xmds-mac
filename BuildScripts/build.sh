@@ -48,18 +48,19 @@ cd gsl-${GSL_VERSION};
 ../../gsl.sh;
 cd ..;
 
-tar -xzf ../source/virtualenv-${VIRTUALENV_VERSION}.tar.gz
-cd virtualenv-${VIRTUALENV_VERSION}
-cp virtualenv.py ../../output/share/xmds/
-cp virtualenv_support/{distribute-*,pip-*} ../../output/
-cd ../..
-
 ./create_universal.py
 
 ./xmds1.sh;
 
+./create_universal.py
+
+mkdir ../output/distfiles;
+tar -xzf ../source/virtualenv-${VIRTUALENV_VERSION}.tar.gz
+cd virtualenv-${VIRTUALENV_VERSION}
+cp virtualenv.py ../../output/share/xmds/
+cp virtualenv_support/{distribute-*,pip-*} ../../output/distfiles/
+cd ../..
+
 ./create_pybundle.sh
 
 ./xmds2-checkout.sh;
-
-./create_universal.py

@@ -27,4 +27,4 @@ rm -rf documentation
 find . -not -path \*\.svn\* -and -type f -delete
 cd ..
 
-tar -cjf output/xmds2-svn.tar.bz2 xmds2/
+tar -cjf output/distfiles/xmds2-svn.tar.bz2 xmds2/
