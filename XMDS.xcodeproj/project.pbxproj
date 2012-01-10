@@ -1,0 +1,299 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BF7AF2C014BC308B00B08CA3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF7AF2BF14BC308B00B08CA3 /* Cocoa.framework */; };
+		BF7AF2CA14BC308B00B08CA3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BF7AF2C814BC308B00B08CA3 /* InfoPlist.strings */; };
+		BF7AF2CC14BC308B00B08CA3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7AF2CB14BC308B00B08CA3 /* main.m */; };
+		BF7AF2D014BC308B00B08CA3 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = BF7AF2CE14BC308B00B08CA3 /* Credits.rtf */; };
+		BF7AF2D314BC308B00B08CA3 /* XMDSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7AF2D214BC308B00B08CA3 /* XMDSAppDelegate.m */; };
+		BF7AF2D614BC308B00B08CA3 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF7AF2D414BC308B00B08CA3 /* MainMenu.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		BF7AF2BB14BC308B00B08CA3 /* XMDS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XMDS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF7AF2BF14BC308B00B08CA3 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		BF7AF2C214BC308B00B08CA3 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		BF7AF2C314BC308B00B08CA3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		BF7AF2C414BC308B00B08CA3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		BF7AF2C714BC308B00B08CA3 /* XMDS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "XMDS-Info.plist"; sourceTree = "<group>"; };
+		BF7AF2C914BC308B00B08CA3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		BF7AF2CB14BC308B00B08CA3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		BF7AF2CD14BC308B00B08CA3 /* XMDS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XMDS-Prefix.pch"; sourceTree = "<group>"; };
+		BF7AF2CF14BC308B00B08CA3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		BF7AF2D114BC308B00B08CA3 /* XMDSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMDSAppDelegate.h; sourceTree = "<group>"; };
+		BF7AF2D214BC308B00B08CA3 /* XMDSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMDSAppDelegate.m; sourceTree = "<group>"; };
+		BF7AF2D514BC308B00B08CA3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BF7AF2B814BC308B00B08CA3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF7AF2C014BC308B00B08CA3 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BF7AF2B014BC308B00B08CA3 = {
+			isa = PBXGroup;
+			children = (
+				BF7AF2C514BC308B00B08CA3 /* XMDS */,
+				BF7AF2BE14BC308B00B08CA3 /* Frameworks */,
+				BF7AF2BC14BC308B00B08CA3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BF7AF2BC14BC308B00B08CA3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BF7AF2BB14BC308B00B08CA3 /* XMDS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BF7AF2BE14BC308B00B08CA3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BF7AF2BF14BC308B00B08CA3 /* Cocoa.framework */,
+				BF7AF2C114BC308B00B08CA3 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BF7AF2C114BC308B00B08CA3 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BF7AF2C214BC308B00B08CA3 /* AppKit.framework */,
+				BF7AF2C314BC308B00B08CA3 /* CoreData.framework */,
+				BF7AF2C414BC308B00B08CA3 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		BF7AF2C514BC308B00B08CA3 /* XMDS */ = {
+			isa = PBXGroup;
+			children = (
+				BF7AF2D114BC308B00B08CA3 /* XMDSAppDelegate.h */,
+				BF7AF2D214BC308B00B08CA3 /* XMDSAppDelegate.m */,
+				BF7AF2D414BC308B00B08CA3 /* MainMenu.xib */,
+				BF7AF2C614BC308B00B08CA3 /* Supporting Files */,
+			);
+			path = XMDS;
+			sourceTree = "<group>";
+		};
+		BF7AF2C614BC308B00B08CA3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BF7AF2C714BC308B00B08CA3 /* XMDS-Info.plist */,
+				BF7AF2C814BC308B00B08CA3 /* InfoPlist.strings */,
+				BF7AF2CB14BC308B00B08CA3 /* main.m */,
+				BF7AF2CD14BC308B00B08CA3 /* XMDS-Prefix.pch */,
+				BF7AF2CE14BC308B00B08CA3 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BF7AF2BA14BC308B00B08CA3 /* XMDS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BF7AF2D914BC308B00B08CA3 /* Build configuration list for PBXNativeTarget "XMDS" */;
+			buildPhases = (
+				BF7AF2B714BC308B00B08CA3 /* Sources */,
+				BF7AF2B814BC308B00B08CA3 /* Frameworks */,
+				BF7AF2B914BC308B00B08CA3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = XMDS;
+			productName = XMDS;
+			productReference = BF7AF2BB14BC308B00B08CA3 /* XMDS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BF7AF2B214BC308B00B08CA3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = "Australian National University";
+			};
+			buildConfigurationList = BF7AF2B514BC308B00B08CA3 /* Build configuration list for PBXProject "XMDS" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = BF7AF2B014BC308B00B08CA3;
+			productRefGroup = BF7AF2BC14BC308B00B08CA3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BF7AF2BA14BC308B00B08CA3 /* XMDS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BF7AF2B914BC308B00B08CA3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF7AF2CA14BC308B00B08CA3 /* InfoPlist.strings in Resources */,
+				BF7AF2D014BC308B00B08CA3 /* Credits.rtf in Resources */,
+				BF7AF2D614BC308B00B08CA3 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BF7AF2B714BC308B00B08CA3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF7AF2CC14BC308B00B08CA3 /* main.m in Sources */,
+				BF7AF2D314BC308B00B08CA3 /* XMDSAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		BF7AF2C814BC308B00B08CA3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BF7AF2C914BC308B00B08CA3 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		BF7AF2CE14BC308B00B08CA3 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BF7AF2CF14BC308B00B08CA3 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		BF7AF2D414BC308B00B08CA3 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BF7AF2D514BC308B00B08CA3 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BF7AF2D714BC308B00B08CA3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		BF7AF2D814BC308B00B08CA3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		BF7AF2DA14BC308B00B08CA3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "XMDS/XMDS-Prefix.pch";
+				INFOPLIST_FILE = "XMDS/XMDS-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		BF7AF2DB14BC308B00B08CA3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "XMDS/XMDS-Prefix.pch";
+				INFOPLIST_FILE = "XMDS/XMDS-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BF7AF2B514BC308B00B08CA3 /* Build configuration list for PBXProject "XMDS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF7AF2D714BC308B00B08CA3 /* Debug */,
+				BF7AF2D814BC308B00B08CA3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BF7AF2D914BC308B00B08CA3 /* Build configuration list for PBXNativeTarget "XMDS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF7AF2DA14BC308B00B08CA3 /* Debug */,
+				BF7AF2DB14BC308B00B08CA3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BF7AF2B214BC308B00B08CA3 /* Project object */;
+}
