@@ -3,8 +3,10 @@
 XMDS_RESOURCES=`echo "$BASH_SOURCE" | sed -e 's|/share/xmds/xmds-postinst||'`
 XMDS_SUPPORT="${HOME}/Library/XMDS"
 
-chmod -R u+w "${XMDS_SUPPORT}"
-rm -rf "${XMDS_SUPPORT}"
+if [ -d "${XMDS_SUPPORT}" ] then
+    chmod -R u+w "${XMDS_SUPPORT}"
+    rm -rf "${XMDS_SUPPORT}"
+fi
 mkdir -p "${XMDS_SUPPORT}"
 
 echo "Installing virtual python environment..."
