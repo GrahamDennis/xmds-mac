@@ -112,6 +112,7 @@
 				BF7AF2B714BC308B00B08CA3 /* Sources */,
 				BF7AF2B814BC308B00B08CA3 /* Frameworks */,
 				BF7AF2B914BC308B00B08CA3 /* Resources */,
+				BF7AF2E114BC36B900B08CA3 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -160,6 +161,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		BF7AF2E114BC36B900B08CA3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "XMDS_DEPENDENCIES_SRC=\"${SRCROOT}/BuildScripts/output/\"\nXMDS_DEPENDENCIES_DEST=\"${BUILT_PRODUCTS_DIR}/${FULL_PRODUCT_NAME}/Contents/usr\"\n\nif [ -d \"${XMDS_DEPENDENCIES_DEST}\" ]; then\n    rm -rf \"${XMDS_DEPENDENCIES_DEST}\";\nfi\n\nif [ ${CONFIGURATION} == \"Debug\" ]; then\n    ln -fs ${XMDS_DEPENDENCIES_SRC} ${XMDS_DEPENDENCIES_DEST}\nelse\n    mkdir \"${XMDS_DEPENDENCIES_DEST}\";\n    cp -r ${XMDS_DEPENDENCIES_SRC} ${XMDS_DEPENDENCIES_DEST}\nfi";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BF7AF2B714BC308B00B08CA3 /* Sources */ = {
