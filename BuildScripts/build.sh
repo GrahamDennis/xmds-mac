@@ -9,16 +9,19 @@ GSL_VERSION=1.15
 
 VIRTUALENV_VERSION=1.7
 
-mkdir source/
+if [ ! -d source ]; then
+	mkdir source/
+fi
+
 cd source/
 
 echo "Downloading source packages..."
 
-curl -O -C - -s http://www.open-mpi.org/software/ompi/v${OPENMPI_VERSION:0:3}/downloads/openmpi-${OPENMPI_VERSION}.tar.bz2
-curl -O -C - -s http://fftw.org/fftw-${FFTW_VERSION}.tar.gz
-curl -O -C - -s http://www.hdfgroup.org/ftp/HDF5/current/src/hdf5-${HDF5_VERSION}.tar.bz2
-curl -O -C - -s http://mirror.aarnet.edu.au/pub/gnu/gsl/gsl-${GSL_VERSION}.tar.gz
-curl -O -C - -s http://pypi.python.org/packages/source/v/virtualenv/virtualenv-${VIRTUALENV_VERSION}.tar.gz
+curl --remote-name --continue-at - --silent --location http://www.open-mpi.org/software/ompi/v${OPENMPI_VERSION:0:3}/downloads/openmpi-${OPENMPI_VERSION}.tar.bz2
+curl --remote-name --continue-at - --silent --location http://fftw.org/fftw-${FFTW_VERSION}.tar.gz
+curl --remote-name --continue-at - --silent --location http://www.hdfgroup.org/ftp/HDF5/current/src/hdf5-${HDF5_VERSION}.tar.bz2
+curl --remote-name --continue-at - --silent --location http://mirror.aarnet.edu.au/pub/gnu/gsl/gsl-${GSL_VERSION}.tar.gz
+curl --remote-name --continue-at - --silent --location http://pypi.python.org/packages/source/v/virtualenv/virtualenv-${VIRTUALENV_VERSION}.tar.gz
 
 cd ..;
 rm -rf build output32 output64;
