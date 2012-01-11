@@ -1,3 +1,6 @@
 [submodule "Vendor/Sparkle"]
 	path = Vendor/Sparkle
 	url = git://github.com/andymatuschak/Sparkle.git
+[submodule "Vendor/MathJax"]
+	path = Vendor/MathJax
+	url = git://github.com/mathjax/MathJax.git
