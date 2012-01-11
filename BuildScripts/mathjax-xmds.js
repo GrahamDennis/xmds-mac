@@ -255,4 +255,4 @@ MathJax.Hub.Config({
   }
 });
 
-MathJax.Ajax.loadComplete("[MathJax]/config/default.js");
+MathJax.Ajax.loadComplete("[MathJax]/config/mathjax-xmds.js");
