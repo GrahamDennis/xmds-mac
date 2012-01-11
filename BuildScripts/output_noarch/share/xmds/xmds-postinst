@@ -29,6 +29,9 @@ echo "Extracting XMDS2..."
 tar -xzf "${XMDS_RESOURCES}/distfiles/xmds2-svn.tar.bz2" -C "${XMDS_SUPPORT}/src/"
 cd "${XMDS_SUPPORT}/src/xmds2"
 
+# Copy in local copy of MathJax
+cp -r "${XMDS_RESOURCES}/share/xmds/documentation/_static/MathJax" "${XMDS_SUPPORT}/src/xmds2/admin/userdoc-source/_static/"
+
 # Upgrade in case the user has installed a later version of svn
 svn upgrade --quiet 2>/dev/null
 svn revert --recursive --quiet .

@@ -4,8 +4,7 @@
 REVISION=HEAD
 REPOSITORY=https://xmds.svn.sourceforge.net/svnroot/xmds/trunk/xpdeint
 
-if [ ! -d xmds2 ];
-then
+if [ ! -d xmds2 ]; then
     mkdir xmds2
     cd xmds2
     /usr/bin/svn checkout -r $REVISION $REPOSITORY .
@@ -14,9 +13,12 @@ else
     /usr/bin/svn update -r $REVISION
 fi
 
-
 # Build the documentation
 cd admin/userdoc-source;
+mkdir -p _static/MathJax
+cp -r ../../../../Vendor/MathJax/{*.js,config,extensions,jax,fonts} _static/MathJax
+cp ../../../mathjax-xmds.js _static/MathJax/config
+rm -rf _static/MathJax/fonts/HTML-CSS/*/{png,svg}
 make html
 cd ../..;
 cp -r documentation ../output/share/xmds/
