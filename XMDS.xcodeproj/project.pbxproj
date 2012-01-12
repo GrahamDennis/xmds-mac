@@ -6,6 +6,21 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		BF7AF34B14BEF53600B08CA3 /* Distribute */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = BF7AF34C14BEF53600B08CA3 /* Build configuration list for PBXAggregateTarget "Distribute" */;
+			buildPhases = (
+				BF7AF35114BEF54600B08CA3 /* ShellScript */,
+			);
+			dependencies = (
+				BF7AF35014BEF53F00B08CA3 /* PBXTargetDependency */,
+			);
+			name = Distribute;
+			productName = Distribute;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		BF7AF2C014BC308B00B08CA3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF7AF2BF14BC308B00B08CA3 /* Cocoa.framework */; };
 		BF7AF2CA14BC308B00B08CA3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BF7AF2C814BC308B00B08CA3 /* InfoPlist.strings */; };
@@ -52,6 +67,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 55C14BB7136EEF1500649790;
 			remoteInfo = finish_installation;
+		};
+		BF7AF34F14BEF53F00B08CA3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BF7AF2B214BC308B00B08CA3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BF7AF2BA14BC308B00B08CA3;
+			remoteInfo = XMDS;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -169,6 +191,7 @@
 				BF7AF2B714BC308B00B08CA3 /* Sources */,
 				BF7AF2B814BC308B00B08CA3 /* Frameworks */,
 				BF7AF2B914BC308B00B08CA3 /* Resources */,
+				BF7AF34A14BEE53900B08CA3 /* ShellScript */,
 				BF7AF2E114BC36B900B08CA3 /* ShellScript */,
 			);
 			buildRules = (
@@ -208,6 +231,7 @@
 			projectRoot = "";
 			targets = (
 				BF7AF2BA14BC308B00B08CA3 /* XMDS */,
+				BF7AF34B14BEF53600B08CA3 /* Distribute */,
 			);
 		};
 /* End PBXProject section */
@@ -276,8 +300,35 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "XMDS_DEPENDENCIES_SRC=\"${SRCROOT}/BuildScripts/output/\"\nXMDS_DEPENDENCIES_DEST=\"${BUILT_PRODUCTS_DIR}/${FULL_PRODUCT_NAME}/Contents/usr\"\n\nif [ -d \"${XMDS_DEPENDENCIES_DEST}\" ]; then\n    rm -rf \"${XMDS_DEPENDENCIES_DEST}\";\nfi\n\nif [ ${CONFIGURATION} == \"Debug\" ]; then\n    ln -fs ${XMDS_DEPENDENCIES_SRC} ${XMDS_DEPENDENCIES_DEST}\nelse\n    mkdir \"${XMDS_DEPENDENCIES_DEST}\";\n    cp -r ${XMDS_DEPENDENCIES_SRC} ${XMDS_DEPENDENCIES_DEST}\nfi";
+			shellScript = "set -o errexit\n\nXMDS_DEPENDENCIES_SRC=\"${SRCROOT}/BuildScripts/output/\"\nXMDS_DEPENDENCIES_DEST=\"${BUILT_PRODUCTS_DIR}/${FULL_PRODUCT_NAME}/Contents/usr\"\n\nif [ -d \"${XMDS_DEPENDENCIES_DEST}\" ]; then\n    rm -rf \"${XMDS_DEPENDENCIES_DEST}\";\nfi\n\nif [ ${CONFIGURATION} == \"Debug\" ]; then\n    ln -fs ${XMDS_DEPENDENCIES_SRC} ${XMDS_DEPENDENCIES_DEST}\nelse\n    mkdir \"${XMDS_DEPENDENCIES_DEST}\";\n    cp -r ${XMDS_DEPENDENCIES_SRC} ${XMDS_DEPENDENCIES_DEST}\nfi";
 			showEnvVarsInLog = 0;
+		};
+		BF7AF34A14BEE53900B08CA3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -o errexit\n\nPLISTBUDDY=\"/usr/libexec/PlistBuddy\"\n\ncd ${SRCROOT}\nBUILD=`git log --pretty=format:'' | wc -l`\necho $BUILD\n#BUILD=`./buildNumber.rb -d ../ | awk '{print $1}'`\n$PLISTBUDDY ${BUILT_PRODUCTS_DIR}/${FULL_PRODUCT_NAME}/Contents/Info.plist -c \"Set :CFBundleVersion $BUILD\"\n\nSHORTVERSION_NAME=`git describe --tags --always`\n$PLISTBUDDY ${BUILT_PRODUCTS_DIR}/${FULL_PRODUCT_NAME}/Contents/Info.plist -c \"Set :CFBundleShortVersionString $SHORTVERSION_NAME\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BF7AF35114BEF54600B08CA3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "set -o errexit\n\n[ $CONFIGURATION = Release ] || { echo Distribution target requires \"'Release'\" build style; false; }\n\nVERSION=$(defaults read \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info\" CFBundleVersion)\nDOWNLOAD_BASE_URL=\"http://www.example.com/download/\"\nRELEASENOTES_URL=\"http://www.example.com/software/my-cool-app/release-notes.html#version-$VERSION\"\n\nARCHIVE_FILENAME=\"$PROJECT_NAME $VERSION.zip\"\nDOWNLOAD_URL=\"$DOWNLOAD_BASE_URL/$ARCHIVE_FILENAME\"\nKEYCHAIN_PRIVKEY_NAME=\"XMDS Sparkle Private Key\"\n\nWD=$PWD\ncd \"$BUILT_PRODUCTS_DIR\"\nrm -f \"$PROJECT_NAME\"*.zip\nditto -ck --keepParent \"$PROJECT_NAME.app\" \"$ARCHIVE_FILENAME\"\n\nSIZE=$(stat -f %z \"$ARCHIVE_FILENAME\")\nPUBDATE=$(LC_TIME=en_US date +\"%a, %d %b %G %T %z\")\nSIGNATURE=$(\nopenssl dgst -sha1 -binary < \"$ARCHIVE_FILENAME\" \\\n| openssl dgst -dss1 -sign <(security find-generic-password -g -s \"$KEYCHAIN_PRIVKEY_NAME\" 2>&1 1>/dev/null | perl -pe '($_) = /\"(.+)\"/; s/\\\\012/\\n/g') \\\n| openssl enc -base64\n)\n\n[ $SIGNATURE ] || { echo Unable to load signing private key with name \"'$KEYCHAIN_PRIVKEY_NAME'\" from keychain; false; }\n\ncat <<EOF\n<item>\n<title>Version $VERSION</title>\n<sparkle:releaseNotesLink>$RELEASENOTES_URL</sparkle:releaseNotesLink>\n<pubDate>$PUBDATE</pubDate>\n<enclosure\nurl=\"$DOWNLOAD_URL\"\nsparkle:version=\"$VERSION\"\ntype=\"application/octet-stream\"\nlength=\"$SIZE\"\nsparkle:dsaSignature=\"$SIGNATURE\"\n/>\n</item>\nEOF\n\necho scp \"'$HOME/svn/my-cool-app/build/Release/$ARCHIVE_FILENAME'\" www.example.com:download/\necho scp \"'$WD/appcast.xml'\" www.example.com:web/software/my-cool-app/appcast.xml";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -292,6 +343,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BF7AF35014BEF53F00B08CA3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BF7AF2BA14BC308B00B08CA3 /* XMDS */;
+			targetProxy = BF7AF34F14BEF53F00B08CA3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		BF7AF2C814BC308B00B08CA3 /* InfoPlist.strings */ = {
@@ -392,6 +451,20 @@
 			};
 			name = Release;
 		};
+		BF7AF34D14BEF53600B08CA3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		BF7AF34E14BEF53600B08CA3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -409,6 +482,15 @@
 			buildConfigurations = (
 				BF7AF2DA14BC308B00B08CA3 /* Debug */,
 				BF7AF2DB14BC308B00B08CA3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BF7AF34C14BEF53600B08CA3 /* Build configuration list for PBXAggregateTarget "Distribute" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF7AF34D14BEF53600B08CA3 /* Debug */,
+				BF7AF34E14BEF53600B08CA3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
