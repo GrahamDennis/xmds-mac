@@ -5,3 +5,6 @@ BuildScripts/output32/*
 BuildScripts/output64/*
 *.pyc
 BuildScripts/source/*
+XMDS.xcodeproj/project.xcworkspace/*
+XMDS.xcodeproj/xcuserdata/*
+.DS_Store
