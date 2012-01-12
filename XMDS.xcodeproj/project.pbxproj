@@ -13,7 +13,47 @@
 		BF7AF2D014BC308B00B08CA3 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = BF7AF2CE14BC308B00B08CA3 /* Credits.rtf */; };
 		BF7AF2D314BC308B00B08CA3 /* XMDSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7AF2D214BC308B00B08CA3 /* XMDSAppDelegate.m */; };
 		BF7AF2D614BC308B00B08CA3 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF7AF2D414BC308B00B08CA3 /* MainMenu.xib */; };
+		BF7AF30414BED96C00B08CA3 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF7AF2FA14BED70E00B08CA3 /* Sparkle.framework */; };
+		BF7AF30614BEDFAF00B08CA3 /* xmds_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = BF7AF30514BEDFAF00B08CA3 /* xmds_pub.pem */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BF7AF2F914BED70E00B08CA3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BF7AF2EB14BED70D00B08CA3 /* Sparkle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
+			remoteInfo = Sparkle;
+		};
+		BF7AF2FB14BED70E00B08CA3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BF7AF2EB14BED70D00B08CA3 /* Sparkle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 61B5F90209C4CEE200B25A18;
+			remoteInfo = "Sparkle Test App";
+		};
+		BF7AF2FD14BED70E00B08CA3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BF7AF2EB14BED70D00B08CA3 /* Sparkle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 612279D90DB5470200AB99EA;
+			remoteInfo = "Sparkle Unit Tests";
+		};
+		BF7AF2FF14BED70E00B08CA3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BF7AF2EB14BED70D00B08CA3 /* Sparkle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5D06E8D00FD68C7C005AE3F6;
+			remoteInfo = BinaryDelta;
+		};
+		BF7AF30114BED70E00B08CA3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BF7AF2EB14BED70D00B08CA3 /* Sparkle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 55C14BB7136EEF1500649790;
+			remoteInfo = finish_installation;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		BF7AF2BB14BC308B00B08CA3 /* XMDS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XMDS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -29,6 +69,8 @@
 		BF7AF2D114BC308B00B08CA3 /* XMDSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMDSAppDelegate.h; sourceTree = "<group>"; };
 		BF7AF2D214BC308B00B08CA3 /* XMDSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMDSAppDelegate.m; sourceTree = "<group>"; };
 		BF7AF2D514BC308B00B08CA3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		BF7AF2EB14BED70D00B08CA3 /* Sparkle.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Sparkle.xcodeproj; path = Vendor/Sparkle/Sparkle.xcodeproj; sourceTree = "<group>"; };
+		BF7AF30514BEDFAF00B08CA3 /* xmds_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = xmds_pub.pem; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF7AF30414BED96C00B08CA3 /* Sparkle.framework in Frameworks */,
 				BF7AF2C014BC308B00B08CA3 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -46,6 +89,7 @@
 		BF7AF2B014BC308B00B08CA3 = {
 			isa = PBXGroup;
 			children = (
+				BF7AF2EB14BED70D00B08CA3 /* Sparkle.xcodeproj */,
 				BF7AF2C514BC308B00B08CA3 /* XMDS */,
 				BF7AF2BE14BC308B00B08CA3 /* Frameworks */,
 				BF7AF2BC14BC308B00B08CA3 /* Products */,
@@ -93,6 +137,7 @@
 		BF7AF2C614BC308B00B08CA3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BF7AF30514BEDFAF00B08CA3 /* xmds_pub.pem */,
 				BF7AF2C714BC308B00B08CA3 /* XMDS-Info.plist */,
 				BF7AF2C814BC308B00B08CA3 /* InfoPlist.strings */,
 				BF7AF2CB14BC308B00B08CA3 /* main.m */,
@@ -100,6 +145,18 @@
 				BF7AF2CE14BC308B00B08CA3 /* Credits.rtf */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BF7AF2EC14BED70D00B08CA3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BF7AF2FA14BED70E00B08CA3 /* Sparkle.framework */,
+				BF7AF2FC14BED70E00B08CA3 /* Sparkle Test App.app */,
+				BF7AF2FE14BED70E00B08CA3 /* Sparkle Unit Tests.octest */,
+				BF7AF30014BED70E00B08CA3 /* BinaryDelta */,
+				BF7AF30214BED70E00B08CA3 /* finish_installation.app */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,12 +199,56 @@
 			mainGroup = BF7AF2B014BC308B00B08CA3;
 			productRefGroup = BF7AF2BC14BC308B00B08CA3 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = BF7AF2EC14BED70D00B08CA3 /* Products */;
+					ProjectRef = BF7AF2EB14BED70D00B08CA3 /* Sparkle.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				BF7AF2BA14BC308B00B08CA3 /* XMDS */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		BF7AF2FA14BED70E00B08CA3 /* Sparkle.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Sparkle.framework;
+			remoteRef = BF7AF2F914BED70E00B08CA3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BF7AF2FC14BED70E00B08CA3 /* Sparkle Test App.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "Sparkle Test App.app";
+			remoteRef = BF7AF2FB14BED70E00B08CA3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BF7AF2FE14BED70E00B08CA3 /* Sparkle Unit Tests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Sparkle Unit Tests.octest";
+			remoteRef = BF7AF2FD14BED70E00B08CA3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BF7AF30014BED70E00B08CA3 /* BinaryDelta */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = BinaryDelta;
+			remoteRef = BF7AF2FF14BED70E00B08CA3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BF7AF30214BED70E00B08CA3 /* finish_installation.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = finish_installation.app;
+			remoteRef = BF7AF30114BED70E00B08CA3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		BF7AF2B914BC308B00B08CA3 /* Resources */ = {
@@ -157,6 +258,7 @@
 				BF7AF2CA14BC308B00B08CA3 /* InfoPlist.strings in Resources */,
 				BF7AF2D014BC308B00B08CA3 /* Credits.rtf in Resources */,
 				BF7AF2D614BC308B00B08CA3 /* MainMenu.xib in Resources */,
+				BF7AF30614BEDFAF00B08CA3 /* xmds_pub.pem in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,7 +326,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -240,7 +341,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -251,7 +352,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -261,7 +361,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -269,10 +369,11 @@
 		BF7AF2DA14BC308B00B08CA3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XMDS/XMDS-Prefix.pch";
 				INFOPLIST_FILE = "XMDS/XMDS-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -281,10 +382,11 @@
 		BF7AF2DB14BC308B00B08CA3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XMDS/XMDS-Prefix.pch";
 				INFOPLIST_FILE = "XMDS/XMDS-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
