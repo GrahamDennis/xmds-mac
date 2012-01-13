@@ -31,6 +31,7 @@
 		BF7AF2D614BC308B00B08CA3 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF7AF2D414BC308B00B08CA3 /* MainMenu.xib */; };
 		BF7AF30414BED96C00B08CA3 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF7AF2FA14BED70E00B08CA3 /* Sparkle.framework */; };
 		BF7AF30614BEDFAF00B08CA3 /* xmds_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = BF7AF30514BEDFAF00B08CA3 /* xmds_pub.pem */; };
+		BFE55A0514BFF18B00F840CF /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BF7AF2FA14BED70E00B08CA3 /* Sparkle.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,7 +77,27 @@
 			remoteGlobalIDString = BF7AF2BA14BC308B00B08CA3;
 			remoteInfo = XMDS;
 		};
+		BFE55A0214BFF15000F840CF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BF7AF2EB14BED70D00B08CA3 /* Sparkle.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
+			remoteInfo = Sparkle;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BFE55A0414BFF17E00F840CF /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BFE55A0514BFF18B00F840CF /* Sparkle.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		BF02E33B14BFD67A00C09C9D /* XMDS.terminal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = XMDS.terminal; sourceTree = "<group>"; };
@@ -193,13 +214,15 @@
 			buildPhases = (
 				BF7AF2B714BC308B00B08CA3 /* Sources */,
 				BF7AF2B814BC308B00B08CA3 /* Frameworks */,
+				BFE55A0414BFF17E00F840CF /* CopyFiles */,
 				BF7AF2B914BC308B00B08CA3 /* Resources */,
-				BF7AF34A14BEE53900B08CA3 /* ShellScript */,
-				BF7AF2E114BC36B900B08CA3 /* ShellScript */,
+				BF7AF34A14BEE53900B08CA3 /* Update version numbers */,
+				BF7AF2E114BC36B900B08CA3 /* Copy / link usr directory */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				BFE55A0314BFF15000F840CF /* PBXTargetDependency */,
 			);
 			name = XMDS;
 			productName = XMDS;
@@ -293,13 +316,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		BF7AF2E114BC36B900B08CA3 /* ShellScript */ = {
+		BF7AF2E114BC36B900B08CA3 /* Copy / link usr directory */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Copy / link usr directory";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -307,13 +331,14 @@
 			shellScript = "set -o errexit\n\nXMDS_DEPENDENCIES_SRC=\"${SRCROOT}/BuildScripts/output/\"\nXMDS_DEPENDENCIES_DEST=\"${BUILT_PRODUCTS_DIR}/${FULL_PRODUCT_NAME}/Contents/usr\"\n\nif [ -d \"${XMDS_DEPENDENCIES_DEST}\" ]; then\n    rm -rf \"${XMDS_DEPENDENCIES_DEST}\";\nfi\n\nif [ ${CONFIGURATION} == \"Debug\" ]; then\n    ln -fs ${XMDS_DEPENDENCIES_SRC} ${XMDS_DEPENDENCIES_DEST}\nelse\n    mkdir \"${XMDS_DEPENDENCIES_DEST}\";\n    cp -r ${XMDS_DEPENDENCIES_SRC} ${XMDS_DEPENDENCIES_DEST}\nfi";
 			showEnvVarsInLog = 0;
 		};
-		BF7AF34A14BEE53900B08CA3 /* ShellScript */ = {
+		BF7AF34A14BEE53900B08CA3 /* Update version numbers */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Update version numbers";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -354,6 +379,11 @@
 			isa = PBXTargetDependency;
 			target = BF7AF2BA14BC308B00B08CA3 /* XMDS */;
 			targetProxy = BF7AF34F14BEF53F00B08CA3 /* PBXContainerItemProxy */;
+		};
+		BFE55A0314BFF15000F840CF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Sparkle;
+			targetProxy = BFE55A0214BFF15000F840CF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

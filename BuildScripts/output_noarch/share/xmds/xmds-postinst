@@ -42,7 +42,3 @@ pip install --quiet -e "${XMDS_SUPPORT}/src/xmds2"
 
 chmod -R a-w "${XMDS_SUPPORT}/lib/python${PYTHON_VERSION}/site-packages"
 
-echo "Configuring XMDS2..."
-xmds2 --configure --include-path "${XMDS_USR}/include" --lib-path "${XMDS_USR}/lib"
-
-echo "... done!"
