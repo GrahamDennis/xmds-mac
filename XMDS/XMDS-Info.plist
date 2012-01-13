@@ -33,7 +33,7 @@
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>SUFeedURL</key>
-	<string>http://www.xmds.org/xmds-appcast.xml</string>
+	<string>http://www.xmds.org/appcast.xml</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>xmds_pub.pem</string>
 </dict>

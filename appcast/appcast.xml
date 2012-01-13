@@ -1,0 +1,21 @@
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+    <channel>
+        <title>XMDS Changelog</title>
+        <link>http://www.xmds.org/xmds-appcast.xml</link>
+        <description>Most recent changes with links to updates.</description>
+        <language>en</language>
+        <item>
+            <title>Version 2.1alpha1</title>
+            <sparkle:releaseNotesLink>http://www.xmds.org/release-notes.html#version-2.1alpha1</sparkle:releaseNotesLink>
+            <pubDate>Fri, 13 Jan 2012 11:41:16 +1100</pubDate>
+            <enclosure
+                url="http://www.xmds.org/download/XMDS 2.1alpha1.zip"
+                sparkle:version="40"
+                sparkle:shortVersionString="2.1alpha1"
+                type="application/octet-stream"
+                length="65972225"
+                sparkle:dsaSignature="MC4CFQCWuDOjsOD1DGbdkcVH8G0Jte5fXAIVAOKixw9HLinBWPDjTF394wmcym2A"
+            />
+        </item>
+    </channel>
+</rss>
