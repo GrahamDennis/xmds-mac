@@ -15,7 +15,10 @@
 
 @property (assign) IBOutlet NSWindow *window;
 @property (readonly) NSString *usrPath;
+@property (readonly) NSString *xmdsLibraryPath;
+@property (readonly) NSArray *documentationPaths;
 
 - (IBAction)launchXMDSTerminal:(id)sender;
+- (IBAction)showHelp:(id)sender;
 
 @end

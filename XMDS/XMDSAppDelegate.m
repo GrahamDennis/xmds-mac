@@ -10,7 +10,7 @@
 
 @interface XMDSAppDelegate ()
 
-- (NSURL *)writeTerminalFile;
+- (NSString *)writeTerminalFile;
 
 @end
 
@@ -33,14 +33,49 @@
     return [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"Contents/usr"];
 }
 
+- (NSString *)xmdsLibraryPath
+{
+    NSArray *searchURLs = [[NSFileManager defaultManager] URLsForDirectory:NSLibraryDirectory inDomains:NSUserDomainMask];
+    
+    if (![searchURLs count]) {
+        NSLog(@"Empty search paths when looking for the user library directory");
+        return nil;
+    }
+    
+    if ([searchURLs count] > 1) 
+        NSLog(@"Warning: More than one user library path found: %@", searchURLs);
+    
+    NSString *libraryPath = [(NSURL *)[searchURLs lastObject] path];
+    
+    NSString *xmdsLibraryPath = [libraryPath stringByAppendingPathComponent:@"XMDS"];
+    
+    NSError *error = nil;
+    
+    BOOL result = [[NSFileManager defaultManager] createDirectoryAtPath:xmdsLibraryPath
+                                            withIntermediateDirectories:YES
+                                                             attributes:nil
+                                                                  error:&error];
+    
+    if (!result || error) {
+        NSLog(@"Unable to create path %@. Error: %@", xmdsLibraryPath, error);
+        
+        return nil;
+    }
+
+    return libraryPath;
+}
+
 - (IBAction)launchXMDSTerminal:(id)sender
 {
-    NSURL *terminalURL = [self writeTerminalFile];
+    NSString *terminalPath = [self writeTerminalFile];
+    if (!terminalPath) return;
+    
+    NSURL *terminalURL = [NSURL fileURLWithPath:terminalPath];
     
     LSOpenCFURLRef((CFURLRef)terminalURL, NULL);
 }
 
-- (NSURL *)writeTerminalFile
+- (NSString *)writeTerminalFile
 {
     NSString *terminalTemplatePath = [[NSBundle mainBundle] pathForResource:@"XMDS"
                                                                      ofType:@"terminal"];
@@ -64,43 +99,35 @@
     NSString *interpolatedTerminalContent = [terminalContents stringByReplacingOccurrencesOfString:@"${XMDS_USR}"
                                                                                         withString:self.usrPath];
     
-    NSArray *searchURLs = [[NSFileManager defaultManager] URLsForDirectory:NSLibraryDirectory inDomains:NSUserDomainMask];
+    NSString *terminalPath = [self.xmdsLibraryPath stringByAppendingPathComponent:@"XMDS.terminal"];
     
-    if (![searchURLs count]) {
-        NSLog(@"Empty search paths when looking for the user library directory");
+    BOOL result = [interpolatedTerminalContent writeToFile:terminalPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
+    
+    if (!result || error) {
+        NSLog(@"Unable to write terminal file to path: %@. Error: %@", terminalPath, error);
         return nil;
     }
-    
-    for (NSURL *libraryURL in searchURLs) {
-        NSURL *xmdsLibraryURL = [libraryURL URLByAppendingPathComponent:@"XMDS"];
         
-        BOOL result = [[NSFileManager defaultManager] createDirectoryAtURL:xmdsLibraryURL withIntermediateDirectories:YES attributes:nil error:&error];
+    return terminalPath;
+}
+
+- (IBAction)showHelp:(id)sender
+{
+    for (NSString *documentationPath in self.documentationPaths) {
+        NSString *documentationRoot = [documentationPath stringByAppendingPathComponent:@"index.html"];
         
-        if (!result || error) {
-            NSLog(@"Unable to create path %@. Error: %@", xmdsLibraryURL, error);
-            error = nil;
-            
-            // Try next URL...
-            continue;
+        if ([[NSFileManager defaultManager] isReadableFileAtPath:documentationRoot]) {
+            if ([[NSWorkspace sharedWorkspace] openFile:documentationRoot])
+                return;
         }
-        
-        NSURL *terminalURL = [xmdsLibraryURL URLByAppendingPathComponent:@"XMDS.terminal"];
-        
-        result = [interpolatedTerminalContent writeToURL:terminalURL atomically:YES encoding:NSUTF8StringEncoding error:&error];
-        
-        if (!result || error) {
-            NSLog(@"Unable to write terminal file to URL: %@. Error: %@", terminalURL, error);
-            error = nil;
-            
-            // Try next URL...
-            continue;
-        }
-        
-        return terminalURL;
     }
-    
-    NSLog(@"Couldn't write a terminal file");
-    return nil;
+}
+
+- (NSArray *)documentationPaths
+{
+    return [NSArray arrayWithObjects:[self.xmdsLibraryPath stringByAppendingPathComponent:@"src/xmds2/documentation"],
+                                     [self.usrPath stringByAppendingPathComponent:@"share/xmds/documentation"],
+                                     nil];
 }
 
 
