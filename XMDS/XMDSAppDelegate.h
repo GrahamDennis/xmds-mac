@@ -14,5 +14,8 @@
 }
 
 @property (assign) IBOutlet NSWindow *window;
+@property (readonly) NSString *usrPath;
+
+- (IBAction)launchXMDSTerminal:(id)sender;
 
 @end
