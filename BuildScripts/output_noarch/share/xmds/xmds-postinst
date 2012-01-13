@@ -1,6 +1,6 @@
 #!/bin/bash
 
-XMDS_RESOURCES=`echo "$BASH_SOURCE" | sed -e 's|/share/xmds/xmds-postinst||'`
+XMDS_USR=`echo "$BASH_SOURCE" | sed -e 's|/share/xmds/xmds-postinst||'`
 XMDS_SUPPORT="${HOME}/Library/XMDS"
 
 if [ -d "${XMDS_SUPPORT}" ]; then
@@ -11,7 +11,7 @@ fi
 mkdir -p "${XMDS_SUPPORT}"
 
 echo "Installing virtual python environment..."
-/usr/bin/python "${XMDS_RESOURCES}/share/xmds/virtualenv.py" --quiet --distribute --never-download --extra-search-dir "${XMDS_RESOURCES}/distfiles" "${XMDS_SUPPORT}"
+/usr/bin/python "${XMDS_USR}/share/xmds/virtualenv.py" --quiet --distribute --never-download --extra-search-dir "${XMDS_USR}/distfiles" "${XMDS_SUPPORT}"
 
 # Use virtual python
 source "${XMDS_SUPPORT}/bin/activate"
@@ -21,16 +21,16 @@ PYTHON_VERSION=`python -c "import sys;print \"%i.%i\" % sys.version_info[0:2]"`
 ln -s /System/Library/Frameworks/Python.framework/Versions/${PYTHON_VERSION}/Extras/lib/python/numpy "${XMDS_SUPPORT}/lib/python${PYTHON_VERSION}/site-packages/numpy"
 
 echo "Installing XMDS2's python dependencies... (this can take a minute or two)"
-pip --quiet install "${XMDS_RESOURCES}/distfiles/xmds2-requirements.pybundle"
+pip --quiet install "${XMDS_USR}/distfiles/xmds2-requirements.pybundle"
 
 mkdir -p "${XMDS_SUPPORT}/src/xmds2"
 
 echo "Extracting XMDS2..."
-tar -xzf "${XMDS_RESOURCES}/distfiles/xmds2-svn.tar.bz2" -C "${XMDS_SUPPORT}/src/"
+tar -xzf "${XMDS_USR}/distfiles/xmds2-svn.tar.bz2" -C "${XMDS_SUPPORT}/src/"
 cd "${XMDS_SUPPORT}/src/xmds2"
 
 # Copy in local copy of MathJax
-cp -r "${XMDS_RESOURCES}/share/xmds/documentation/_static/MathJax" "${XMDS_SUPPORT}/src/xmds2/admin/userdoc-source/_static/"
+cp -r "${XMDS_USR}/share/xmds/documentation/_static/MathJax" "${XMDS_SUPPORT}/src/xmds2/admin/userdoc-source/_static/"
 
 # Upgrade in case the user has installed a later version of svn
 svn upgrade --quiet 2>/dev/null
@@ -43,6 +43,6 @@ pip install --quiet -e "${XMDS_SUPPORT}/src/xmds2"
 chmod -R a-w "${XMDS_SUPPORT}/lib/python${PYTHON_VERSION}/site-packages"
 
 echo "Configuring XMDS2..."
-xmds2 --configure --include-path "${XMDS_RESOURCES}/include" --lib-path "${XMDS_RESOURCES}/lib"
+xmds2 --configure --include-path "${XMDS_USR}/include" --lib-path "${XMDS_USR}/lib"
 
 echo "... done!"

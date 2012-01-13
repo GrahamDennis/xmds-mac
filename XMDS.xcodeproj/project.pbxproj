@@ -22,6 +22,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		BF02E33C14BFD67A00C09C9D /* XMDS.terminal in Resources */ = {isa = PBXBuildFile; fileRef = BF02E33B14BFD67A00C09C9D /* XMDS.terminal */; };
 		BF7AF2C014BC308B00B08CA3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF7AF2BF14BC308B00B08CA3 /* Cocoa.framework */; };
 		BF7AF2CA14BC308B00B08CA3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BF7AF2C814BC308B00B08CA3 /* InfoPlist.strings */; };
 		BF7AF2CC14BC308B00B08CA3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7AF2CB14BC308B00B08CA3 /* main.m */; };
@@ -78,6 +79,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BF02E33B14BFD67A00C09C9D /* XMDS.terminal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = XMDS.terminal; sourceTree = "<group>"; };
 		BF7AF2BB14BC308B00B08CA3 /* XMDS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XMDS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF7AF2BF14BC308B00B08CA3 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		BF7AF2C214BC308B00B08CA3 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -159,6 +161,7 @@
 		BF7AF2C614BC308B00B08CA3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BF02E33B14BFD67A00C09C9D /* XMDS.terminal */,
 				BF7AF30514BEDFAF00B08CA3 /* xmds_pub.pem */,
 				BF7AF2C714BC308B00B08CA3 /* XMDS-Info.plist */,
 				BF7AF2C814BC308B00B08CA3 /* InfoPlist.strings */,
@@ -283,6 +286,7 @@
 				BF7AF2D014BC308B00B08CA3 /* Credits.rtf in Resources */,
 				BF7AF2D614BC308B00B08CA3 /* MainMenu.xib in Resources */,
 				BF7AF30614BEDFAF00B08CA3 /* xmds_pub.pem in Resources */,
+				BF02E33C14BFD67A00C09C9D /* XMDS.terminal in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
