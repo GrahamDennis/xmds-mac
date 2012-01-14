@@ -33,6 +33,7 @@
 		BF7AF30614BEDFAF00B08CA3 /* xmds_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = BF7AF30514BEDFAF00B08CA3 /* xmds_pub.pem */; };
 		BF810E0F14C11EAF0092F337 /* DevelopmentVersionUpdateWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF810E0E14C11EAF0092F337 /* DevelopmentVersionUpdateWindow.xib */; };
 		BF810E1214C12D670092F337 /* XMDSUpdateWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF810E1114C12D670092F337 /* XMDSUpdateWindowController.m */; };
+		BF810E1414C157AB0092F337 /* xpdeint_logo.pdf in Resources */ = {isa = PBXBuildFile; fileRef = BF810E1314C157AB0092F337 /* xpdeint_logo.pdf */; };
 		BFE55A0514BFF18B00F840CF /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BF7AF2FA14BED70E00B08CA3 /* Sparkle.framework */; };
 /* End PBXBuildFile section */
 
@@ -121,6 +122,7 @@
 		BF810E0E14C11EAF0092F337 /* DevelopmentVersionUpdateWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DevelopmentVersionUpdateWindow.xib; sourceTree = "<group>"; };
 		BF810E1014C12D670092F337 /* XMDSUpdateWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMDSUpdateWindowController.h; sourceTree = "<group>"; };
 		BF810E1114C12D670092F337 /* XMDSUpdateWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMDSUpdateWindowController.m; sourceTree = "<group>"; };
+		BF810E1314C157AB0092F337 /* xpdeint_logo.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = xpdeint_logo.pdf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +192,7 @@
 		BF7AF2C614BC308B00B08CA3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BF810E1314C157AB0092F337 /* xpdeint_logo.pdf */,
 				BF02E33B14BFD67A00C09C9D /* XMDS.terminal */,
 				BF7AF30514BEDFAF00B08CA3 /* xmds_pub.pem */,
 				BF7AF2C714BC308B00B08CA3 /* XMDS-Info.plist */,
@@ -319,6 +322,7 @@
 				BF7AF30614BEDFAF00B08CA3 /* xmds_pub.pem in Resources */,
 				BF02E33C14BFD67A00C09C9D /* XMDS.terminal in Resources */,
 				BF810E0F14C11EAF0092F337 /* DevelopmentVersionUpdateWindow.xib in Resources */,
+				BF810E1414C157AB0092F337 /* xpdeint_logo.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
