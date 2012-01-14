@@ -10,6 +10,7 @@ svn update $*
 
 make
 
+PYTHON_VERSION=`python -c "import sys;print \"%i.%i\" % sys.version_info[0:2]"`
 # Make site-packages writeable
 chmod -R u+w "${XMDS_SUPPORT}/lib/python${PYTHON_VERSION}/site-packages"
 

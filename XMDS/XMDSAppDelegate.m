@@ -10,16 +10,22 @@
 
 @interface XMDSAppDelegate ()
 
-- (NSString *)writeTerminalFile;
+- (NSString *)writeXMDSTerminalFile;
+- (NSString *)writeXMDSUpdateTerminalFileWithRevision:(NSString *)revision;
+
+- (BOOL)interpolateTerminalTemplateWithParameters:(NSDictionary *)parameters toFile:(NSString *)path;
 
 @end
 
 @implementation XMDSAppDelegate
 
 @synthesize window = _window;
+@synthesize updateWindow = _updateWindow;
 
 - (void)dealloc
 {
+    self.updateWindow = nil;
+    
     [super dealloc];
 }
 
@@ -27,6 +33,138 @@
 {
     // Insert code here to initialize your application
 }
+
+
+- (IBAction)launchXMDSTerminal:(id)sender
+{
+    NSString *terminalPath = [self writeXMDSTerminalFile];
+    if (!terminalPath) return;
+    
+    NSURL *terminalURL = [NSURL fileURLWithPath:terminalPath];
+    
+    LSOpenCFURLRef((CFURLRef)terminalURL, NULL);
+}
+
+- (void)launchXMDSUpdateTerminalToRevision:(NSString *)revision
+{
+    NSString *terminalPath = [self writeXMDSUpdateTerminalFileWithRevision:revision];
+    if (!terminalPath) return;
+    
+    NSURL *terminalURL = [NSURL fileURLWithPath:terminalPath];
+    
+    LSOpenCFURLRef((CFURLRef)terminalURL, NULL);
+}
+
+- (IBAction)showHelp:(id)sender
+{
+    for (NSString *documentationPath in self.documentationPaths) {
+        NSString *documentationRoot = [documentationPath stringByAppendingPathComponent:@"index.html"];
+        
+        if ([[NSFileManager defaultManager] isReadableFileAtPath:documentationRoot]) {
+            if ([[NSWorkspace sharedWorkspace] openFile:documentationRoot])
+                return;
+        }
+    }
+}
+
+- (IBAction)orderFrontUpdateToDevelopmentVersionWindow:(id)sender
+{
+    if (!self.updateWindow) {
+        NSNib *updateWindowNib;
+        
+        updateWindowNib = [[NSNib alloc] initWithNibNamed:@"DevelopmentVersionUpdateWindow"
+                                                   bundle:nil];
+        
+        [updateWindowNib instantiateNibWithOwner:self
+                                 topLevelObjects:nil];
+    }
+    
+    if (!self.updateWindow) {
+        NSLog(@"Couldn't create update window");
+        return;
+    }
+    
+    [self.updateWindow makeKeyAndOrderFront:sender];
+}
+
+#pragma mark Terminal file writing
+
+- (NSString *)writeXMDSTerminalFile
+{
+    NSString *terminalFilePath = [self.xmdsLibraryPath stringByAppendingPathComponent:@"XMDS.terminal"];
+    
+    BOOL result = [self interpolateTerminalTemplateWithParameters:nil
+                                                           toFile:terminalFilePath];
+    
+    return result ? terminalFilePath : nil; 
+}
+
+- (NSString *)writeXMDSUpdateTerminalFileWithRevision:(NSNumber *)revision
+{
+    NSString *additionalCommand = @"update-xmds2";
+    
+    if (revision)
+        additionalCommand = [additionalCommand stringByAppendingFormat:@" --revision %@", revision];
+    
+    NSDictionary *parameters = [NSDictionary dictionaryWithObject:additionalCommand
+                                                           forKey:@"${ADDITIONAL_COMMANDS}"];
+    
+    NSString *terminalUpdateFile = [self.xmdsLibraryPath stringByAppendingPathComponent:@"XMDS-update.terminal"];
+    
+    BOOL result = [self interpolateTerminalTemplateWithParameters:parameters
+                                                           toFile:terminalUpdateFile];
+    
+    return result ? terminalUpdateFile : nil;
+}
+
+- (BOOL)interpolateTerminalTemplateWithParameters:(NSDictionary *)parameters toFile:(NSString *)path
+{
+    NSString *terminalTemplatePath = [[NSBundle mainBundle] pathForResource:@"XMDS"
+                                                                     ofType:@"terminal"];
+    
+    if (!terminalTemplatePath) {
+        NSLog(@"Couldn't find XMDS.terminal");
+        return FALSE;
+    }
+    
+    NSError *error = nil;
+    
+    NSString *terminalContents = [NSString stringWithContentsOfFile:terminalTemplatePath
+                                                           encoding:NSUTF8StringEncoding
+                                                              error:&error];
+    
+    if (error) {
+        NSLog(@"Couldn't read XMDS.terminal content. Error: %@", error);
+        return FALSE;
+    }
+    
+    NSMutableDictionary *allParameters = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                          self.usrPath, @"${XMDS_USR}",
+                                          @"XMDS", @"${NAME}",
+                                          @"", @"${ADDITIONAL_COMMANDS}",
+                                          nil];
+    
+    [allParameters addEntriesFromDictionary:parameters];
+    
+    for (NSString *key in allParameters) {
+        terminalContents = [terminalContents stringByReplacingOccurrencesOfString:key
+                                                                       withString:[allParameters objectForKey:key]];
+    }
+    
+    BOOL result = [terminalContents writeToFile:path
+                                     atomically:YES
+                                       encoding:NSUTF8StringEncoding
+                                          error:&error];
+    
+    if (!result || error) {
+        NSLog(@"Unable to write terminal file to path: %@. Error: %@", path, error);
+        return FALSE;
+    }
+    
+    return YES;    
+}
+
+#pragma mark Path methods
 
 - (NSString *)usrPath
 {
@@ -61,72 +199,18 @@
         
         return nil;
     }
-
-    return libraryPath;
+    
+    return xmdsLibraryPath;
 }
 
-- (IBAction)launchXMDSTerminal:(id)sender
-{
-    NSString *terminalPath = [self writeTerminalFile];
-    if (!terminalPath) return;
-    
-    NSURL *terminalURL = [NSURL fileURLWithPath:terminalPath];
-    
-    LSOpenCFURLRef((CFURLRef)terminalURL, NULL);
-}
-
-- (NSString *)writeTerminalFile
-{
-    NSString *terminalTemplatePath = [[NSBundle mainBundle] pathForResource:@"XMDS"
-                                                                     ofType:@"terminal"];
-    
-    if (!terminalTemplatePath) {
-        NSLog(@"Couldn't find XMDS.terminal");
-        return nil;
-    }
-    
-    NSError *error = nil;
-    
-    NSString *terminalContents = [NSString stringWithContentsOfFile:terminalTemplatePath
-                                                           encoding:NSUTF8StringEncoding
-                                                              error:&error];
-    
-    if (error) {
-        NSLog(@"Couldn't read XMDS.terminal content. Error: %@", error);
-        return nil;
-    }
-    
-    NSString *interpolatedTerminalContent = [terminalContents stringByReplacingOccurrencesOfString:@"${XMDS_USR}"
-                                                                                        withString:self.usrPath];
-    
-    NSString *terminalPath = [self.xmdsLibraryPath stringByAppendingPathComponent:@"XMDS.terminal"];
-    
-    BOOL result = [interpolatedTerminalContent writeToFile:terminalPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
-    
-    if (!result || error) {
-        NSLog(@"Unable to write terminal file to path: %@. Error: %@", terminalPath, error);
-        return nil;
-    }
-        
-    return terminalPath;
-}
-
-- (IBAction)showHelp:(id)sender
-{
-    for (NSString *documentationPath in self.documentationPaths) {
-        NSString *documentationRoot = [documentationPath stringByAppendingPathComponent:@"index.html"];
-        
-        if ([[NSFileManager defaultManager] isReadableFileAtPath:documentationRoot]) {
-            if ([[NSWorkspace sharedWorkspace] openFile:documentationRoot])
-                return;
-        }
-    }
-}
 
 - (NSArray *)documentationPaths
 {
-    return [NSArray arrayWithObjects:[self.xmdsLibraryPath stringByAppendingPathComponent:@"src/xmds2/documentation"],
-                                     [self.usrPath stringByAppendingPathComponent:@"share/xmds/documentation"],
+    NSString *userDocumentationPath = [self.xmdsLibraryPath stringByAppendingPathComponent:@"src/xmds2/documentation"];
+    NSString *appDocumentationPath = [self.usrPath stringByAppendingPathComponent:@"share/xmds/documentation"];
+    
+    return [NSArray arrayWithObjects:userDocumentationPath,
+                                     appDocumentationPath,
                                      nil];
 }
 
