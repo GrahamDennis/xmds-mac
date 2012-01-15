@@ -123,6 +123,8 @@
             // Suppress this alert
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:xcodeCheckAlertSuppress];
         }
+        
+        [alert release];
     }
 }
 
