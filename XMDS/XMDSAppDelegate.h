@@ -26,6 +26,8 @@
 - (IBAction)openXMDSHomepage:(id)sender;
 - (IBAction)openReleaseNotes:(id)sender;
 
+- (IBAction)checkForXcodeApp:(id)sender;
+
 - (IBAction)viewUserForumArchives:(id)sender;
 - (IBAction)signupForUserForum:(id)sender;
 - (IBAction)emailUserForum:(id)sender;
