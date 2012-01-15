@@ -56,7 +56,7 @@
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2012-01-14 06:39:49 +0000</string>
+	<string>2012-01-14 09:47:34 +0000</string>
 	<key>Modifier</key>
 	<string>Graham Dennis</string>
 	<key>NotesVisible</key>
@@ -8301,7 +8301,7 @@
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{409.41998, 544.40271}, {36.102966, 36.102966}}</string>
+					<string>{{413.4306, 548.41339}, {28.081699, 28.081699}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>HFlip</key>
@@ -8405,7 +8405,7 @@
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{420.41992, 450.87744}, {28.081699, 28.081699}}</string>
+					<string>{{415.54248, 446}, {37.836609, 37.836609}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>HFlip</key>
@@ -8538,7 +8538,7 @@
 		<key>SidebarWidth</key>
 		<integer>120</integer>
 		<key>VisibleRegion</key>
-		<string>{{0, 29}, {790, 744}}</string>
+		<string>{{0, 215}, {790, 744}}</string>
 		<key>Zoom</key>
 		<real>1</real>
 		<key>ZoomValues</key>

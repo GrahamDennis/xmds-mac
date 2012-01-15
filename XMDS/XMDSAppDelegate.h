@@ -23,6 +23,14 @@
 - (IBAction)launchXMDSTerminal:(id)sender;
 - (IBAction)showHelp:(id)sender;
 - (IBAction)orderFrontUpdateToDevelopmentVersionWindow:(id)sender;
+- (IBAction)openXMDSHomepage:(id)sender;
+- (IBAction)openReleaseNotes:(id)sender;
+
+- (IBAction)viewUserForumArchives:(id)sender;
+- (IBAction)signupForUserForum:(id)sender;
+- (IBAction)emailUserForum:(id)sender;
+
+
 - (void)launchXMDSUpdateTerminalToRevision:(NSNumber *)revision;
 
 @end

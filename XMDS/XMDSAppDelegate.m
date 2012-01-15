@@ -34,6 +34,10 @@
     // Insert code here to initialize your application
 }
 
+- (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender
+{
+    return YES;
+}
 
 - (IBAction)launchXMDSTerminal:(id)sender
 {
@@ -86,6 +90,33 @@
     
     [self.updateWindow makeKeyAndOrderFront:sender];
 }
+
+- (IBAction)openXMDSHomepage:(id)sender
+{
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://www.xmds.org"]];
+}
+
+- (IBAction)openReleaseNotes:(id)sender
+{
+    
+}
+
+- (IBAction)signupForUserForum:(id)sender
+{
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://lists.sourceforge.net/lists/listinfo/xmds-user"]];
+}
+
+- (IBAction)emailUserForum:(id)sender
+{
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"mailto:xmds-user@lists.sourceforge.net"]];
+}
+
+- (IBAction)viewUserForumArchives:(id)sender
+{
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://sourceforge.net/mailarchive/forum.php?forum_name=xmds-user"]];
+}
+
+
 
 #pragma mark Terminal file writing
 
