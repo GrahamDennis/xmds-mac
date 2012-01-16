@@ -12,10 +12,13 @@
 {
     NSWindow *_window;
     NSWindow *_updateWindow;
+    NSWindow *_releaseNotesWindow;
 }
 
 @property (assign) IBOutlet NSWindow *window;
 @property (nonatomic, retain) IBOutlet NSWindow *updateWindow;
+@property (nonatomic, retain) IBOutlet NSWindow *releaseNotesWindow;
+
 @property (readonly) NSString *usrPath;
 @property (readonly) NSString *xmdsLibraryPath;
 @property (readonly) NSArray *documentationPaths;

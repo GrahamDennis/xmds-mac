@@ -1,13 +1,8 @@
-HTML header:    <script type="text/javascript"
-  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-  MathJax.Hub.Config({"HTML-CSS": {availableFonts: ["TeX"]}});
-</script>
+CSS: css/github.css
 
-# XMDS 2.1 [version-2.1]
+# XMDS 2.1 "Happy Mollusc" [version-2.1]
 
-XMDS 2.1 includes a number of bug fixes and improvements since 2.0, as well as the new Linux and Mac OS X installers. \\(\frac{\pi}{2} \\)
-
-\\[ \frac{\partial x}{\partial y} \\]
+XMDS 2.1 includes a number of bug fixes and improvements since 2.0, as well as the new Linux and Mac OS X installers.
 
 Changes include:
 
@@ -18,7 +13,7 @@ Changes include:
 
 [waf]: http://code.google.com/p/waf
 
-# XMDS 2.0 [version-2.0]
+# XMDS 2.0 "Shiny!" [version-2.0]
 
 XMDS 2.0 is a major upgrade which has been rewritten from the ground up to make it easier for us to apply new features. And there are many. XMDS 2.0 is faster and far more versatile than previous versions, allowing the efficient integration of almost any initial value problem on regular domains.
 
@@ -26,7 +21,7 @@ The feature list includes:
 
 * Quantities of different dimensionalities. So you can have a 1D potential and a 3D wavefunction.
 * Integrate more than one vector (in more than one geometry), so you can now simultaneously integrate a PDE and a coupled ODE (or coupled PDEs of different dimensions).
-* Non-Fourier transformations including the Bessel basis, Spherical Bessel basis and the Hermitee-Gauss (harmonic oscillator) basis.
+* Non-Fourier transformations including the Bessel basis, Spherical Bessel basis and the Hermite-Gauss (harmonic oscillator) basis.
 * The ability to have more than one kind of noise (gaussian, poissonian, etc) in a simulation.
 * Integer-valued dimensions with non-local access. You can have an array of variables and access different elements of that array.
 * Significantly better error reporting. When errors are found when compiling the script they will almost always be reported with the corresponding line of your script, instead of the generated source.

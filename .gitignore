@@ -8,3 +8,4 @@ BuildScripts/source/*
 XMDS.xcodeproj/project.xcworkspace/*
 XMDS.xcodeproj/xcuserdata/*
 .DS_Store
+appcast/release-notes.html

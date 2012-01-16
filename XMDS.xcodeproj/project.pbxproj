@@ -23,6 +23,11 @@
 
 /* Begin PBXBuildFile section */
 		BF02E33C14BFD67A00C09C9D /* XMDS.terminal in Resources */ = {isa = PBXBuildFile; fileRef = BF02E33B14BFD67A00C09C9D /* XMDS.terminal */; };
+		BF46540614C3C14A002630C7 /* release-notes.html in Resources */ = {isa = PBXBuildFile; fileRef = BF46540514C3C14A002630C7 /* release-notes.html */; };
+		BF46540B14C3C47D002630C7 /* github.css in Copy CSS */ = {isa = PBXBuildFile; fileRef = BF46540814C3C164002630C7 /* github.css */; };
+		BF46540D14C3C551002630C7 /* ReleaseNotes.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF46540C14C3C551002630C7 /* ReleaseNotes.xib */; };
+		BF46541014C3CDFD002630C7 /* XMDSReleaseNotesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF46540F14C3CDFD002630C7 /* XMDSReleaseNotesWindowController.m */; };
+		BF46541214C3CE87002630C7 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF46541114C3CE87002630C7 /* WebKit.framework */; };
 		BF7AF2C014BC308B00B08CA3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF7AF2BF14BC308B00B08CA3 /* Cocoa.framework */; };
 		BF7AF2CA14BC308B00B08CA3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BF7AF2C814BC308B00B08CA3 /* InfoPlist.strings */; };
 		BF7AF2CC14BC308B00B08CA3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7AF2CB14BC308B00B08CA3 /* main.m */; };
@@ -35,7 +40,7 @@
 		BF810E1214C12D670092F337 /* XMDSUpdateWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF810E1114C12D670092F337 /* XMDSUpdateWindowController.m */; };
 		BF810E1414C157AB0092F337 /* xpdeint_logo.pdf in Resources */ = {isa = PBXBuildFile; fileRef = BF810E1314C157AB0092F337 /* xpdeint_logo.pdf */; };
 		BF810E1614C2542F0092F337 /* xmds.icns in Resources */ = {isa = PBXBuildFile; fileRef = BF810E1514C2542F0092F337 /* xmds.icns */; };
-		BFE55A0514BFF18B00F840CF /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BF7AF2FA14BED70E00B08CA3 /* Sparkle.framework */; };
+		BFE55A0514BFF18B00F840CF /* Sparkle.framework in Copy Sparkle Framework */ = {isa = PBXBuildFile; fileRef = BF7AF2FA14BED70E00B08CA3 /* Sparkle.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,20 +96,38 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		BFE55A0414BFF17E00F840CF /* CopyFiles */ = {
+		BF46540A14C3C470002630C7 /* Copy CSS */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = css;
+			dstSubfolderSpec = 7;
+			files = (
+				BF46540B14C3C47D002630C7 /* github.css in Copy CSS */,
+			);
+			name = "Copy CSS";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BFE55A0414BFF17E00F840CF /* Copy Sparkle Framework */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				BFE55A0514BFF18B00F840CF /* Sparkle.framework in CopyFiles */,
+				BFE55A0514BFF18B00F840CF /* Sparkle.framework in Copy Sparkle Framework */,
 			);
+			name = "Copy Sparkle Framework";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		BF02E33B14BFD67A00C09C9D /* XMDS.terminal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = XMDS.terminal; sourceTree = "<group>"; };
+		BF46540514C3C14A002630C7 /* release-notes.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "release-notes.html"; sourceTree = "<group>"; };
+		BF46540814C3C164002630C7 /* github.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = github.css; sourceTree = "<group>"; };
+		BF46540C14C3C551002630C7 /* ReleaseNotes.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReleaseNotes.xib; sourceTree = "<group>"; };
+		BF46540E14C3CDFD002630C7 /* XMDSReleaseNotesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMDSReleaseNotesWindowController.h; sourceTree = "<group>"; };
+		BF46540F14C3CDFD002630C7 /* XMDSReleaseNotesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMDSReleaseNotesWindowController.m; sourceTree = "<group>"; };
+		BF46541114C3CE87002630C7 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		BF7AF2BB14BC308B00B08CA3 /* XMDS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XMDS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF7AF2BF14BC308B00B08CA3 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		BF7AF2C214BC308B00B08CA3 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -132,6 +155,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF46541214C3CE87002630C7 /* WebKit.framework in Frameworks */,
 				BF7AF30414BED96C00B08CA3 /* Sparkle.framework in Frameworks */,
 				BF7AF2C014BC308B00B08CA3 /* Cocoa.framework in Frameworks */,
 			);
@@ -161,6 +185,7 @@
 		BF7AF2BE14BC308B00B08CA3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BF46541114C3CE87002630C7 /* WebKit.framework */,
 				BF7AF2BF14BC308B00B08CA3 /* Cocoa.framework */,
 				BF7AF2C114BC308B00B08CA3 /* Other Frameworks */,
 			);
@@ -184,8 +209,11 @@
 				BF7AF2D214BC308B00B08CA3 /* XMDSAppDelegate.m */,
 				BF810E1014C12D670092F337 /* XMDSUpdateWindowController.h */,
 				BF810E1114C12D670092F337 /* XMDSUpdateWindowController.m */,
+				BF46540E14C3CDFD002630C7 /* XMDSReleaseNotesWindowController.h */,
+				BF46540F14C3CDFD002630C7 /* XMDSReleaseNotesWindowController.m */,
 				BF810E0E14C11EAF0092F337 /* DevelopmentVersionUpdateWindow.xib */,
 				BF7AF2D414BC308B00B08CA3 /* MainMenu.xib */,
+				BF46540C14C3C551002630C7 /* ReleaseNotes.xib */,
 				BF7AF2C614BC308B00B08CA3 /* Supporting Files */,
 			);
 			path = XMDS;
@@ -203,6 +231,8 @@
 				BF7AF2CB14BC308B00B08CA3 /* main.m */,
 				BF7AF2CD14BC308B00B08CA3 /* XMDS-Prefix.pch */,
 				BF7AF2CE14BC308B00B08CA3 /* Credits.rtf */,
+				BF46540814C3C164002630C7 /* github.css */,
+				BF46540514C3C14A002630C7 /* release-notes.html */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -228,10 +258,12 @@
 			buildPhases = (
 				BF7AF2B714BC308B00B08CA3 /* Sources */,
 				BF7AF2B814BC308B00B08CA3 /* Frameworks */,
-				BFE55A0414BFF17E00F840CF /* CopyFiles */,
+				BFE55A0414BFF17E00F840CF /* Copy Sparkle Framework */,
+				BF46540714C3C153002630C7 /* Update Release Notes */,
 				BF7AF2B914BC308B00B08CA3 /* Resources */,
-				BF7AF34A14BEE53900B08CA3 /* Update version numbers */,
-				BF7AF2E114BC36B900B08CA3 /* Copy / link usr directory */,
+				BF46540A14C3C470002630C7 /* Copy CSS */,
+				BF7AF34A14BEE53900B08CA3 /* Update Version Numbers */,
+				BF7AF2E114BC36B900B08CA3 /* Copy / Link usr Directory */,
 			);
 			buildRules = (
 			);
@@ -327,20 +359,39 @@
 				BF810E0F14C11EAF0092F337 /* DevelopmentVersionUpdateWindow.xib in Resources */,
 				BF810E1414C157AB0092F337 /* xpdeint_logo.pdf in Resources */,
 				BF810E1614C2542F0092F337 /* xmds.icns in Resources */,
+				BF46540614C3C14A002630C7 /* release-notes.html in Resources */,
+				BF46540D14C3C551002630C7 /* ReleaseNotes.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		BF7AF2E114BC36B900B08CA3 /* Copy / link usr directory */ = {
+		BF46540714C3C153002630C7 /* Update Release Notes */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/release-notes.md",
+			);
+			name = "Update Release Notes";
+			outputPaths = (
+				"$(SRCROOT)/appcast/release-notes.html",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "set -o errexit\n\n/opt/local/bin/multimarkdown release-notes.md > appcast/release-notes.html";
+			showEnvVarsInLog = 0;
+		};
+		BF7AF2E114BC36B900B08CA3 /* Copy / Link usr Directory */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy / link usr directory";
+			name = "Copy / Link usr Directory";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -348,14 +399,14 @@
 			shellScript = "set -o errexit\n\nXMDS_DEPENDENCIES_SRC=\"${SRCROOT}/BuildScripts/output/\"\nXMDS_DEPENDENCIES_DEST=\"${BUILT_PRODUCTS_DIR}/${FULL_PRODUCT_NAME}/Contents/usr\"\n\nif [ -d \"${XMDS_DEPENDENCIES_DEST}\" ]; then\n    rm -rf \"${XMDS_DEPENDENCIES_DEST}\";\nfi\n\nif [ ${CONFIGURATION} == \"Debug\" ]; then\n    ln -fs ${XMDS_DEPENDENCIES_SRC} ${XMDS_DEPENDENCIES_DEST}\nelse\n    mkdir \"${XMDS_DEPENDENCIES_DEST}\";\n    cp -r ${XMDS_DEPENDENCIES_SRC} ${XMDS_DEPENDENCIES_DEST}\nfi";
 			showEnvVarsInLog = 0;
 		};
-		BF7AF34A14BEE53900B08CA3 /* Update version numbers */ = {
+		BF7AF34A14BEE53900B08CA3 /* Update Version Numbers */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Update version numbers";
+			name = "Update Version Numbers";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -374,7 +425,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "set -o errexit\n\n[ $CONFIGURATION = Release ] || { echo Distribution target requires \"'Release'\" build style; false; }\n\nVERSION=$(defaults read \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info\" CFBundleShortVersionString)\nBUNDLE_VERSION=$(defaults read \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info\" CFBundleVersion)\nDOWNLOAD_BASE_URL=\"http://sourceforge.net/projects/xmds/files/\"\nRELEASENOTES_URL=\"http://www.example.com/software/my-cool-app/release-notes.html#version-$VERSION\"\n\nARCHIVE_FILENAME=\"$PROJECT_NAME $VERSION.zip\"\nDOWNLOAD_URL=\"$DOWNLOAD_BASE_URL/$ARCHIVE_FILENAME/download\"\nKEYCHAIN_PRIVKEY_NAME=\"XMDS Sparkle Private Key\"\n\nWD=$PWD\ncd \"$BUILT_PRODUCTS_DIR\"\nrm -f \"$PROJECT_NAME\"*.zip\nditto -ck --keepParent \"$PROJECT_NAME.app\" \"$ARCHIVE_FILENAME\"\n\nSIZE=$(stat -f %z \"$ARCHIVE_FILENAME\")\nPUBDATE=$(LC_TIME=en_US date +\"%a, %d %b %G %T %z\")\nSIGNATURE=$(\nopenssl dgst -sha1 -binary < \"$ARCHIVE_FILENAME\" \\\n| openssl dgst -dss1 -sign <(security find-generic-password -g -s \"$KEYCHAIN_PRIVKEY_NAME\" 2>&1 1>/dev/null | perl -pe '($_) = /(-----BEGIN DSA PRIVATE KEY-----.+-----END DSA PRIVATE KEY-----)/; s/\\\\012/\\n/g') \\\n| openssl enc -base64\n)\n\n[ $SIGNATURE ] || { echo Unable to load signing private key with name \"'$KEYCHAIN_PRIVKEY_NAME'\" from keychain; false; }\n\ncat > ${WD}/appcast/appcast-${VERSION}.xml <<EOF\n<item>\n<title>Version $VERSION</title>\n<sparkle:releaseNotesLink>$RELEASENOTES_URL</sparkle:releaseNotesLink>\n<pubDate>$PUBDATE</pubDate>\n<enclosure\nurl=\"$DOWNLOAD_URL\"\nsparkle:version=\"$BUNDLE_VERSION\"\nsparkle:shortVersionString=\"$VERSION\"\ntype=\"application/octet-stream\"\nlength=\"$SIZE\"\nsparkle:dsaSignature=\"$SIGNATURE\"\n/>\n</item>\nEOF\n\necho scp \"'$BUILT_PRODUCTS_DIR/$ARCHIVE_FILENAME'\" frs.sf.net:/home/frs/project/x/xm/xmds/\necho scp \"'$WD/appcast/appcast.xml'\" web.sf.net:/home/project-web/xmds/htdocs";
+			shellScript = "set -o errexit\n\n[ $CONFIGURATION = Release ] || { echo Distribution target requires \"'Release'\" build style; false; }\n\nVERSION=$(defaults read \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info\" CFBundleShortVersionString)\nBUNDLE_VERSION=$(defaults read \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info\" CFBundleVersion)\nDOWNLOAD_BASE_URL=\"http://sourceforge.net/projects/xmds/files/\"\nRELEASENOTES_URL=\"http://www.xmds.org/release-notes.html#version-$VERSION\"\n\nARCHIVE_FILENAME=\"$PROJECT_NAME $VERSION.zip\"\nDOWNLOAD_URL=\"$DOWNLOAD_BASE_URL/$ARCHIVE_FILENAME/download\"\nKEYCHAIN_PRIVKEY_NAME=\"XMDS Sparkle Private Key\"\n\nWD=$PWD\ncd \"$BUILT_PRODUCTS_DIR\"\nrm -f \"$PROJECT_NAME\"*.zip\nditto -ck --keepParent \"$PROJECT_NAME.app\" \"$ARCHIVE_FILENAME\"\n\nSIZE=$(stat -f %z \"$ARCHIVE_FILENAME\")\nPUBDATE=$(LC_TIME=en_US date +\"%a, %d %b %G %T %z\")\nSIGNATURE=$(\nopenssl dgst -sha1 -binary < \"$ARCHIVE_FILENAME\" \\\n| openssl dgst -dss1 -sign <(security find-generic-password -g -s \"$KEYCHAIN_PRIVKEY_NAME\" 2>&1 1>/dev/null | perl -pe '($_) = /(-----BEGIN DSA PRIVATE KEY-----.+-----END DSA PRIVATE KEY-----)/; s/\\\\012/\\n/g') \\\n| openssl enc -base64\n)\n\n[ $SIGNATURE ] || { echo Unable to load signing private key with name \"'$KEYCHAIN_PRIVKEY_NAME'\" from keychain; false; }\n\ncat > ${WD}/appcast/appcast-${VERSION}.xml <<EOF\n<item>\n<title>Version $VERSION</title>\n<sparkle:releaseNotesLink>$RELEASENOTES_URL</sparkle:releaseNotesLink>\n<pubDate>$PUBDATE</pubDate>\n<enclosure\nurl=\"$DOWNLOAD_URL\"\nsparkle:version=\"$BUNDLE_VERSION\"\nsparkle:shortVersionString=\"$VERSION\"\ntype=\"application/octet-stream\"\nlength=\"$SIZE\"\nsparkle:dsaSignature=\"$SIGNATURE\"\n/>\n</item>\nEOF\n\necho scp \"'$BUILT_PRODUCTS_DIR/$ARCHIVE_FILENAME'\" frs.sf.net:/home/frs/project/x/xm/xmds/\n\necho \"Merge $WD/appcast/appcast-${VERSION}.xml into $WD/appcast/appcast.xml, then:\"\necho scp -r \"'$WD/appcast/*'\" web.sf.net:/home/project-web/xmds/htdocs";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -387,6 +438,7 @@
 				BF7AF2CC14BC308B00B08CA3 /* main.m in Sources */,
 				BF7AF2D314BC308B00B08CA3 /* XMDSAppDelegate.m in Sources */,
 				BF810E1214C12D670092F337 /* XMDSUpdateWindowController.m in Sources */,
+				BF46541014C3CDFD002630C7 /* XMDSReleaseNotesWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

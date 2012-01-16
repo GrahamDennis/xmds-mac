@@ -21,10 +21,12 @@
 
 @synthesize window = _window;
 @synthesize updateWindow = _updateWindow;
+@synthesize releaseNotesWindow = _releaseNotesWindow;
 
 - (void)dealloc
 {
     self.updateWindow = nil;
+    self.releaseNotesWindow = nil;
     
     [super dealloc];
 }
@@ -137,7 +139,24 @@
 
 - (IBAction)openReleaseNotes:(id)sender
 {
+    if (!self.releaseNotesWindow) {
+        NSNib *releaseNotesWindowNib;
+        
+        releaseNotesWindowNib = [[NSNib alloc] initWithNibNamed:@"ReleaseNotes"
+                                                   bundle:nil];
+        
+        [releaseNotesWindowNib instantiateNibWithOwner:self
+                                 topLevelObjects:nil];
+    }
     
+    if (!self.releaseNotesWindow) {
+        NSLog(@"Couldn't create release notes window");
+        return;
+    }
+    
+    [self.releaseNotesWindow makeKeyAndOrderFront:sender];
+
+//    [[NSWorkspace sharedWorkspace] openURL:[[NSBundle mainBundle] URLForResource:@"release-notes" withExtension:@"html"]];
 }
 
 - (IBAction)signupForUserForum:(id)sender
