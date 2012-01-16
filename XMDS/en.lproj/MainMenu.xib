@@ -461,7 +461,7 @@
 				<string key="NSName">_NSMainMenu</string>
 			</object>
 			<object class="NSWindowTemplate" id="972006081">
-				<int key="NSWindowStyleMask">15</int>
+				<int key="NSWindowStyleMask">7</int>
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{644, 399}, {400, 263}}</string>
 				<int key="NSWTFlags">1954021376</int>
@@ -508,7 +508,6 @@
 							<string key="NSFrame">{{215, 12}, {171, 32}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:687</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="329848015">
@@ -1331,6 +1330,7 @@
 					<string key="className">XMDSAppDelegate</string>
 					<string key="superclassName">NSObject</string>
 					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="checkForXcodeApp:">id</string>
 						<string key="emailUserForum:">id</string>
 						<string key="launchXMDSTerminal:">id</string>
 						<string key="openReleaseNotes:">id</string>
@@ -1341,6 +1341,10 @@
 						<string key="viewUserForumArchives:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="checkForXcodeApp:">
+							<string key="name">checkForXcodeApp:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 						<object class="IBActionInfo" key="emailUserForum:">
 							<string key="name">emailUserForum:</string>
 							<string key="candidateClassName">id</string>
@@ -1375,10 +1379,15 @@
 						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="releaseNotesWindow">NSWindow</string>
 						<string key="updateWindow">NSWindow</string>
 						<string key="window">NSWindow</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="releaseNotesWindow">
+							<string key="name">releaseNotesWindow</string>
+							<string key="candidateClassName">NSWindow</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="updateWindow">
 							<string key="name">updateWindow</string>
 							<string key="candidateClassName">NSWindow</string>
