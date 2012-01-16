@@ -27,8 +27,7 @@
 	[self.releaseNotesView setPolicyDelegate:self];
 
     NSURL *releaseNotesURL = [[NSBundle mainBundle] URLForResource:@"release-notes" withExtension:@"html"];
-//    releaseNotesURL = [releaseNotesURL URLByAppendingPathExtension:@"#version-2.0"];
-    NSLog(@"releaseNotesURL: %@", releaseNotesURL);
+
     [[self.releaseNotesView mainFrame] loadRequest:[NSURLRequest requestWithURL:releaseNotesURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30]];
 }
 
