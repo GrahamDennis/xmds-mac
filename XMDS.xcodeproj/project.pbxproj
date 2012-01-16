@@ -259,8 +259,8 @@
 				BF7AF2B714BC308B00B08CA3 /* Sources */,
 				BF7AF2B814BC308B00B08CA3 /* Frameworks */,
 				BFE55A0414BFF17E00F840CF /* Copy Sparkle Framework */,
-				BF46540714C3C153002630C7 /* Update Release Notes */,
 				BF7AF2B914BC308B00B08CA3 /* Resources */,
+				BF46541414C3E9E4002630C7 /* Generate Release Notes */,
 				BF46540A14C3C470002630C7 /* Copy CSS */,
 				BF7AF34A14BEE53900B08CA3 /* Update Version Numbers */,
 				BF7AF2E114BC36B900B08CA3 /* Copy / Link usr Directory */,
@@ -367,7 +367,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		BF46540714C3C153002630C7 /* Update Release Notes */ = {
+		BF46541414C3E9E4002630C7 /* Generate Release Notes */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -375,13 +375,13 @@
 			inputPaths = (
 				"$(SRCROOT)/release-notes.md",
 			);
-			name = "Update Release Notes";
+			name = "Generate Release Notes";
 			outputPaths = (
 				"$(SRCROOT)/appcast/release-notes.html",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "set -o errexit\n\n/opt/local/bin/multimarkdown release-notes.md > appcast/release-notes.html";
+			shellScript = "set -o errexit\n\n/opt/local/bin/multimarkdown -o ${SRCROOT}/appcast/release-notes.html ${SRCROOT}/release-notes.md\n\ncp ${SRCROOT}/appcast/release-notes.html ${BUILT_PRODUCTS_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/";
 			showEnvVarsInLog = 0;
 		};
 		BF7AF2E114BC36B900B08CA3 /* Copy / Link usr Directory */ = {
