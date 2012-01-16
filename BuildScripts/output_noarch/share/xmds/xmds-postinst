@@ -11,6 +11,7 @@ if [ -d "${XMDS_SUPPORT}" ]; then
 fi
 
 mkdir -p "${XMDS_SUPPORT}"
+mkdir -p "${XMDS_USER_DATA}"
 
 echo "Installing virtual python environment..."
 /usr/bin/python "${XMDS_USR}/share/xmds/virtualenv.py" --quiet --distribute --never-download --extra-search-dir "${XMDS_USR}/distfiles" "${XMDS_SUPPORT}"
