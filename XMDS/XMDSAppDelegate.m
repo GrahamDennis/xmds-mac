@@ -159,8 +159,6 @@
     }
     
     [self.releaseNotesWindow makeKeyAndOrderFront:sender];
-
-//    [[NSWorkspace sharedWorkspace] openURL:[[NSBundle mainBundle] URLForResource:@"release-notes" withExtension:@"html"]];
 }
 
 - (IBAction)signupForUserForum:(id)sender
