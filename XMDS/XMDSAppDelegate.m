@@ -85,6 +85,8 @@
         
         [updateWindowNib instantiateNibWithOwner:self
                                  topLevelObjects:nil];
+        
+        [updateWindowNib release];
     }
     
     if (!self.updateWindow) {
@@ -147,6 +149,8 @@
         
         [releaseNotesWindowNib instantiateNibWithOwner:self
                                  topLevelObjects:nil];
+        
+        [releaseNotesWindowNib release];
     }
     
     if (!self.releaseNotesWindow) {
