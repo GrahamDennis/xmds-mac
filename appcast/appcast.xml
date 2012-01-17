@@ -4,19 +4,19 @@
         <link>http://www.xmds.org/appcast.xml</link>
         <description>Most recent changes with links to updates.</description>
         <language>en</language>
-		<item>
-			<title>XMDS 2.1beta1</title>
-			<sparkle:releaseNotesLink>http://www.xmds.org/release-notes.html#version-2.1beta1</sparkle:releaseNotesLink>
-			<pubDate>Mon, 16 Jan 2012 17:20:59 +1100</pubDate>
-			<enclosure
-				url="https://github.com/downloads/grahamdennis/xmds-mac/XMDS%202.1beta1.zip"
-				sparkle:version="64"
-				sparkle:shortVersionString="2.1beta1"
-				type="application/octet-stream"
-				length="67065649"
-				sparkle:dsaSignature="MCwCFC42Zhx/ouN0xjzwOqum6VLxwMwbAhRPxcuVn9P5ZpmQ6VVcLxUdj79h2Q=="
-			/>
-		</item>
+        <item>
+            <title>XMDS 2.1beta2</title>
+            <sparkle:releaseNotesLink>http://www.xmds.org/release-notes.html#version-2.1beta2</sparkle:releaseNotesLink>
+            <pubDate>Tue, 17 Jan 2012 18:02:05 +1100</pubDate>
+            <enclosure
+                url="https://github.com/downloads/grahamdennis/xmds-mac/XMDS 2.1beta1.zip"
+                sparkle:version="67"
+                sparkle:shortVersionString="2.1beta2"
+                type="application/octet-stream"
+                length="67067365"
+                sparkle:dsaSignature="MC4CFQCu1XrsEYPgbyxVpeXRLuEwC8kUnwIVAMD4qu0cnrY9dYCiURD1pX+EQh4h"
+            />
+        </item>
         <item>
             <title>XMDS 2.1alpha3</title>
             <sparkle:releaseNotesLink>http://www.example.com/software/my-cool-app/release-notes.html#version-2.1alpha3</sparkle:releaseNotesLink>
