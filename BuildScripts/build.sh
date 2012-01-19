@@ -2,7 +2,7 @@
 
 # You need libmagic and python-magic installed for this script to work (required by create_universal.py)
 
-OPENMPI_VERSION=1.4.4
+OPENMPI_VERSION=1.5.4
 FFTW_VERSION=3.3
 HDF5_VERSION=1.8.8
 GSL_VERSION=1.15
