@@ -18,13 +18,13 @@ function patch_config_header {
 
 function build {
     export CC="/opt/local/bin/gcc-mp-4.5" CXX="/opt/local/bin/g++-mp-4.5"
-    make clean
+    make clean || true
     
     ./configure --prefix=$(PWD)/../../output64 CC="${CC}" CXX="${CXX}" --disable-static $*
     patch_config_header
     make -j4 && make install
     
-    make clean
+    make clean || true
     export CC="cc" CXX="c++"
     ./configure --prefix=$(PWD)/../../output32 CC="${CC} -arch i386" CXX="${CXX} -arch i386" --disable-static $*
     patch_config_header
