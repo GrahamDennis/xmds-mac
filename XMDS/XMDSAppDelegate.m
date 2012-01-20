@@ -127,9 +127,9 @@
         [alert addButtonWithTitle:@"Dismiss"];
         [alert setShowsSuppressionButton:YES];
         
-        NSInteger button = [alert runModal];
+        NSInteger selectedButtonID = [alert runModal];
         
-        if (button == NSAlertFirstButtonReturn && targetURL) {
+        if (selectedButtonID == NSAlertFirstButtonReturn && targetURL) {
             [[NSWorkspace sharedWorkspace] openURL:targetURL];
         }
         
