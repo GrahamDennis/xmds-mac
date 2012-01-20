@@ -1,0 +1,1 @@
+excludeInBrowser = "{build,output32,output64,output,source,xmds2}"
