@@ -10,12 +10,12 @@ function build {
     make clean || true
     export CC="/opt/local/bin/gcc-mp-4.5"
     export OMPI_CC="${CC}"
-    ./configure --prefix=$(PWD)/../../output64 MPICC="mpicc" --disable-static --enable-avx $* && make -j4 && make install
+    ./configure --prefix=$(PWD)/../../output64 MPICC="mpicc" --enable-avx $* && make -j4 && make install
     cp tests/bench ../../output64/bin/fftw_bench_temp
     make clean || true
     export CC="cc -arch i386"
     export OMPI_CC="${CC}"
-    ./configure --prefix=$(PWD)/../../output32 MPICC=mpicc --disable-static $* && make -j4 && make install
+    ./configure --prefix=$(PWD)/../../output32 MPICC="mpicc" $* && make -j4 && make install
     cp tests/bench ../../output32/bin/fftw_bench_temp
 }
 

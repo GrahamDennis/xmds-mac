@@ -30,7 +30,7 @@ curl --remote-name --continue-at - --silent --location http://pypi.python.org/pa
 set -e
 
 cd ..;
-rm -rf build output32 output64;
+rm -rf build output output32 output64;
 mkdir build;
 cd build;
 
@@ -55,7 +55,7 @@ cd ..;
 tar -xzf ../source/gsl-${GSL_VERSION}.tar.gz
 cd gsl-${GSL_VERSION};
 ../../gsl.sh;
-cd ..;
+cd ../..;
 
 ./create_universal.py
 
@@ -63,6 +63,7 @@ cd ..;
 
 ./create_universal.py
 
+cd build;
 mkdir ../output/distfiles;
 tar -xzf ../source/virtualenv-${VIRTUALENV_VERSION}.tar.gz
 cd virtualenv-${VIRTUALENV_VERSION}
