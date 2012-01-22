@@ -44,6 +44,8 @@
         revision = self.subversionRevision;
     
     [(XMDSAppDelegate *)[NSApp delegate] launchXMDSUpdateTerminalToRevision:revision];
+    
+    [self.window performClose:sender];
 }
 
 @end
