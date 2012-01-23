@@ -21,12 +21,12 @@ function build {
     
     ./configure --prefix=$(PWD)/../../output64 CC="${CC}" CXX="${CXX}" --disable-static $*
     patch_config_header
-    make -j4 && make install
-    
+    make && make install
+	
     make clean || true
     ./configure --prefix=$(PWD)/../../output32 CC="${CC} -arch i386" CXX="${CXX} -arch i386" --disable-static $*
     patch_config_header
-    make -j4 && make install
+    make && make install
 }
 
 build --with-fftw3-path=`pwd`/../../output --enable-fftw3 --enable-threads --program-suffix=1
