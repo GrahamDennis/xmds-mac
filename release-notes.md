@@ -13,6 +13,19 @@ Changes include:
 
 [waf]: http://code.google.com/p/waf
 
+# XMDS 2.1β5 [version-2.1beta5]
+
+Mac installer changes:
+
+* The 'Update to Development Version' window is dismissed when you choose to update.
+* `man`-pages are now included.
+* Minor changes.
+
+XMDS changes:
+
+* Updated documentation with information about Linux and Mac installers.
+* Updated Linux installer script.
+
 # XMDS 2.0 "Shiny!" [version-2.0]
 
 XMDS 2.0 is a major upgrade which has been rewritten from the ground up to make it easier for us to apply new features. And there are many. XMDS 2.0 is faster and far more versatile than previous versions, allowing the efficient integration of almost any initial value problem on regular domains.
