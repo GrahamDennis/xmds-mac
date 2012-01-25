@@ -8,7 +8,7 @@ export PATH=`pwd`/../../:${PATH}
 # We have included this function here because we can only use avx with the 64-bit build.
 function build {
     make clean || true
-    export CC="/opt/local/bin/gcc-mp-4.5"
+    export CC="/opt/local/bin/gcc-mp-4.6"
     export OMPI_CC="${CC}"
     ./configure --prefix=$(PWD)/../../output64 MPICC="mpicc" --enable-avx $* && make -j4 && make install
     cp tests/bench ../../output64/bin/fftw_bench_temp

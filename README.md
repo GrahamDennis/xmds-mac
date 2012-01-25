@@ -2,7 +2,7 @@
 
 Requirements: 
 
-* `gcc-4.5` from MacPorts, `clang-3.1` from MacPorts. These are needed to build FFTW with AVX support. Update `BuildScripts/as` and `BuildScripts/fftw.sh` if you're using newer versions.
+* `gcc46` from MacPorts, `clang-3.1` from MacPorts. These are needed to build FFTW with AVX support. Update `BuildScripts/as` and `BuildScripts/fftw.sh` if you're using newer versions.
 * `file` from MacPorts, and `python-magic` (`sudo easy_install python-magic`) 
 
 Steps for a complete checkout:
