@@ -29,7 +29,7 @@ pip --quiet install "${XMDS_USR}/distfiles/xmds2-requirements.pybundle"
 mkdir -p "${XMDS_SUPPORT}/src/xmds2"
 
 echo "Extracting XMDS2..."
-tar -xzf "${XMDS_USR}/distfiles/xmds2-svn.tar.bz2" -C "${XMDS_SUPPORT}/src/"
+tar -xjf "${XMDS_USR}/distfiles/xmds2-svn.tar.bz2" -C "${XMDS_SUPPORT}/src/"
 cd "${XMDS_SUPPORT}/src/xmds2"
 
 # Copy in local copy of MathJax
