@@ -17,6 +17,7 @@ Changes include:
 
 Mac installer changes:
 
+* Fix an issue that could occur if you had manually installed `gzip`.
 * The 'Update to Development Version' window is dismissed when you choose to update.
 * `man`-pages are now included.
 * Minor changes.
@@ -25,6 +26,8 @@ XMDS changes:
 
 * Updated documentation with information about Linux and Mac installers.
 * Updated Linux installer script.
+* You can now specify `volume_prefactor` on dimensions to modify the metric factor.  This is useful for Bessel-transform and DCT dimensions.
+* Configuration improvements.
 
 # XMDS 2.0 "Shiny!" [version-2.0]
 
