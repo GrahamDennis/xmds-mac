@@ -13,6 +13,12 @@ Changes include:
 
 [waf]: http://code.google.com/p/waf
 
+# XMDS 2.1β6 [version-2.1beta6]
+
+Bugfix release.
+
+This release corrects an issue in XMDS 2.1β5 where in renaming the `initial_space` attribute to `initial_basis`, we failed to make the change backward compatible.
+
 # XMDS 2.1β5 [version-2.1beta5]
 
 Mac installer changes:
