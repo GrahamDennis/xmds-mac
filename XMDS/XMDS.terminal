@@ -12,7 +12,7 @@
 	AAAAAADM
 	</data>
 	<key>CommandString</key>
-	<string>XMDS_SHELL=YES . ${XMDS_USR}/share/xmds/xmds.conf;${ADDITIONAL_COMMANDS}</string>
+	<string>XMDS_SHELL=YES DEVELOPER_DIR="${DEVELOPER_DIR}" . "${XMDS_USR}/share/xmds/xmds.conf";${ADDITIONAL_COMMANDS}</string>
 	<key>CursorColor</key>
 	<data>
 	YnBsaXN0MDDUAQIDBAUGFRZYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS

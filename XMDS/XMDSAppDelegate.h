@@ -19,10 +19,6 @@
 @property (nonatomic, retain) IBOutlet NSWindow *updateWindow;
 @property (nonatomic, retain) IBOutlet NSWindow *releaseNotesWindow;
 
-@property (readonly) NSString *usrPath;
-@property (readonly) NSString *xmdsLibraryPath;
-@property (readonly) NSArray *documentationPaths;
-
 - (IBAction)launchXMDSTerminal:(id)sender;
 - (IBAction)showHelp:(id)sender;
 - (IBAction)orderFrontUpdateToDevelopmentVersionWindow:(id)sender;
@@ -34,7 +30,6 @@
 - (IBAction)viewUserForumArchives:(id)sender;
 - (IBAction)signupForUserForum:(id)sender;
 - (IBAction)emailUserForum:(id)sender;
-
 
 - (void)launchXMDSUpdateTerminalToRevision:(NSNumber *)revision;
 

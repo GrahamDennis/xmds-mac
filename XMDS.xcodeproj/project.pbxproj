@@ -281,7 +281,7 @@
 		BF7AF2B214BC308B00B08CA3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0430;
 				ORGANIZATIONNAME = "Australian National University";
 			};
 			buildConfigurationList = BF7AF2B514BC308B00B08CA3 /* Build configuration list for PBXProject "XMDS" */;

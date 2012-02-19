@@ -15,6 +15,11 @@
 
 - (BOOL)interpolateTerminalTemplateWithParameters:(NSDictionary *)parameters toFile:(NSString *)path;
 
+@property (readonly) NSString *usrPath;
+@property (readonly) NSString *xmdsLibraryPath;
+@property (readonly) NSArray *documentationPaths;
+@property (readonly) NSString *xcodeDeveloperPath;
+
 @end
 
 @implementation XMDSAppDelegate
@@ -187,7 +192,6 @@
 }
 
 
-
 #pragma mark Terminal file writing
 
 - (NSString *)writeXMDSTerminalFile
@@ -241,6 +245,7 @@
     
     NSMutableDictionary *allParameters = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                           self.usrPath, @"${XMDS_USR}",
+                                          self.xcodeDeveloperPath, @"${DEVELOPER_DIR}",
                                           @"XMDS", @"${NAME}",
                                           @"", @"${ADDITIONAL_COMMANDS}",
                                           nil];
@@ -302,6 +307,36 @@
     }
     
     return xmdsLibraryPath;
+}
+
+- (NSString *)xcodeDeveloperPath
+{
+    NSString *xcodeAppPath = nil;
+
+    xcodeAppPath = [[NSWorkspace sharedWorkspace] absolutePathForAppBundleWithIdentifier:@"com.apple.dt.Xcode"];
+    if (!xcodeAppPath)
+        xcodeAppPath = [[NSWorkspace sharedWorkspace] absolutePathForAppBundleWithIdentifier:@"com.apple.Xcode"];
+    
+    NSString *xcodeVersion = nil;
+    
+    if (xcodeAppPath) {
+        NSBundle *xcodeBundle = [NSBundle bundleWithPath:xcodeAppPath];
+        xcodeVersion = [[xcodeBundle infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    }
+    
+    if (xcodeVersion) {
+        NSComparisonResult result = [xcodeVersion compare:@"4.3" options:NSNumericSearch];
+        // Xcode 4.3 or later, Developer tools are in Xcode.app/Contents/Developer
+        if (result == NSOrderedSame || result == NSOrderedDescending) {
+            return [xcodeAppPath stringByAppendingPathComponent:@"Contents/Developer"];
+        } else {
+            // Go from /Developer/Applications/Xcode.app to /Developer
+            return [[xcodeAppPath stringByDeletingLastPathComponent] stringByDeletingLastPathComponent];
+        }
+    }
+    
+    // Return nothing. Xcode may not be installed. We'll have to use whatever compiler happens to be available.
+    return @"";
 }
 
 

@@ -18,6 +18,8 @@
 {
     self.subversionRevision = nil;
     self.updateSelectionIndex = nil;
+    
+    [super dealloc];
 }
 
 - (id)initWithWindow:(NSWindow *)window
