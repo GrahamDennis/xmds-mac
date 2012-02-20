@@ -13,6 +13,8 @@
     NSWindow *_window;
     NSWindow *_updateWindow;
     NSWindow *_releaseNotesWindow;
+    
+    NSString *_xcodeDeveloperPath;
 }
 
 @property (assign) IBOutlet NSWindow *window;
@@ -25,7 +27,7 @@
 - (IBAction)openXMDSHomepage:(id)sender;
 - (IBAction)openReleaseNotes:(id)sender;
 
-- (IBAction)checkForXcodeApp:(id)sender;
+- (IBAction)checkForDeveloperTools:(id)sender;
 
 - (IBAction)viewUserForumArchives:(id)sender;
 - (IBAction)signupForUserForum:(id)sender;
