@@ -246,7 +246,7 @@
 - (NSString *)writeXMDSTerminalFile
 {
     NSString *terminalFilePath = [self interpolateTerminalTemplateWithParameters:nil
-                                                                      withSuffix:terminalFilePath];
+                                                                      withSuffix:nil];
     
     return terminalFilePath; 
 }
