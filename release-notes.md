@@ -13,6 +13,14 @@ Changes include:
 
 [waf]: http://code.google.com/p/waf
 
+# XMDS 2.1β7 [version-2.1beta7]
+
+This release adds support for Xcode 4.3.  You can now just install the [Command Line Tools for Xcode][CommandLineTools], a ~170Mb download instead of the full Xcode package which is ~1.3Gb.
+
+The 'XMDS Terminal' feature now works for users who have changed their shell from the default (`bash`).
+
+[CommandLineTools]: https://developer.apple.com/downloads/index.action?=Command%20Line%20Tools
+
 # XMDS 2.1β6 [version-2.1beta6]
 
 Bugfix release.
