@@ -28,6 +28,7 @@
 		BF46540D14C3C551002630C7 /* ReleaseNotes.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF46540C14C3C551002630C7 /* ReleaseNotes.xib */; };
 		BF46541014C3CDFD002630C7 /* XMDSReleaseNotesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF46540F14C3CDFD002630C7 /* XMDSReleaseNotesWindowController.m */; };
 		BF46541214C3CE87002630C7 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF46541114C3CE87002630C7 /* WebKit.framework */; };
+		BF74AE6E14F2151800992600 /* bash_profile in Resources */ = {isa = PBXBuildFile; fileRef = BF74AE6D14F2151800992600 /* bash_profile */; };
 		BF7AF2C014BC308B00B08CA3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF7AF2BF14BC308B00B08CA3 /* Cocoa.framework */; };
 		BF7AF2CA14BC308B00B08CA3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BF7AF2C814BC308B00B08CA3 /* InfoPlist.strings */; };
 		BF7AF2CC14BC308B00B08CA3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7AF2CB14BC308B00B08CA3 /* main.m */; };
@@ -128,6 +129,7 @@
 		BF46540E14C3CDFD002630C7 /* XMDSReleaseNotesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMDSReleaseNotesWindowController.h; sourceTree = "<group>"; };
 		BF46540F14C3CDFD002630C7 /* XMDSReleaseNotesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMDSReleaseNotesWindowController.m; sourceTree = "<group>"; };
 		BF46541114C3CE87002630C7 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		BF74AE6D14F2151800992600 /* bash_profile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bash_profile; sourceTree = "<group>"; };
 		BF7AF2BB14BC308B00B08CA3 /* XMDS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XMDS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF7AF2BF14BC308B00B08CA3 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		BF7AF2C214BC308B00B08CA3 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -222,6 +224,7 @@
 		BF7AF2C614BC308B00B08CA3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BF74AE6D14F2151800992600 /* bash_profile */,
 				BF810E1514C2542F0092F337 /* xmds.icns */,
 				BF810E1314C157AB0092F337 /* xpdeint_logo.pdf */,
 				BF02E33B14BFD67A00C09C9D /* XMDS.terminal */,
@@ -361,6 +364,7 @@
 				BF810E1614C2542F0092F337 /* xmds.icns in Resources */,
 				BF46540614C3C14A002630C7 /* release-notes.html in Resources */,
 				BF46540D14C3C551002630C7 /* ReleaseNotes.xib in Resources */,
+				BF74AE6E14F2151800992600 /* bash_profile in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

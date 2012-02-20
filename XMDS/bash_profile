@@ -1,0 +1,21 @@
+# Source normal stuff as though this is a login shell
+
+[ -r /etc/profile ] && . /etc/profile
+
+# See man bash for information about this ordering
+if [ -r $HOME/.bash_profile ]; then
+    . $HOME/.bash_profile;
+elif [ -r $HOME/.bash_login ]; then
+    . $HOME/.bash_login;
+elif [ -r $HOME/.profile ]; then
+    . $HOME/.profile;
+fi
+
+export XMDS_SHELL=YES
+
+export DEVELOPER_DIR="${DEVELOPER_DIR}"
+export XMDS_USR="${XMDS_USR}"
+
+source "${XMDS_USR}/share/xmds/xmds.conf";
+
+${ADDITIONAL_COMMANDS}

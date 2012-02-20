@@ -13,7 +13,7 @@
 - (NSString *)writeXMDSTerminalFile;
 - (NSString *)writeXMDSUpdateTerminalFileWithRevision:(NSString *)revision;
 
-- (BOOL)interpolateTerminalTemplateWithParameters:(NSDictionary *)parameters toFile:(NSString *)path;
+- (NSString *)interpolateTerminalTemplateWithParameters:(NSDictionary *)parameters withSuffix:(NSString *)path;
 
 - (IBAction)askUserToInstallDevTools:(id)sender;
 
@@ -245,12 +245,10 @@
 
 - (NSString *)writeXMDSTerminalFile
 {
-    NSString *terminalFilePath = [self.xmdsLibraryPath stringByAppendingPathComponent:@"XMDS.terminal"];
+    NSString *terminalFilePath = [self interpolateTerminalTemplateWithParameters:nil
+                                                                      withSuffix:terminalFilePath];
     
-    BOOL result = [self interpolateTerminalTemplateWithParameters:nil
-                                                           toFile:terminalFilePath];
-    
-    return result ? terminalFilePath : nil; 
+    return terminalFilePath; 
 }
 
 - (NSString *)writeXMDSUpdateTerminalFileWithRevision:(NSNumber *)revision
@@ -263,21 +261,29 @@
     NSDictionary *parameters = [NSDictionary dictionaryWithObject:additionalCommand
                                                            forKey:@"${ADDITIONAL_COMMANDS}"];
     
-    NSString *terminalUpdateFile = [self.xmdsLibraryPath stringByAppendingPathComponent:@"XMDS-update.terminal"];
+    NSString *terminalUpdateFile = [self interpolateTerminalTemplateWithParameters:parameters
+                                                                        withSuffix:@"-update"];
     
-    BOOL result = [self interpolateTerminalTemplateWithParameters:parameters
-                                                           toFile:terminalUpdateFile];
-    
-    return result ? terminalUpdateFile : nil;
+    return terminalUpdateFile;
 }
 
-- (BOOL)interpolateTerminalTemplateWithParameters:(NSDictionary *)parameters toFile:(NSString *)path
+- (NSString *)interpolateTerminalTemplateWithParameters:(NSDictionary *)parameters withSuffix:(NSString *)suffix
 {
+    if (!suffix)
+        suffix = @"";
+    
     NSString *terminalTemplatePath = [[NSBundle mainBundle] pathForResource:@"XMDS"
                                                                      ofType:@"terminal"];
     
     if (!terminalTemplatePath) {
         NSLog(@"Couldn't find XMDS.terminal");
+        return FALSE;
+    }
+    
+    NSString *bashProfilePath = [[NSBundle mainBundle] pathForResource:@"bash_profile" ofType:nil];
+    
+    if (!bashProfilePath) {
+        NSLog(@"Couldn't find bash_profile");
         return FALSE;
     }
     
@@ -292,9 +298,23 @@
         return FALSE;
     }
     
+    NSString *bashProfileContents = [NSString stringWithContentsOfFile:bashProfilePath encoding:NSUTF8StringEncoding error:&error];
+    
+    if (error) {
+        NSLog(@"Couldn't read bash_profile content. Error: %@", error);
+        return FALSE;
+    }
+    
+    NSString *terminalFilename = [NSString stringWithFormat:@"XMDS%@.terminal", suffix];
+    NSString *bashProfileFilename = [NSString stringWithFormat:@"bash_profile%@", suffix];
+    
+    NSString *terminalDestinationPath = [self.xmdsLibraryPath stringByAppendingPathComponent:terminalFilename];
+    NSString *bashProfileDestinationPath = [self.xmdsLibraryPath stringByAppendingPathComponent:bashProfileFilename];
+    
     NSMutableDictionary *allParameters = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                           self.usrPath, @"${XMDS_USR}",
                                           self.xcodeDeveloperPath, @"${DEVELOPER_DIR}",
+                                          bashProfileDestinationPath, @"${RC_FILE}",
                                           @"XMDS", @"${NAME}",
                                           @"", @"${ADDITIONAL_COMMANDS}",
                                           nil];
@@ -304,19 +324,31 @@
     for (NSString *key in allParameters) {
         terminalContents = [terminalContents stringByReplacingOccurrencesOfString:key
                                                                        withString:[allParameters objectForKey:key]];
+        bashProfileContents = [bashProfileContents stringByReplacingOccurrencesOfString:key
+                                                                             withString:[allParameters objectForKey:key]];
     }
     
-    BOOL result = [terminalContents writeToFile:path
-                                     atomically:YES
-                                       encoding:NSUTF8StringEncoding
-                                          error:&error];
+    BOOL result = [bashProfileContents writeToFile:bashProfileDestinationPath
+                                        atomically:YES
+                                          encoding:NSUTF8StringEncoding
+                                             error:&error];
     
     if (!result || error) {
-        NSLog(@"Unable to write terminal file to path: %@. Error: %@", path, error);
+        NSLog(@"Unable to write rc file to path: %@. Error: %@", bashProfileDestinationPath, error);
         return FALSE;
     }
     
-    return YES;    
+    result = [terminalContents writeToFile:terminalDestinationPath
+                                atomically:YES
+                                  encoding:NSUTF8StringEncoding
+                                     error:&error];
+    
+    if (!result || error) {
+        NSLog(@"Unable to write terminal file to path: %@. Error: %@", terminalDestinationPath, error);
+        return FALSE;
+    }
+    
+    return terminalDestinationPath;
 }
 
 #pragma mark Path methods
