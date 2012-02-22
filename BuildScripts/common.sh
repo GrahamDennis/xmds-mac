@@ -5,7 +5,7 @@ set -o errexit
 export PATH=${PWD}/../../output/bin:/usr/bin:/bin:/usr/sbin:/sbin
 export OPAL_PREFIX=${PWD}/../../output
 
-export CC="cc" CXX="c++"
+export CC="gcc" CXX="g++"
 
 function build {
     make clean || true
