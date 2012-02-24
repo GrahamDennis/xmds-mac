@@ -2,6 +2,9 @@
 
 source common.sh;
 
+# autoconf et al are no longer distributed with Xcode. So we need to grab them from macports
+export PATH=$PATH:/opt/local/bin
+
 rm -rf build/xmds1
 mkdir -p build/xmds1
 cd build/xmds1
