@@ -9,7 +9,7 @@ FFTW_VERSION=3.3
 HDF5_VERSION=1.8.8
 GSL_VERSION=1.15
 
-VIRTUALENV_VERSION=1.7
+VIRTUALENV_VERSION=1.7.1.2
 
 if [ ! -d source ]; then
 	mkdir source/
