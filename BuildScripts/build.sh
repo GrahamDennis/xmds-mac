@@ -34,7 +34,7 @@ rm -rf build output output32 output64;
 mkdir build;
 cd build;
 
-tar -xzf ../source/openmpi-${OPENMPI_VERSION}.tar.bz2
+tar -xjf ../source/openmpi-${OPENMPI_VERSION}.tar.bz2
 cd openmpi-${OPENMPI_VERSION};
 ../../openmpi.sh;
 cd ../..;
@@ -47,7 +47,7 @@ cd fftw-${FFTW_VERSION};
 ../../fftw.sh;
 cd ..;
 
-tar -xzf ../source/hdf5-${HDF5_VERSION}.tar.bz2
+tar -xjf ../source/hdf5-${HDF5_VERSION}.tar.bz2
 cd hdf5-${HDF5_VERSION};
 ../../hdf5.sh;
 cd ..;
