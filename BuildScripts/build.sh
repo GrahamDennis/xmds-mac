@@ -73,4 +73,6 @@ cd ../..
 
 ./create_pybundle.sh
 
+./extras.sh
+
 ./xmds2-checkout.sh;
