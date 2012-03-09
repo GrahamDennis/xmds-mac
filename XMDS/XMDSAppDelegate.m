@@ -16,6 +16,13 @@
 - (NSString *)interpolateTerminalTemplateWithParameters:(NSDictionary *)parameters withSuffix:(NSString *)path;
 
 - (IBAction)askUserToInstallDevTools:(id)sender;
+- (BOOL)isTextMateInstalled;
+- (BOOL)isTextMateBundleInstalled;
+- (void)offerToInstallTextMateBundle;
+- (IBAction)installTextMateBundle:(id)sender;
+- (NSString *)textMateBundlePath;
+- (NSString *)textMateBundleInstallPath;
+- (NSString *)textMateBundleSourcePath;
 
 @property (readonly) NSString *usrPath;
 @property (readonly) NSString *xmdsLibraryPath;
@@ -44,6 +51,16 @@
     // Insert code here to initialize your application
     
     [self checkForDeveloperTools:nil];
+    
+    NSString *XMDSHasLaunchedBeforeKey = @"XMDSHasLaunched";
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:XMDSHasLaunchedBeforeKey] == NO) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:XMDSHasLaunchedBeforeKey];
+    } else {
+        // Things to check on second launch.
+        
+        [self offerToInstallTextMateBundle];
+    }
 }
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender
@@ -238,6 +255,172 @@
 - (IBAction)viewUserForumArchives:(id)sender
 {
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://sourceforge.net/mailarchive/forum.php?forum_name=xmds-user"]];
+}
+
+#pragma mark TextMate bundle methods
+
+- (void)offerToInstallTextMateBundle
+{
+    NSString *textMateBundleInstallAlertSuppress = @"TextMateBundleInstallAlertSuppress";
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:textMateBundleInstallAlertSuppress])
+        return;
+    
+    if (![self isTextMateInstalled])
+        return;
+    
+    if ([self isTextMateBundleInstalled])
+        return;
+    
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert setAlertStyle:NSInformationalAlertStyle];
+
+    [alert setMessageText:@"Would you like to install XMDS syntax highlighting for TextMate?"];
+    
+    [alert addButtonWithTitle:@"Install TextMate support for XMDS"];
+    [alert addButtonWithTitle:@"Dismiss"];
+    [alert setShowsSuppressionButton:YES];
+
+    NSInteger selectedButtonID = [alert runModal];
+    
+    if (selectedButtonID == NSAlertFirstButtonReturn) {
+        [self installTextMateBundle:self];
+    }
+    
+    if ([[alert suppressionButton] state] == NSOnState) {
+        // Suppress this alert
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:textMateBundleInstallAlertSuppress];
+    }
+    
+    [alert release];
+}
+
+- (BOOL)isTextMateInstalled
+{
+    // Check for normal TextMate
+    if ([[NSWorkspace sharedWorkspace] absolutePathForAppBundleWithIdentifier:@"com.macromates.TextMate"])
+        return YES;
+    // Check for TextMate preview
+    if ([[NSWorkspace sharedWorkspace] absolutePathForAppBundleWithIdentifier:@"com.macromates.TextMate.preview"])
+        return YES;
+    
+    return NO;
+}
+
+- (BOOL)isTextMateBundleInstalled
+{
+    NSString *xmdsBundlePath = [self textMateBundleInstallPath];
+    
+    return [[NSFileManager defaultManager] fileExistsAtPath:xmdsBundlePath];
+}
+
+- (NSString *)textMateBundlePath
+{
+    NSArray *searchURLs = [[NSFileManager defaultManager] URLsForDirectory:NSApplicationSupportDirectory inDomains:NSUserDomainMask];
+    
+    if (![searchURLs count]) {
+        NSLog(@"Empty search paths when looking for the user application support directory");
+        return nil;
+    }
+    
+    if ([searchURLs count] > 1) 
+        NSLog(@"Warning: More than one user application support path found: %@", searchURLs);
+    
+    NSString *appSupportPath = [(NSURL *)[searchURLs lastObject] path];
+    
+    NSString *textMateBundlePath = [appSupportPath stringByAppendingPathComponent:@"TextMate/Bundles"];
+    
+    return textMateBundlePath;
+}
+
+- (NSString *)textMateBundleInstallPath
+{
+    NSString *xmdsBundlePath = [[self textMateBundlePath] stringByAppendingPathComponent:@"XMDS.tmbundle"];
+    
+    return xmdsBundlePath;
+}
+
+- (NSString *)textMateBundleSourcePath
+{
+    return [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"Contents/usr/share/xmds/extras/XMDS.tmbundle"];
+}
+
+- (IBAction)installTextMateBundle:(id)sender
+{
+    NSString *sourcePath = [self textMateBundleSourcePath];
+    NSString *destPath = [self textMateBundleInstallPath];
+    
+    BOOL result;
+    NSError *error = nil;
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:destPath]) {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert setAlertStyle:NSWarningAlertStyle];
+        
+        [alert setMessageText:@"TextMate bundle previously installed"];
+        [alert setInformativeText:@"You currently have the TextMate bundle installed.  Would you like to reinstall it?"];
+        
+        [alert addButtonWithTitle:@"Reinstall"];
+        [alert addButtonWithTitle:@"Cancel"];
+        
+        NSInteger selectedButtonID = [alert runModal];
+        
+        [alert release];
+        
+        if (selectedButtonID == NSAlertFirstButtonReturn) {
+            result = [[NSFileManager defaultManager] removeItemAtPath:destPath error:&error];
+            
+            if (!result) {
+                NSAlert *alert = [[NSAlert alloc] init];
+                [alert setMessageText:@"Unable to remove TextMate bundle"];
+                [alert setInformativeText:[NSString stringWithFormat:@"An error occurred while trying to remove the old TextMate bundle.\nDetails: %@", error]];
+                
+                [alert addButtonWithTitle:@"Dismiss"];
+                
+                [alert runModal];
+                
+                [alert release];
+                return;
+            }
+            // We successfully removed the old bundle, move on to installing the new one.
+            
+        } else {
+            // We aren't removing the currently installed bundle.
+            return;
+        }
+    }
+    
+    // Create the intermediate paths if they don't exist
+    NSString *textMateBundlePath = [self textMateBundlePath];
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:textMateBundlePath])
+    {
+        [[NSFileManager defaultManager] createDirectoryAtPath:textMateBundlePath
+                                  withIntermediateDirectories:YES
+                                                   attributes:nil
+                                                        error:nil];
+    }
+    
+    result = [[NSFileManager defaultManager] copyItemAtPath:sourcePath toPath:destPath error:&error];
+    if (!result) {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert setMessageText:@"Unable to install TextMate bundle"];
+        [alert setInformativeText:[NSString stringWithFormat:@"An error occurred while trying to install the TextMate bundle.\nDetails: %@", error]];
+        [alert addButtonWithTitle:@"Dismiss"];
+        
+        [alert runModal];
+        [alert release];
+    } else {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert setAlertStyle:NSInformationalAlertStyle];
+        [alert setMessageText:@"TextMate bundle installed"];
+        [alert setInformativeText:@"XMDS scripts opened with TextMate will now have syntax highlighting"];
+        
+        [alert addButtonWithTitle:@"Dismiss"];
+        
+        [alert runModal];
+        [alert release];
+    }
+    
 }
 
 
