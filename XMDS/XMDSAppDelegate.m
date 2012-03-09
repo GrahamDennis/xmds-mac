@@ -8,6 +8,8 @@
 
 #import "XMDSAppDelegate.h"
 
+#import <CoreServices/CoreServices.h>
+
 @interface XMDSAppDelegate ()
 
 - (NSString *)writeXMDSTerminalFile;
@@ -15,12 +17,22 @@
 
 - (NSString *)interpolateTerminalTemplateWithParameters:(NSDictionary *)parameters withSuffix:(NSString *)path;
 
-- (IBAction)askUserToInstallDevTools:(id)sender;
+- (IBAction)askUserToInstallDevToolsWithMessage:(NSString *)message
+                                    buttonTitle:(NSString *)buttonTitle
+                                         action:(id)action
+                                 suppressionKey:(NSString *)suppressionKey;
+
+- (IBAction)askUserToInstallCmdLineToolsFromXcode:(id)sender;
+- (IBAction)askUserToInstallCmdLineToolsFromDevSite:(id)sender;
+- (IBAction)askUserToUpgradeOS:(id)sender;
+- (IBAction)askUserToInstallXcodeFromDevSite:(id)sender;
 
 @property (readonly) NSString *usrPath;
 @property (readonly) NSString *xmdsLibraryPath;
 @property (readonly) NSArray *documentationPaths;
 @property (nonatomic, retain) NSString *xcodeDeveloperPath;
+
+@property (readonly, nonatomic) NSString *macosxVersion;
 
 @end
 
@@ -107,96 +119,128 @@
 
 - (IBAction)checkForDeveloperTools:(id)sender
 {
+    // For a complete installation, we need a compiler, python-config and Python.h
+    // As of Mac OS X 10.7, Python.h isn't being distributed with the base install,
+    // and it only comes with the command line tools.  It is also available in the
+    // MacOSX10.7.sdk, but I don't know how to get python distutils to find it there.
+    //
+    //
+    // If you have /usr/bin/g++, it means you have everything. Either:
+    //   1. You have an older version of Xcode which came with 'command line tools', or
+    //   2. You have the 'Command Line Tools' for 10.7.3, with or without Xcode 4.3+
+    
     if ([[NSFileManager defaultManager] fileExistsAtPath:@"/usr/bin/g++"]) {
         // Just use the root directory tools
         self.xcodeDeveloperPath = @"";
         return;
     }
     
-    NSString *xcodeAppPath = nil;
+    // If you don't have /usr/bin/g++, the remedy depends on the operating system version:
+    //   * if you're running something earlier than 10.7, you need to go to the Developer website
+    //     and download Xcode for your operating system.
+    //   * if you're running 10.7.0 to 10.7.2, we can either recommend you update to 10.7.3 and install
+    //     Command Line Tools, or grab Xcode 4.2.1 for Lion
+    //   * if you're running 10.7.3 or later, we just tell you to grab 'Command Line Tools'
     
-    // Check for Xcode 4
-    xcodeAppPath = [[NSWorkspace sharedWorkspace] absolutePathForAppBundleWithIdentifier:@"com.apple.dt.Xcode"];
-    
-    // Couldn't find it, search for Xcode 3
-    if (!xcodeAppPath)
-        xcodeAppPath = [[NSWorkspace sharedWorkspace] absolutePathForAppBundleWithIdentifier:@"com.apple.Xcode"];
-    
-    if (!xcodeAppPath) {
-        return [self askUserToInstallDevTools:sender];
-    }
-    
-    NSString *xcodeVersion = nil;
-    
-    if (xcodeAppPath) {
-        NSBundle *xcodeBundle = [NSBundle bundleWithPath:xcodeAppPath];
-        xcodeVersion = [[xcodeBundle infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-    }
-    
-    if (xcodeVersion) {
-        NSComparisonResult result = [xcodeVersion compare:@"4.3" options:NSNumericSearch];
-        // Xcode 4.3 or later, Developer tools are in Xcode.app/Contents/Developer
-        if (result == NSOrderedSame || result == NSOrderedDescending) {
-            self.xcodeDeveloperPath = [xcodeAppPath stringByAppendingPathComponent:@"Contents/Developer"];
+    if ([@"10.7.3" compare:self.macosxVersion options:NSNumericSearch] <= 0) {
+        // >= 10.7.3
+        
+        // They either don't have any Xcode installed, or have Xcode 4.3+ installed without
+        // Command Line Tools.
+        
+        // If they have Xcode 4.3+, suggest that they install Command Line Tools from within Xcode.
+        if ([[NSWorkspace sharedWorkspace] absolutePathForAppBundleWithIdentifier:@"com.apple.dt.Xcode"]) {
+            // We have Xcode 4.3+
+            [self askUserToInstallCmdLineToolsFromXcode:sender];
         } else {
-            // Go from /Developer/Applications/Xcode.app to /Developer
-            self.xcodeDeveloperPath = [[xcodeAppPath stringByDeletingLastPathComponent] stringByDeletingLastPathComponent];
+            // We don't have Xcode, so just get Command Line Tools
+            [self askUserToInstallCmdLineToolsFromDevSite:sender];
         }
+    } else if ([@"10.7.0" compare:self.macosxVersion options:NSNumericSearch] <= 0) {
+        // >= 10.7.0
+        [self askUserToUpgradeOS:sender];
     } else {
-        NSLog(@"Couldn't work out Xcode version, despite finding it here: %@", xcodeAppPath);
+        // < 10.7.0
+        [self askUserToInstallXcodeFromDevSite:sender];
     }
-
 }
 
-- (IBAction)askUserToInstallDevTools:(id)sender
+- (IBAction)askUserToInstallCmdLineToolsFromXcode:(id)sender
 {
-    NSString *xcodeCheckAlertSuppress = @"XcodeAlertSuppress";
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:xcodeCheckAlertSuppress])
-        return;
+    [self askUserToInstallDevToolsWithMessage:@"Please install “Command Line Tools” from within Xcode.\nFirst open the Xcode preferences by going to the “Xcode” menu and selecting “Preferences…”.\nWithin the preferences window, select the “Downloads” tab and then the “Components” panel beneath that.\nNow click “Install” next to “Command Line Tools”."
+                                  buttonTitle:nil
+                                       action:nil
+                               suppressionKey:@"InstallCommandLineToolsFromXcodeAlertSuppress"];
+}
+
+- (IBAction)askUserToInstallCmdLineToolsFromDevSite:(id)sender
+{
+    [self askUserToInstallDevToolsWithMessage:@"Please install “Command Line Tools” from the Apple Developer Portal.\nInstalling “Command Line Tools” requires signing up for the free Apple Developer Program."
+                                  buttonTitle:@"Get Command Line Tools" 
+                                       action:[NSURL URLWithString:@"https://developer.apple.com/downloads/index.action?=Command%20Line%20Tools"]
+                               suppressionKey:@"InstallCommandLineToolsFromDevSiteAlertSuppress"];
+}
+
+- (IBAction)askUserToUpgradeOS:(id)sender
+{
+    [self askUserToInstallDevToolsWithMessage:@"You need to install “Command Line Tools” from the Apple Developer Portal.\nHowever, you must first update your operating system to 10.7.3 or later."
+                                  buttonTitle:@"Update Mac OS X" 
+                                       action:@"com.apple.SoftwareUpdate"
+                               suppressionKey:@"InstallCommandLineToolsFromDevSiteAlertSuppress"];
+}
+
+- (IBAction)askUserToInstallXcodeFromDevSite:(id)sender
+{
+    [self askUserToInstallDevToolsWithMessage:@"You need to install Xcode from the Apple Developer Portal.\nInstalling Xcode requires signing up for the free Apple Developer Program."
+                                  buttonTitle:@"Get Xcode" 
+                                       action:[NSURL URLWithString:@"https://developer.apple.com/downloads/index.action?=xcode"]
+                               suppressionKey:@"InstallXcodeFromDevSiteAlertSuppress"];
+}
+
+
+- (IBAction)askUserToInstallDevToolsWithMessage:(NSString *)message
+                                    buttonTitle:(NSString *)buttonTitle
+                                         action:(id)action
+                                 suppressionKey:(NSString *)suppressionKey
+{
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:suppressionKey]) return;
     
     NSAlert *alert = [[NSAlert alloc] init];
-    BOOL haveMacAppStore = ([[NSWorkspace sharedWorkspace] absolutePathForAppBundleWithIdentifier:@"com.apple.appstore"] != nil);
-    
     
     [alert setMessageText:@"Developer Tools are needed to use XMDS"];
     
-    NSMutableArray *targetURLs = [NSMutableArray array];
+    [alert setInformativeText:[@"Mac Developer Tools are required to compile and run simulations generated by XMDS.\n" stringByAppendingString:message]];
     
-    if (haveMacAppStore) {
-        [alert setInformativeText:@"Mac Developer Tools are required to compile and run simulations generated by XMDS.\nYou can either install Xcode for free from the Mac App Store (~1.3Gb download) or you can download and install the Command Line Tools for Xcode (~170Mb download).  Installing Command Line Tools requires signing up for the free Apple Developer Program."];
-
-        [alert addButtonWithTitle:@"Get Command Line Tools"];
-        [targetURLs addObject:[NSURL URLWithString:@"https://developer.apple.com/downloads/index.action?=Command%20Line%20Tools"]];
-        
-        [alert addButtonWithTitle:@"Get Xcode from the Mac App Store"];
-        [targetURLs addObject:[NSURL URLWithString:@"macappstore://itunes.apple.com/us/app/xcode/id497799835?mt=12"]];
-
-    } else {
-        [alert setInformativeText:@"The Apple development tool, Xcode is required to compile and run simulations generated by XMDS. Xcode can be downloaded from the Apple Developer website."];
-        [alert addButtonWithTitle:@"Go to Xcode website"];
-        [targetURLs addObject:[NSURL URLWithString:@"http://developer.apple.com/xcode/"]];
+    if (buttonTitle) {
+        [alert addButtonWithTitle:buttonTitle];
     }
     [alert addButtonWithTitle:@"Dismiss"];
     [alert setShowsSuppressionButton:YES];
     
     NSInteger selectedButtonID = [alert runModal];
     
-    if (selectedButtonID == NSAlertFirstButtonReturn && targetURLs) {
-        [[NSWorkspace sharedWorkspace] openURL:[targetURLs objectAtIndex:0]];
-    }
-    
-    if (selectedButtonID == NSAlertSecondButtonReturn && targetURLs) {
-        [[NSWorkspace sharedWorkspace] openURL:[targetURLs objectAtIndex:1]];
+    if (buttonTitle && selectedButtonID == NSAlertFirstButtonReturn) {
+        if ([action isKindOfClass:[NSURL class]]) {
+            NSURL *url = (NSURL *)action;
+            [[NSWorkspace sharedWorkspace] openURL:url];
+        } else if ([action isKindOfClass:[NSString class]]) {
+            NSString *bundleId = (NSString *)action;
+            [[NSWorkspace sharedWorkspace] launchAppWithBundleIdentifier:bundleId 
+                                                                 options:NSWorkspaceLaunchDefault
+                                          additionalEventParamDescriptor:NULL
+                                                        launchIdentifier:NULL];
+        } else {
+            assert(false);
+        }
     }
     
     if ([[alert suppressionButton] state] == NSOnState) {
         // Suppress this alert
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:xcodeCheckAlertSuppress];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:suppressionKey];
     }
-    
     [alert release];
+    
 }
-
 
 - (IBAction)openXMDSHomepage:(id)sender
 {
@@ -399,6 +443,16 @@
                                      appDocumentationPath,
                                      nil];
 }
+
+ - (NSString *)macosxVersion
+ {
+     SInt32 major, minor, bugfix;
+     Gestalt(gestaltSystemVersionMajor, &major);
+     Gestalt(gestaltSystemVersionMinor, &minor);
+     Gestalt(gestaltSystemVersionBugFix, &bugfix);
+     
+     return [NSString stringWithFormat:@"%d.%d.%d", major, minor, bugfix];
+ }
 
 
 @end
