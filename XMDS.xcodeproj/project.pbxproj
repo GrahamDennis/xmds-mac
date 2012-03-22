@@ -28,11 +28,11 @@
 		BF46540D14C3C551002630C7 /* ReleaseNotes.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF46540C14C3C551002630C7 /* ReleaseNotes.xib */; };
 		BF46541014C3CDFD002630C7 /* XMDSReleaseNotesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF46540F14C3CDFD002630C7 /* XMDSReleaseNotesWindowController.m */; };
 		BF46541214C3CE87002630C7 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF46541114C3CE87002630C7 /* WebKit.framework */; };
+		BF6BE622151B428900BFED21 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = BF6BE620151B428900BFED21 /* Credits.html */; };
 		BF74AE6E14F2151800992600 /* bash_profile in Resources */ = {isa = PBXBuildFile; fileRef = BF74AE6D14F2151800992600 /* bash_profile */; };
 		BF7AF2C014BC308B00B08CA3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF7AF2BF14BC308B00B08CA3 /* Cocoa.framework */; };
 		BF7AF2CA14BC308B00B08CA3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BF7AF2C814BC308B00B08CA3 /* InfoPlist.strings */; };
 		BF7AF2CC14BC308B00B08CA3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7AF2CB14BC308B00B08CA3 /* main.m */; };
-		BF7AF2D014BC308B00B08CA3 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = BF7AF2CE14BC308B00B08CA3 /* Credits.rtf */; };
 		BF7AF2D314BC308B00B08CA3 /* XMDSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7AF2D214BC308B00B08CA3 /* XMDSAppDelegate.m */; };
 		BF7AF2D614BC308B00B08CA3 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF7AF2D414BC308B00B08CA3 /* MainMenu.xib */; };
 		BF7AF30414BED96C00B08CA3 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF7AF2FA14BED70E00B08CA3 /* Sparkle.framework */; };
@@ -129,6 +129,7 @@
 		BF46540E14C3CDFD002630C7 /* XMDSReleaseNotesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMDSReleaseNotesWindowController.h; sourceTree = "<group>"; };
 		BF46540F14C3CDFD002630C7 /* XMDSReleaseNotesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMDSReleaseNotesWindowController.m; sourceTree = "<group>"; };
 		BF46541114C3CE87002630C7 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		BF6BE621151B428900BFED21 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = en; path = en.lproj/Credits.html; sourceTree = "<group>"; };
 		BF74AE6D14F2151800992600 /* bash_profile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bash_profile; sourceTree = "<group>"; };
 		BF7AF2BB14BC308B00B08CA3 /* XMDS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XMDS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF7AF2BF14BC308B00B08CA3 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -139,7 +140,6 @@
 		BF7AF2C914BC308B00B08CA3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BF7AF2CB14BC308B00B08CA3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BF7AF2CD14BC308B00B08CA3 /* XMDS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XMDS-Prefix.pch"; sourceTree = "<group>"; };
-		BF7AF2CF14BC308B00B08CA3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		BF7AF2D114BC308B00B08CA3 /* XMDSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMDSAppDelegate.h; sourceTree = "<group>"; };
 		BF7AF2D214BC308B00B08CA3 /* XMDSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMDSAppDelegate.m; sourceTree = "<group>"; };
 		BF7AF2D514BC308B00B08CA3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -224,6 +224,7 @@
 		BF7AF2C614BC308B00B08CA3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BF6BE620151B428900BFED21 /* Credits.html */,
 				BF74AE6D14F2151800992600 /* bash_profile */,
 				BF810E1514C2542F0092F337 /* xmds.icns */,
 				BF810E1314C157AB0092F337 /* xpdeint_logo.pdf */,
@@ -233,7 +234,6 @@
 				BF7AF2C814BC308B00B08CA3 /* InfoPlist.strings */,
 				BF7AF2CB14BC308B00B08CA3 /* main.m */,
 				BF7AF2CD14BC308B00B08CA3 /* XMDS-Prefix.pch */,
-				BF7AF2CE14BC308B00B08CA3 /* Credits.rtf */,
 				BF46540814C3C164002630C7 /* github.css */,
 				BF46540514C3C14A002630C7 /* release-notes.html */,
 			);
@@ -355,7 +355,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF7AF2CA14BC308B00B08CA3 /* InfoPlist.strings in Resources */,
-				BF7AF2D014BC308B00B08CA3 /* Credits.rtf in Resources */,
 				BF7AF2D614BC308B00B08CA3 /* MainMenu.xib in Resources */,
 				BF7AF30614BEDFAF00B08CA3 /* xmds_pub.pem in Resources */,
 				BF02E33C14BFD67A00C09C9D /* XMDS.terminal in Resources */,
@@ -365,6 +364,7 @@
 				BF46540614C3C14A002630C7 /* release-notes.html in Resources */,
 				BF46540D14C3C551002630C7 /* ReleaseNotes.xib in Resources */,
 				BF74AE6E14F2151800992600 /* bash_profile in Resources */,
+				BF6BE622151B428900BFED21 /* Credits.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,20 +462,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		BF6BE620151B428900BFED21 /* Credits.html */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BF6BE621151B428900BFED21 /* en */,
+			);
+			name = Credits.html;
+			sourceTree = "<group>";
+		};
 		BF7AF2C814BC308B00B08CA3 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				BF7AF2C914BC308B00B08CA3 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		BF7AF2CE14BC308B00B08CA3 /* Credits.rtf */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BF7AF2CF14BC308B00B08CA3 /* en */,
-			);
-			name = Credits.rtf;
 			sourceTree = "<group>";
 		};
 		BF7AF2D414BC308B00B08CA3 /* MainMenu.xib */ = {
