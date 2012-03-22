@@ -12,18 +12,24 @@ function build {
     export OMPI_CC="${CC}"
     ./configure --prefix=$(PWD)/../../output64 MPICC="mpicc" --enable-avx $* && make -j4 && make install
     cp tests/bench ../../output64/bin/fftw_bench_temp
+    cp mpi/mpi-bench ../../output64/bin/fftw_mpi_bench_temp
     make clean || true
     export CC="cc -arch i386"
     export OMPI_CC="${CC}"
     ./configure --prefix=$(PWD)/../../output32 MPICC="mpicc" $* && make -j4 && make install
     cp tests/bench ../../output32/bin/fftw_bench_temp
+    cp mpi/mpi-bench ../../output32/bin/fftw_mpi_bench_temp
 }
 
 
 build --enable-sse2 --enable-mpi --disable-fortran --enable-threads
-mv ../../output64/bin/fftw_bench_temp ../../output64/bin/fftw-bench
-mv ../../output32/bin/fftw_bench_temp ../../output32/bin/fftw-bench
+mv ../../output64/bin/fftw_bench_temp     ../../output64/bin/fftw-bench
+mv ../../output32/bin/fftw_bench_temp     ../../output32/bin/fftw-bench
+mv ../../output64/bin/fftw_mpi_bench_temp ../../output64/bin/fftw-mpi-bench
+mv ../../output32/bin/fftw_mpi_bench_temp ../../output32/bin/fftw-mpi-bench
 
 build --enable-sse2 --enable-mpi --disable-fortran --enable-threads --enable-float
 mv ../../output64/bin/fftw_bench_temp ../../output64/bin/fftwf-bench
 mv ../../output32/bin/fftw_bench_temp ../../output32/bin/fftwf-bench
+mv ../../output64/bin/fftw_mpi_bench_temp ../../output64/bin/fftwf-mpi-bench
+mv ../../output32/bin/fftw_mpi_bench_temp ../../output32/bin/fftwf-mpi-bench
