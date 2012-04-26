@@ -13,6 +13,11 @@ Changes include:
 
 [waf]: http://code.google.com/p/waf
 
+# XMDS 2.1β8 [version-2.1beta8]
+
+This release actually adds support for Xcode 4.3.
+
+
 # XMDS 2.1β7 [version-2.1beta7]
 
 This release adds support for Xcode 4.3.  You can now just install the [Command Line Tools for Xcode][CommandLineTools], a ~170Mb download instead of the full Xcode package which is ~1.3Gb.
