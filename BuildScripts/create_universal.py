@@ -112,6 +112,7 @@ def main():
     recursive_diff('include')
     recursive_diff('share/man')
     recursive_diff('share/openmpi')
+    recursive_diff('etc')
     os.system("cp -r output_noarch/ output/")
 
 
