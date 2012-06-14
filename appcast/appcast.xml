@@ -4,6 +4,19 @@
         <link>http://www.xmds.org/appcast.xml</link>
         <description>Most recent changes with links to updates.</description>
         <language>en</language>
+        <item>
+            <title>XMDS 2.1</title>
+            <sparkle:releaseNotesLink>http://www.xmds.org/release-notes.html#version-2.1</sparkle:releaseNotesLink>
+            <pubDate>Thu, 14 Jun 2012 14:24:26 +1000</pubDate>
+            <enclosure
+                url="http://sourceforge.net/projects/xmds/files/XMDS-2.1-osx.zip/download"
+                sparkle:version="132"
+                sparkle:shortVersionString="2.1"
+                type="application/octet-stream"
+                length="79514535"
+                sparkle:dsaSignature="MC4CFQCcKsVSdTFW3/61XZUtBdyG6WtmDAIVAK+SnKNR54e/zUPygHodI5fOVvJh"
+            />
+        </item>
 		<item>
 		    <title>XMDS 2.1beta7</title>
 		    <sparkle:releaseNotesLink>http://www.xmds.org/release-notes.html#version-2.1beta7</sparkle:releaseNotesLink>
