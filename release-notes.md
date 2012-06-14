@@ -2,12 +2,34 @@ CSS: css/github.css
 
 # XMDS 2.1 "Happy Mollusc" [version-2.1]
 
-XMDS 2.1 includes a number of bug fixes and improvements since 2.0, as well as the new Linux and Mac OS X installers.
+XMDS 2.1 is a significant upgrade with many improvements and bug fixes since 2.0. We also now have installers for Linux and Mac OS X, so you no longer have to build XMDS from source! See [http://www.xmds.org/installation.html](http://www.xmds.org/installation.html) for details about the installers.
 
-Changes include:
+The documentation has been expanded significantly with a better tutorial, more worked examples, and description of all XMDS 2 script elements.  Take a look at the new documentation at [http://www.xmds.org](http://www.xmds.org)
 
+Existing users should note that this release introduces a more concise syntax for moment groups.  You can now use:
+
+    <sampling_group initial_sample="yes" basis="x y z">
+        ...
+    </sampling_group>
+Instead of:
+
+    <group>
+        <sampling initial_sample="yes" basis="x y z">
+            ...
+        </sampling>
+    </group>
+
+Another syntax change is that the initial basis of a vector should be specified with `initial_basis` instead of `initial_space`.
+
+In both cases, although the old syntax is not described in the documentation, it is still supported, so existing scripts will work without any changes.
+
+
+Other changes in XMDS 2.1 include:
+
+* The `lattice` attribute for dimensions can now be specified at run-time.  Previously only the minimum and maximum values of the domain could be specified at run-time.  See [http://www.xmds.org/reference_elements.html#validation](http://www.xmds.org/reference_elements.html#validation) for details.
 * `noise_vector`s can now be used in non-uniform dimensions (e.g. dimensions using the Bessel transform for cylindrical symmetry).
 * "loose" `geometry_matching_mode` for HDF5 vector initialisation.  This enables extending the simulation grid from one simulation to the next, or coarsening or refining a grid when importing.
+* `vector`s can now be initialised by integrating over dimensions of other vectors.  `computed_vector`s always supported this, now `vector`s do too.
 * Update to latest version of [waf], which is used for compiling simulations and detecting FFTW, HDF5, etc. This should lead to fewer waf-related problems.
 * Bug fixes.
 
