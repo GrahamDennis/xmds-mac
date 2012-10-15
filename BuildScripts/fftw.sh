@@ -3,7 +3,7 @@
 source ../../common.sh;
 
 # This is to use our hacked-together clang-3.1 assembler for avx
-export PATH=`pwd`/../../:${PATH}
+# export PATH=`pwd`/../../:${PATH}
 
 # We have included this function here because we can only use avx with the 64-bit build.
 function build {

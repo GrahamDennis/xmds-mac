@@ -4,7 +4,10 @@
 
 set -o errexit
 
-OPENMPI_VERSION=1.6.2
+OPENMPI_VERSION=1.6
+# OpenMPI 1.6.1 and later switched to a default pairwise exchange algorithm for MPI_Alltoallv.
+# This causes a hang on the mpi_dft_small testcase where one or more MPI processes have no data.
+# A reduced testcase needs to be constructed, and needs to be reported to OpenMPI.
 FFTW_VERSION=3.3.2
 HDF5_VERSION=1.8.9
 GSL_VERSION=1.15
