@@ -9,8 +9,8 @@ export CC="gcc" CXX="g++"
 
 function build {
     make clean || true
-    ./configure --prefix=$(PWD)/../../output64 CC="${CC}" CXX="${CXX}" --disable-static $* && make -j4 && make install
+    ./configure --prefix=$(PWD)/../../output64 CC="${CC} -mmacosx-version-min=10.5" CXX="${CXX}" --disable-static $* && make -j4 && make install
     make clean || true
-    ./configure --prefix=$(PWD)/../../output32 CC="${CC} -arch i386" CXX="${CXX} -arch i386" --disable-static $* && make -j4 && make install
+    ./configure --prefix=$(PWD)/../../output32 CC="${CC} -mmacosx-version-min=10.5 -arch i386" CXX="${CXX} -arch i386" --disable-static $* && make -j4 && make install
 }
 
