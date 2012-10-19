@@ -1,5 +1,9 @@
 CSS: css/github.css
 
+# XMDS 2.1.2a "Happy Mollusc" [version-2.1.2a]
+
+Compatibility fixes for older versions of Mac OS X.
+
 # XMDS 2.1.2 "Happy Mollusc" [version-2.1.2]
 
 We have published a paper in Computer Physics Communications.  If you use XMDS2 in your research, we would appreciate it if you cited us in your publications:
