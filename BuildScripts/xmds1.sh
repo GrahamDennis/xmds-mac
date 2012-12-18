@@ -9,7 +9,7 @@ rm -rf build/xmds1
 mkdir -p build/xmds1
 cd build/xmds1
 
-svn checkout https://xmds.svn.sourceforge.net/svnroot/xmds/trunk/xmds-devel .
+svn checkout http://svn.code.sf.net/p/xmds/code/trunk/xmds-devel .
 
 autoreconf;
 

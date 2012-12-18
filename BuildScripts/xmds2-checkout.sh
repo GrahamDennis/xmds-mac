@@ -2,7 +2,7 @@
 
 # REVISION=r2478
 REVISION=HEAD
-REPOSITORY=https://xmds.svn.sourceforge.net/svnroot/xmds/trunk/xpdeint
+REPOSITORY=http://svn.code.sf.net/p/xmds/code/trunk/xpdeint
 
 cd build;
 if [ ! -d xmds2 ]; then
