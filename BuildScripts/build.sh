@@ -9,7 +9,7 @@ OPENMPI_VERSION=1.6
 # This causes a hang on the mpi_dft_small testcase where one or more MPI processes have no data.
 # A reduced testcase needs to be constructed, and needs to be reported to OpenMPI.
 FFTW_VERSION=3.3.2
-HDF5_VERSION=1.8.9
+HDF5_VERSION=1.8.10-patch1
 GSL_VERSION=1.15
 
 VIRTUALENV_VERSION=1.8.2
