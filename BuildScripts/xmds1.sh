@@ -2,14 +2,17 @@
 
 source common.sh;
 
-# autoconf et al are no longer distributed with Xcode. So we need to grab them from macports
-export PATH=$PATH:/opt/local/bin
+# autoconf et al are no longer distributed with Xcode. So we need to grab them from macports or homebrew
+export PATH=$PATH:/opt/local/bin:/usr/local/bin
 
 rm -rf build/xmds1
 mkdir -p build/xmds1
 cd build/xmds1
 
 svn checkout http://svn.code.sf.net/p/xmds/code/trunk/xmds-devel .
+
+# xmds1 use an old macro that causes an error, we need to replace it
+sed -i '' 's/AM_CONFIG_HEADER/AC_CONFIG_HEADERS/g' configure.in
 
 autoreconf;
 
