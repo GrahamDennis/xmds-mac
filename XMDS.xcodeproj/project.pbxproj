@@ -22,6 +22,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		BF00A89B175867F000D2E427 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF00A89A175867F000D2E427 /* ApplicationServices.framework */; };
 		BF02E33C14BFD67A00C09C9D /* XMDS.terminal in Resources */ = {isa = PBXBuildFile; fileRef = BF02E33B14BFD67A00C09C9D /* XMDS.terminal */; };
 		BF46540614C3C14A002630C7 /* release-notes.html in Resources */ = {isa = PBXBuildFile; fileRef = BF46540514C3C14A002630C7 /* release-notes.html */; };
 		BF46540B14C3C47D002630C7 /* github.css in Copy CSS */ = {isa = PBXBuildFile; fileRef = BF46540814C3C164002630C7 /* github.css */; };
@@ -122,6 +123,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BF00A89A175867F000D2E427 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
 		BF02E33B14BFD67A00C09C9D /* XMDS.terminal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = XMDS.terminal; sourceTree = "<group>"; };
 		BF46540514C3C14A002630C7 /* release-notes.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "release-notes.html"; sourceTree = "<group>"; };
 		BF46540814C3C164002630C7 /* github.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = github.css; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF00A89B175867F000D2E427 /* ApplicationServices.framework in Frameworks */,
 				BF46541214C3CE87002630C7 /* WebKit.framework in Frameworks */,
 				BF7AF30414BED96C00B08CA3 /* Sparkle.framework in Frameworks */,
 				BF7AF2C014BC308B00B08CA3 /* Cocoa.framework in Frameworks */,
@@ -169,6 +172,7 @@
 		BF7AF2B014BC308B00B08CA3 = {
 			isa = PBXGroup;
 			children = (
+				BF00A89A175867F000D2E427 /* ApplicationServices.framework */,
 				BF7AF2EB14BED70D00B08CA3 /* Sparkle.xcodeproj */,
 				BF7AF2C514BC308B00B08CA3 /* XMDS */,
 				BF7AF2BE14BC308B00B08CA3 /* Frameworks */,
