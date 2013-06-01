@@ -1,0 +1,3 @@
+*invoke_as:
+%{!fwpa:   %{fcompare-debug=*|fdump-final-insns=*:%:compare-debug-dump-opt()}   %{!S:-o %|.s |
+ /Users/graham/Developer/xmds-mac/BuildScripts/as %(asm_options) %m.s %A }  }

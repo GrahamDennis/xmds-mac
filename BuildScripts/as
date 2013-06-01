@@ -21,7 +21,7 @@ while [ $# -ne 0 ]; do
 done 
 
 if [ $HAS_INPUT_FILE -eq 1 ]; then 
-        /opt/local/bin/clang-mp-3.1 -c -x assembler $ARGS 
+        /opt/local/bin/clang-mp-3.2 -c -x assembler $ARGS 
 else 
-        /opt/local/bin/clang-mp-3.1 -c -x assembler $ARGS - 
+        /opt/local/bin/clang-mp-3.2 -c -x assembler $ARGS - 
 fi 
