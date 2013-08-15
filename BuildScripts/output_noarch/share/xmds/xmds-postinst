@@ -35,6 +35,9 @@ cd "${XMDS_SUPPORT}/src/xmds2"
 # Copy in local copy of MathJax
 cp -r "${XMDS_USR}/share/xmds/documentation/_static/MathJax" "${XMDS_SUPPORT}/src/xmds2/admin/userdoc-source/_static/"
 
+# Copy in the entire share folder
+cp -r "${XMDS_USR}/share" "${XMDS_SUPPORT}/"
+
 # Upgrade in case the user has installed a later version of svn
 svn upgrade --quiet 2>/dev/null
 svn revert --recursive --quiet .
