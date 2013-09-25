@@ -14,6 +14,8 @@ GSL_VERSION=1.15
 
 VIRTUALENV_VERSION=1.9.1
 
+export XMDS_BUILD_BASE=`pwd`
+
 if [ ! -d source ]; then
 	mkdir source/
 fi

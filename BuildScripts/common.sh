@@ -2,8 +2,8 @@
 
 set -o errexit
 
-export PATH=${PWD}/../../output/bin:/usr/bin:/bin:/usr/sbin:/sbin
-export OPAL_PREFIX=${PWD}/../../output
+export PATH=${XMDS_BUILD_BASE}/output/bin:/usr/bin:/bin:/usr/sbin:/sbin
+export OPAL_PREFIX=${XMDS_BUILD_BASE}/output
 
 export CC="gcc" CXX="g++"
 

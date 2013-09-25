@@ -35,4 +35,6 @@ function build {
     make -j 4 && make install
 }
 
-build --with-fftw3-path=`pwd`/../../output --enable-fftw3 --enable-threads --program-suffix=1
+build --with-fftw3-path=`pwd`/../../output --enable-fftw3 --enable-threads --program-suffix=1 --enable-mpi --with-mpi-compiler=mpic++
+mkdir -p `pwd`/../../output/share/xmds1/examples
+cp examples/*.xmds `pwd`/../../output/share/xmds1/examples

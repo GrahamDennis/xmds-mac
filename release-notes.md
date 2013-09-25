@@ -1,5 +1,14 @@
 CSS: css/github.css
 
+# XMDS 2.1.3 "Happy Mollusc" [version-2.1.3]
+
+The XMDS 2.1.3 update is a bugfix release that includes the following improvements:
+
+* XMDS will work when MPI isn't installed (but only for single-process simulations).
+* Support for GCC 4.8
+* The number of paths used by the multi-path driver can now be specified at run-time (using `<validation kind="run-time">`)
+* Other bug fixes
+
 # XMDS 2.1.2a "Happy Mollusc" [version-2.1.2a]
 
 Compatibility fixes for older versions of Mac OS X.

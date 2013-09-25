@@ -5,11 +5,24 @@
         <description>Most recent changes with links to updates.</description>
         <language>en</language>
         <item>
+            <title>XMDS 2.1.3</title>
+            <sparkle:releaseNotesLink>http://www.xmds.org/release-notes.html#version-2.1.3</sparkle:releaseNotesLink>
+            <pubDate>Fri, 07 Jun 2013 13:28:27 +1000</pubDate>
+            <enclosure
+                url="http://sourceforge.net/projects/xmds/files/XMDS-2.1.3-osx.zip/download"
+                sparkle:version="157"
+                sparkle:shortVersionString="2.1.3"
+                type="application/octet-stream"
+                length="79555334"
+                sparkle:dsaSignature="MC4CFQCozem2zGjpVShEZhv4+1k4WjUcgAIVAOH0P/iCdCw6Ef5MGQQrHgJEPhKj"
+            />
+        </item>
+        <item>
             <title>XMDS 2.1.2a</title>
             <sparkle:releaseNotesLink>http://www.xmds.org/release-notes.html#version-2.1.2a</sparkle:releaseNotesLink>
             <pubDate>Fri, 19 Oct 2012 16:32:02 +1100</pubDate>
             <enclosure
-                url="http://sourceforge.net/projects/xmds/files//XMDS-2.1.2a-osx.zip/download"
+                url="http://sourceforge.net/projects/xmds/files/XMDS-2.1.2a-osx.zip/download"
                 sparkle:version="142"
                 sparkle:shortVersionString="2.1.2a"
                 type="application/octet-stream"
