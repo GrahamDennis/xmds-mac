@@ -54,11 +54,7 @@ def recursive_diff(relpath):
         out_path = os.path.join(base_universal, relpath, filename)
         
         extension = os.path.splitext(filename)[1]
-        if os.path.islink(left_path):
-            if not os.path.exists(out_path):
-                assert os.readlink(left_path) == os.readlink(right_path)
-                os.symlink(os.readlink(left_path), out_path)
-        elif extension in ['.dylib', '.a', '.so'] or mime_guesser.from_file(left_path).startswith('application'):
+        if extension in ['.dylib', '.a', '.so'] or mime_guesser.from_file(left_path).startswith('application'):
             lipo_combine(relpath, filename)
         elif extension in ['.h']:
             header_combine(relpath, filename)
@@ -66,6 +62,10 @@ def recursive_diff(relpath):
             pass # Ignore the file
         elif relpath.startswith('share/openmpi') and extension == '.txt':
             fixup_mpi_txt(relpath, filename)
+        elif os.path.islink(left_path):
+            if not os.path.lexists(out_path):
+                assert os.readlink(left_path) == os.readlink(right_path)
+                os.symlink(os.readlink(left_path), out_path)
         else:
             print "Can't handle different file '%s'" % os.path.join(relpath, filename)
     

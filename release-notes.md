@@ -1,5 +1,19 @@
 CSS: css/github.css
 
+# XMDS 2.1.4 "Well if this isn't nice, I don't know what is" [version-2.1.4]
+
+The XMDS 2.1.4 update contains many new improvements and bugfixes:
+
+* `xsil2graphics2` now supports all output formats for MATLAB, Octave and Python.  The scripts generated for MATLAB/Octave are compatible with both.
+* Fix a bug when [nonlocally][nonlocal-reference] referencing a [dimension alias][dimension-aliases] with subsampling in `sampling_group` blocks or in some situations when MPI is used.  This bug caused incorrect elements of the vector to be accessed.
+* Correct the Fourier basis for dimensions using Hermite-Gauss transforms.  Previously 'kx' was effectively behaving as '-kx'.
+* Improve the performance of 'nx' <--> 'kx' Hermite-Gauss transforms.
+* Stochastic error checking with runtime noise generation now works correctly.  Previously different random numbers were generated for the full-step paths and the half-step paths.
+* Documentation updates.
+
+[nonlocal-reference]: http://xmds.org/reference_elements.html#referencingnonlocal
+[dimension-aliases]: http://xmds.org/advanced_topics.html#dimension-aliases
+
 # XMDS 2.1.3 "Happy Mollusc" [version-2.1.3]
 
 The XMDS 2.1.3 update is a bugfix release that includes the following improvements:

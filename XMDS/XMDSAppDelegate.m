@@ -378,14 +378,14 @@
 
 - (NSString *)textMateBundleInstallPath
 {
-    NSString *xmdsBundlePath = [[self textMateBundlePath] stringByAppendingPathComponent:@"XMDS.tmbundle"];
+    NSString *xmdsBundlePath = [[self textMateBundlePath] stringByAppendingPathComponent:@"xpdeint.tmbundle"];
     
     return xmdsBundlePath;
 }
 
 - (NSString *)textMateBundleSourcePath
 {
-    return [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"Contents/usr/share/xmds/extras/XMDS.tmbundle"];
+    return [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"Contents/usr/share/xmds/extras/xpdeint.tmbundle"];
 }
 
 - (IBAction)installTextMateBundle:(id)sender

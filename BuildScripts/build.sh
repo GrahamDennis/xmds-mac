@@ -70,7 +70,7 @@ mkdir ../output/distfiles;
 tar -xzf ../source/virtualenv-${VIRTUALENV_VERSION}.tar.gz
 cd virtualenv-${VIRTUALENV_VERSION}
 cp virtualenv.py ../../output/share/xmds/
-cp virtualenv_support/{distribute-*,pip-*} ../../output/distfiles/
+cp virtualenv_support/{setuptools-*,pip-*} ../../output/distfiles/
 cd ../..
 
 ./create_pybundle.sh
