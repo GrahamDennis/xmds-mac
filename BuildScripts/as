@@ -1,27 +1,28 @@
-#!/bin/sh 
-HAS_INPUT_FILE=0 
-ARGS=$@ 
-while [ $# -ne 0 ]; do 
-        ARG=$1 
-        # Skip options 
-        if [ $ARG == "-arch" ] || [ $ARG == "-o" ]; then 
-                # Skip next token 
-                shift 
-                shift 
-                continue 
-        fi 
+#!/usr/bin/env python
 
-        if [ `echo $ARG | head -c1` == "-" ]; then 
-                shift 
-                continue 
-        fi 
+import sys
 
-        HAS_INPUT_FILE=1 
-        break 
-done 
+have_input_file = False
 
-if [ $HAS_INPUT_FILE -eq 1 ]; then 
-        /opt/local/bin/clang-mp-3.2 -c -x assembler $ARGS 
-else 
-        /opt/local/bin/clang-mp-3.2 -c -x assembler $ARGS - 
-fi 
+argv = sys.argv[1:]
+
+while argv:
+	if argv[0] in ["-arch", "-o", "-I"]:
+		# Skip this and next tokens
+		del argv[0:2]
+		continue
+	elif argv[0][0] == '-':
+		# skip option token
+		del argv[0]
+		continue
+	
+	have_input_file = True
+	break
+
+import subprocess
+
+args = ["/opt/local/bin/clang-mp-3.3", "-c", "-x", "assembler"] + sys.argv[1:]
+if not have_input_file:
+	args.append("-")
+
+result = subprocess.call(args)

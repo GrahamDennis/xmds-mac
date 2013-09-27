@@ -15,7 +15,7 @@ function build {
     cp tests/bench ../../output64/bin/fftw_bench_temp
     cp mpi/mpi-bench ../../output64/bin/fftw_mpi_bench_temp
     make clean || true
-    export CC="gcc -arch i386 -mmacosx-version-min=10.5"
+    export CC="clang -arch i386 -mmacosx-version-min=10.5"
     export OMPI_CC="${CC}"
     ./configure --prefix=$(PWD)/../../output32 MPICC="mpicc" $* && make -j4 && make install
     cp tests/bench ../../output32/bin/fftw_bench_temp
