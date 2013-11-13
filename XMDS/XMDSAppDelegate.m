@@ -145,8 +145,10 @@
     // If you have /usr/bin/g++, it means you have everything. Either:
     //   1. You have an older version of Xcode which came with 'command line tools', or
     //   2. You have the 'Command Line Tools' for 10.7.3, with or without Xcode 4.3+
+    // I'm also now testing for wchar.h because I had problems with it on Mavericks
     
-    if ([[NSFileManager defaultManager] fileExistsAtPath:@"/usr/bin/g++"]) {
+    if ([[NSFileManager defaultManager] fileExistsAtPath:@"/usr/bin/g++"] &&
+        [[NSFileManager defaultManager] fileExistsAtPath:@"/usr/include/wchar.h"]) {
         // Just use the root directory tools
         self.xcodeDeveloperPath = @"";
         return;
