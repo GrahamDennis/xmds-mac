@@ -82,6 +82,11 @@
 
 - (IBAction)launchXMDSTerminal:(id)sender
 {
+    if (![self haveDeveloperTools]) {
+        [self bugUserToInstallCommandLineTools];
+        return;
+    }
+    
     NSString *terminalPath = [self writeXMDSTerminalFile];
     if (!terminalPath) return;
     
@@ -92,12 +97,25 @@
 
 - (void)launchXMDSUpdateTerminalToRevision:(NSString *)revision
 {
+    if (![self haveDeveloperTools]) {
+        [self bugUserToInstallCommandLineTools];
+        return;
+    }
+    
     NSString *terminalPath = [self writeXMDSUpdateTerminalFileWithRevision:revision];
     if (!terminalPath) return;
     
     NSURL *terminalURL = [NSURL fileURLWithPath:terminalPath];
     
     LSOpenCFURLRef((CFURLRef)terminalURL, NULL);
+}
+
+- (void)bugUserToInstallCommandLineTools
+{
+    [self askUserToInstallDevToolsWithMessage:@"Command line tools must be installed.  Please open Xcode to install them."
+                                  buttonTitle:nil
+                                       action:nil
+                               suppressionKey:nil];
 }
 
 - (IBAction)showHelp:(id)sender
@@ -132,6 +150,11 @@
     }
     
     [self.updateWindow makeKeyAndOrderFront:sender];
+}
+
+- (BOOL)haveDeveloperTools
+{
+    return self.xcodeDeveloperPath != nil;
 }
 
 - (IBAction)checkForDeveloperTools:(id)sender
@@ -222,9 +245,11 @@
                                          action:(id)action
                                  suppressionKey:(NSString *)suppressionKey
 {
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:suppressionKey]) return;
+    if (suppressionKey && [[NSUserDefaults standardUserDefaults] boolForKey:suppressionKey]) return;
     
     NSAlert *alert = [[NSAlert alloc] init];
+    
+    message = [message stringByAppendingString:@"\n\nNOTE: If you have recently upgraded your operating system you will need to do this step again."];
     
     [alert setMessageText:@"Developer Tools are needed to use XMDS"];
     
