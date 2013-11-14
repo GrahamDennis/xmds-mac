@@ -24,6 +24,7 @@
 
 - (IBAction)askUserToInstallCmdLineToolsFromXcode:(id)sender;
 - (IBAction)askUserToInstallCmdLineToolsFromDevSite:(id)sender;
+- (IBAction)askUserToInstallCmdLineToolsFromXcodeSelect:(id)sender;
 - (IBAction)askUserToUpgradeOS:(id)sender;
 - (IBAction)askUserToInstallXcodeFromDevSite:(id)sender;
 - (BOOL)isTextMateInstalled;
@@ -183,8 +184,14 @@
     //   * if you're running 10.7.0 to 10.7.2, we can either recommend you update to 10.7.3 and install
     //     Command Line Tools, or grab Xcode 4.2.1 for Lion
     //   * if you're running 10.7.3 or later, we just tell you to grab 'Command Line Tools'
+    //   * if you're running 10.9 or later, you need to run 'xcode-select --install'
     
-    if ([@"10.7.3" compare:self.macosxVersion options:NSNumericSearch] <= 0) {
+    if ([@"10.9" compare:self.macosxVersion options:NSNumericSearch] <= 0) {
+        // >= 10.9
+        
+        // We need to run 'xcode-select --install'
+        [self askUserToInstallCmdLineToolsFromXcodeSelect:sender];
+    } else if ([@"10.7.3" compare:self.macosxVersion options:NSNumericSearch] <= 0) {
         // >= 10.7.3
         
         // They either don't have any Xcode installed, or have Xcode 4.3+ installed without
@@ -205,6 +212,18 @@
         // < 10.7.0
         [self askUserToInstallXcodeFromDevSite:sender];
     }
+}
+
+- (IBAction)askUserToInstallCmdLineToolsFromXcodeSelect:(id)sender
+{
+    NSTask *task = [NSTask new];
+    task.launchPath = @"/usr/bin/xcode-select";
+    task.arguments = @[@"--install"];
+    
+    [self askUserToInstallDevToolsWithMessage:@"Please install “Command Line Tools” to use XMDS."
+                                  buttonTitle:@"Install Command Line Tools"
+                                       action:task
+                               suppressionKey:@"InstallCommandLineToolsFromXcodeSelectSuppress"];
 }
 
 - (IBAction)askUserToInstallCmdLineToolsFromXcode:(id)sender
@@ -273,6 +292,9 @@
                                                                  options:NSWorkspaceLaunchDefault
                                           additionalEventParamDescriptor:NULL
                                                         launchIdentifier:NULL];
+        } else if ([action isKindOfClass:[NSTask class]]) {
+            NSTask *task = (NSTask *)action;
+            [task launch];
         } else {
             assert(false);
         }
