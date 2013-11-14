@@ -1,5 +1,9 @@
 CSS: css/github.css
 
+# XMDS 2.1.4-3 "Well if this isn't nice, I don't know what is" [version-2.1.4-3]
+
+This is a Mac OS X-specific release intended to fix some problems with Mac OS X Mavericks.  Please send an email to xmds-user@lists.sourceforge.net if you have any problems.
+
 # XMDS 2.1.4 "Well if this isn't nice, I don't know what is" [version-2.1.4]
 
 The XMDS 2.1.4 update contains many new improvements and bugfixes:
