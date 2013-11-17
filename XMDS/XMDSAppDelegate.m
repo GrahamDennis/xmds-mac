@@ -155,11 +155,6 @@
 
 - (BOOL)haveDeveloperTools
 {
-    return self.xcodeDeveloperPath != nil;
-}
-
-- (IBAction)checkForDeveloperTools:(id)sender
-{
     // For a complete installation, we need a compiler, python-config and Python.h
     // As of Mac OS X 10.7, Python.h isn't being distributed with the base install,
     // and it only comes with the command line tools.  It is also available in the
@@ -175,6 +170,14 @@
         [[NSFileManager defaultManager] fileExistsAtPath:@"/usr/include/wchar.h"]) {
         // Just use the root directory tools
         self.xcodeDeveloperPath = @"";
+    }
+    
+    return self.xcodeDeveloperPath != nil;
+}
+
+- (IBAction)checkForDeveloperTools:(id)sender
+{
+    if ([self haveDeveloperTools]) {
         return;
     }
     
