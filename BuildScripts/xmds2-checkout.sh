@@ -1,17 +1,19 @@
 #!/bin/bash
 
-# REVISION=r2478
-REVISION=HEAD
+REVISION=r2897
+# REVISION=HEAD
 REPOSITORY=http://svn.code.sf.net/p/xmds/code/trunk/xpdeint
+
+SVN=/Applications/Xcode.app/Contents/Developer/usr/subversion-1.6/bin/svn
 
 cd build;
 if [ ! -d xmds2 ]; then
     mkdir xmds2
     cd xmds2
-    /usr/bin/svn checkout -r $REVISION $REPOSITORY .
+    $SVN checkout -r $REVISION $REPOSITORY .
 else
     cd xmds2
-    /usr/bin/svn update -r $REVISION
+    $SVN update -r $REVISION
 fi
 
 # Build the documentation

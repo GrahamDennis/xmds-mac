@@ -21,7 +21,7 @@ while argv:
 
 import subprocess
 
-args = ["/opt/local/bin/clang-mp-3.3", "-c", "-x", "assembler"] + sys.argv[1:]
+args = ["/usr/bin/clang", "-c", "-x", "assembler"] + sys.argv[1:]
 if not have_input_file:
 	args.append("-")
 
