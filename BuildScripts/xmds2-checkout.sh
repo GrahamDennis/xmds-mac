@@ -1,7 +1,6 @@
 #!/bin/bash
 
-REVISION=r2897
-# REVISION=HEAD
+REVISION=HEAD
 REPOSITORY=http://svn.code.sf.net/p/xmds/code/trunk/xpdeint
 
 SVN=/Applications/Xcode.app/Contents/Developer/usr/subversion-1.6/bin/svn
