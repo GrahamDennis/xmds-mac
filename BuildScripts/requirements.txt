@@ -4,4 +4,4 @@ Sphinx
 mpmath
 h5py
 Cheetah
-pyparsing==1.5.7
+pyparsing!=2.0.0
