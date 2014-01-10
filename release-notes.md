@@ -4,7 +4,7 @@ CSS: css/github.css
 
 XMDS 2.2.0 contains a number of new features, as well as bug-fixes and updates. Specifically:
 
-* Separated IP operators.  This is a significant performance optimisation (~30%) for problems with two or more dimensions.  It requires separating IP operators of the form `f(kx) + g(ky)` (e.g. kinetic energy for quantum physics) into *two* IP operators and explicitly setting the `dimensions="x"` and `dimensions="y"` attributes on each.  See the [optimisation hints documentation][optimisation-hints] for details.
+* Separated IP operators.  This is a significant performance optimisation (~30%) for problems with two or more dimensions.  It requires separating IP operators of the form `f(kx) + g(ky)` (e.g. kinetic energy for quantum physics) into *two* IP operators and explicitly setting the `dimensions="x"` and `dimensions="y"` attributes on each.  See the [optimisation hints documentation][ip-optimisation-hints] for details.
 * Significant speed optimisations for adaptive integrators with IP operators (past IP operator calculations are re-used if the time-step hasn't changed).
 * The `constant` attribute for IP/EX operators is now unnecessary and considered advanced usage.  If you don't know whether to specify `constant="yes"` or `constant="no"`, don't specify either.
 * The `xsil2graphics2` data exporter now supports Matlab, Octave, Mathematica and Python in all output formats, as well as R (hdf5 only).  The Matlab/Octave scripts are now identical.  A script generated for one will work for the other.
@@ -15,7 +15,7 @@ XMDS 2.2.0 contains a number of new features, as well as bug-fixes and updates. 
 * A number of bug fixes.
 * Expanded and improved documentation.
 
-[optimisation-hints]: http://xmds.org/optimisation_hints.html
+[ip-optimisation-hints]: http://xmds.org/optimisation_hints.html#optimising-with-the-interaction-picture-ip-operator
 
 # XMDS 2.1.4-4 "Well if this isn't nice, I don't know what is" [version-2.1.4-4]
 
