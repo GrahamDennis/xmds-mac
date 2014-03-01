@@ -14,7 +14,12 @@ svn checkout http://svn.code.sf.net/p/xmds/code/trunk/xmds-devel .
 # xmds1 use an old macro that causes an error, we need to replace it
 sed -i '' 's/AM_CONFIG_HEADER/AC_CONFIG_HEADERS/g' configure.in
 
+set +e
+rm compile
 autoreconf;
+automake --add-missing;
+autoreconf;
+set -e
 
 function patch_config_header {
 	cat source/config.h | sed -e 's/XMDS_INCLUDES ".*"/XMDS_INCLUDES "\\\"-I${XMDS_USR}\/include\\\""/' -e 's/XMDS_CC ".*"/XMDS_CC "c++"/' -e 's/FFTW_LIBS ".*"/FFTW_LIBS "\\\"-L${XMDS_USR}\/lib\\\" -lfftw3"/' -e 's/FFTW3_LIBS ".*"/FFTW3_LIBS "\\\"-L${XMDS_USR}\/lib\\\" -lfftw3"/' > source/config.h.new
