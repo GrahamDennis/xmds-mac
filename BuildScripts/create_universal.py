@@ -54,7 +54,7 @@ def recursive_diff(relpath):
         out_path = os.path.join(base_universal, relpath, filename)
         
         extension = os.path.splitext(filename)[1]
-        if extension in ['.dylib', '.a', '.so'] or mime_guesser.from_file(left_path).startswith('application'):
+        if extension in ['.dylib', '.a', '.so'] or extension == '' and (mime_guesser.from_file(left_path).startswith('application') or mime_guesser.from_file(left_path).startswith('binary')):
             lipo_combine(relpath, filename)
         elif extension in ['.h']:
             header_combine(relpath, filename)

@@ -50,6 +50,7 @@
 @synthesize updateWindow = _updateWindow;
 @synthesize releaseNotesWindow = _releaseNotesWindow;
 @synthesize xcodeDeveloperPath = _xcodeDeveloperPath;
+@synthesize xmdsLibraryPath = _xmdsLibraryPath;
 
 - (void)dealloc
 {
@@ -594,6 +595,7 @@
                                           self.usrPath, @"${XMDS_USR}",
                                           self.xcodeDeveloperPath, @"${DEVELOPER_DIR}",
                                           bashProfileDestinationPath, @"${RC_FILE}",
+                                          self.xmdsLibraryPath, @"${XMDS_SUPPORT}",
                                           @"XMDS", @"${NAME}",
                                           @"", @"${ADDITIONAL_COMMANDS}",
                                           nil];
@@ -639,34 +641,51 @@
 
 - (NSString *)xmdsLibraryPath
 {
-    NSArray *searchURLs = [[NSFileManager defaultManager] URLsForDirectory:NSLibraryDirectory inDomains:NSUserDomainMask];
-    
-    if (![searchURLs count]) {
-        NSLog(@"Empty search paths when looking for the user library directory");
-        return nil;
-    }
-    
-    if ([searchURLs count] > 1) 
-        NSLog(@"Warning: More than one user library path found: %@", searchURLs);
-    
-    NSString *libraryPath = [(NSURL *)[searchURLs lastObject] path];
-    
-    NSString *xmdsLibraryPath = [libraryPath stringByAppendingPathComponent:@"XMDS"];
-    
-    NSError *error = nil;
-    
-    BOOL result = [[NSFileManager defaultManager] createDirectoryAtPath:xmdsLibraryPath
-                                            withIntermediateDirectories:YES
-                                                             attributes:nil
-                                                                  error:&error];
-    
-    if (!result || error) {
-        NSLog(@"Unable to create path %@. Error: %@", xmdsLibraryPath, error);
+    if (!_xmdsLibraryPath) {
+        NSArray *searchURLs = [[NSFileManager defaultManager] URLsForDirectory:NSLibraryDirectory inDomains:NSUserDomainMask];
         
-        return nil;
+        if (![searchURLs count]) {
+            NSLog(@"Empty search paths when looking for the user library directory");
+            return nil;
+        }
+        
+        if ([searchURLs count] > 1) 
+            NSLog(@"Warning: More than one user library path found: %@", searchURLs);
+        
+        NSString *libraryPath = [(NSURL *)[searchURLs lastObject] path];
+        
+        if ([libraryPath rangeOfString:@" "].location != NSNotFound) {
+            // virtualenv doesn't support spaces in the path to the python interpreter.
+            // if we were to use ~/Library/XMDS as the installation path where ~ (or indeed any part of the path)
+            // contains a space, then virtualenv's python would be in a directory with a space.
+            // The solution to this problem is to install XMDS somewhere that doesn't have a space.  The best
+            // alternative I've come up with is NSTemporaryDirectory() which is usually /var/folders/blah/
+            // and does not have any spaces.  This runs the risk of being deleted everytime the computer is rebooted
+            // but there's very little we can do about that apart from choosing a different path.
+            libraryPath = NSTemporaryDirectory();
+        }
+        
+        NSString *xmdsLibraryPath = [libraryPath stringByAppendingPathComponent:@"XMDS"];
+        
+        NSError *error = nil;
+        
+        BOOL result = [[NSFileManager defaultManager] createDirectoryAtPath:xmdsLibraryPath
+                                                withIntermediateDirectories:YES
+                                                                 attributes:nil
+                                                                      error:&error];
+        
+        if (!result || error) {
+            NSLog(@"Unable to create path %@. Error: %@", xmdsLibraryPath, error);
+            
+            return nil;
+        }
+        
+        _xmdsLibraryPath = xmdsLibraryPath;
+        
+        NSLog(@"library path: %@", _xmdsLibraryPath);
     }
     
-    return xmdsLibraryPath;
+    return _xmdsLibraryPath;
 }
 
 - (NSArray *)documentationPaths

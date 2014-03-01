@@ -1,7 +1,6 @@
 #!/bin/bash
 
 XMDS_USR=`echo "$BASH_SOURCE" | sed -e 's|/share/xmds/xmds-postinst||'`
-XMDS_SUPPORT="${HOME}/Library/XMDS"
 
 mkdir -p ~/.xmds/wisdom
 

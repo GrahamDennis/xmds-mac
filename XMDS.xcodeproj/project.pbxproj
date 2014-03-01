@@ -389,7 +389,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "set -o errexit\n\n/opt/local/bin/multimarkdown -o ${SRCROOT}/appcast/release-notes.html ${SRCROOT}/release-notes.md\n\ncp ${SRCROOT}/appcast/release-notes.html ${BUILT_PRODUCTS_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/";
+			shellScript = "set -o errexit\n\n/usr/local/bin/multimarkdown -o ${SRCROOT}/appcast/release-notes.html ${SRCROOT}/release-notes.md\n\ncp ${SRCROOT}/appcast/release-notes.html ${BUILT_PRODUCTS_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/";
 			showEnvVarsInLog = 0;
 		};
 		BF7AF2E114BC36B900B08CA3 /* Copy / Link usr Directory */ = {

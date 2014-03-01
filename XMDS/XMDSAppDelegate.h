@@ -15,6 +15,7 @@
     NSWindow *_releaseNotesWindow;
     
     NSString *_xcodeDeveloperPath;
+    NSString *_xmdsLibraryPath;
 }
 
 @property (assign) IBOutlet NSWindow *window;

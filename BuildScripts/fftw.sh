@@ -8,7 +8,7 @@ export PATH=`pwd`/../../:${PATH}
 # We have included this function here because we can only use avx with the 64-bit build.
 function build {
     make clean || true
-    export CC="/opt/local/bin/gcc-mp-4.8 -mmacosx-version-min=10.5 -specs=/Users/graham/Developer/xmds-mac/BuildScripts/gcc-mp-4.8-spec"
+    export CC="/usr/local/bin/gcc-4.8 -mmacosx-version-min=10.5 -specs=/Users/graham/Developer/xmds-mac/BuildScripts/gcc-mp-4.8-spec"
     export OMPI_CC="${CC}"
     ./configure --prefix=$(PWD)/../../output64 MPICC="mpicc" --enable-avx $* && make -j4 && make install
     # ./configure --prefix=$(PWD)/../../output64 MPICC="mpicc" $* && make -j4 && make install
