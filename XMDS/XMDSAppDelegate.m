@@ -680,7 +680,7 @@
             return nil;
         }
         
-        _xmdsLibraryPath = xmdsLibraryPath;
+        _xmdsLibraryPath = [xmdsLibraryPath copy];
         
         NSLog(@"library path: %@", _xmdsLibraryPath);
     }
