@@ -1,5 +1,9 @@
 CSS: css/github.css
 
+# XMDS 2.2.0-1 "Out of cheese error" [version-2.2.0-1]
+
+This is a Mac OS X-specific release intended to fix a problem for users who have a space in their home directory path.  Please send an email to <xmds-user@lists.sourceforge.net> if you have any problems.
+
 # XMDS 2.2.0 "Out of cheese error" [version-2.2.0]
 
 XMDS 2.2.0 contains a number of new features, as well as bug-fixes and updates. Specifically:
