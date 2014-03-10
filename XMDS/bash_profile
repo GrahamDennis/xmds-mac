@@ -2,13 +2,9 @@
 
 [ -r /etc/profile ] && . /etc/profile
 
-# See man bash for information about this ordering
-if [ -r "$HOME/.bash_profile" ]; then
-    . "$HOME/.bash_profile";
-elif [ -r "$HOME/.bash_login" ]; then
-    . "$HOME/.bash_login";
-elif [ -r "$HOME/.profile" ]; then
-    . "$HOME/.profile";
+# This environment can be customised using ~/.xmds/bash_profile
+if [ -r "$HOME/.xmds/bash_profile" ]; then
+    . "$HOME/.xmds/bash_profile";
 fi
 
 export XMDS_SHELL=YES
