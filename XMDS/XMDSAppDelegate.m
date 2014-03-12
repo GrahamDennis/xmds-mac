@@ -666,24 +666,23 @@
         }
         
         NSString *xmdsLibraryPath = [libraryPath stringByAppendingPathComponent:@"XMDS"];
-        
-        NSError *error = nil;
-        
-        BOOL result = [[NSFileManager defaultManager] createDirectoryAtPath:xmdsLibraryPath
-                                                withIntermediateDirectories:YES
-                                                                 attributes:nil
-                                                                      error:&error];
-        
-        if (!result || error) {
-            NSLog(@"Unable to create path %@. Error: %@", xmdsLibraryPath, error);
-            
-            return nil;
-        }
-        
+
         _xmdsLibraryPath = [xmdsLibraryPath copy];
-        
-        NSLog(@"library path: %@", _xmdsLibraryPath);
     }
+
+    NSError *error = nil;
+    
+    BOOL result = [[NSFileManager defaultManager] createDirectoryAtPath:_xmdsLibraryPath
+                                            withIntermediateDirectories:YES
+                                                             attributes:nil
+                                                                  error:&error];
+    
+    if (!result || error) {
+        NSLog(@"Unable to create path %@. Error: %@", _xmdsLibraryPath, error);
+        
+        return nil;
+    }
+
     
     return _xmdsLibraryPath;
 }
