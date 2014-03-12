@@ -1,5 +1,17 @@
 CSS: css/github.css
 
+# XMDS 2.2.0-2 "Out of cheese error" [version-2.2.0-2]
+
+This is a Mac OS X-specific release intended to fix compatibility with Xcode 5.1.  Please send an email to <xmds-user@lists.sourceforge.net> if you have any problems.
+
+You can also now customise the XMDS terminal environment by creating the file `~/.xmds/bash_profile` and adding any environment customisation options there.  For example, to make [TextMate][TextMate] your default editor, add the following to `~/.xmds/bash_profile`:
+
+    # Set TextMate.app to be the default text editor within the shell
+    # (used by some svn and git commands amongst others).
+    EDITOR="mate -w" 
+
+[TextMate]: http://www.macromates.com
+
 # XMDS 2.2.0-1 "Out of cheese error" [version-2.2.0-1]
 
 This is a Mac OS X-specific release intended to fix a problem for users who have a space in their home directory path.  Please send an email to <xmds-user@lists.sourceforge.net> if you have any problems.
@@ -87,6 +99,7 @@ Existing users should note that this release introduces a more concise syntax fo
     <sampling_group initial_sample="yes" basis="x y z">
         ...
     </sampling_group>
+
 Instead of:
 
     <group>
