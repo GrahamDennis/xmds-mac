@@ -2,6 +2,8 @@
 
 [ -r /etc/profile ] && . /etc/profile
 
+export CFLAGS="-Qunused-arguments"
+
 # This environment can be customised using ~/.xmds/bash_profile
 if [ -r "$HOME/.xmds/bash_profile" ]; then
     . "$HOME/.xmds/bash_profile";
