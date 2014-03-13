@@ -2,6 +2,8 @@
 
 XMDS_USR=`echo "$BASH_SOURCE" | sed -e 's|/share/xmds/xmds-postinst||'`
 
+set +e
+
 mkdir -p ~/.xmds/wisdom
 
 set -e
