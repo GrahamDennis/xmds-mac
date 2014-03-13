@@ -43,7 +43,9 @@ cp -r "${XMDS_USR}/share/xmds/documentation/_static/MathJax" "${XMDS_SUPPORT}/sr
 cp -r "${XMDS_USR}/share" "${XMDS_SUPPORT}/"
 
 # Upgrade in case the user has installed a later version of svn
-svn upgrade --quiet 2>/dev/null
+# Note that upgrade isn't necessary on older versions of OS X, so we ensure the command 'succeeds'
+# by appending || true
+svn upgrade --quiet 2>/dev/null || true
 svn revert --recursive --quiet .
 
 echo "Installing XMDS2..."
