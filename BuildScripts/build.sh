@@ -11,6 +11,13 @@ GSL_VERSION=1.16
 
 VIRTUALENV_VERSION=1.11
 
+echo "Building architecture selector..."
+
+cc -arch i386   -DPATH_COMPONENT_TO_APPEND="\"i386\""   -o arch_selector.i386   -Os -framework Foundation arch_selector.m
+cc -arch x86_64 -DPATH_COMPONENT_TO_APPEND="\"x86_64\"" -o arch_selector.x86_64 -Os -framework Foundation arch_selector.m
+lipo -create -arch i386 arch_selector.i386 -arch x86_64 arch_selector.x86_64 -output arch_selector
+
+
 export XMDS_BUILD_BASE=`pwd`
 
 if [ ! -d source ]; then

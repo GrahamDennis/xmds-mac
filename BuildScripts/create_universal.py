@@ -67,7 +67,16 @@ def recursive_diff(relpath):
                 assert os.readlink(left_path) == os.readlink(right_path)
                 os.symlink(os.readlink(left_path), out_path)
         else:
-            print "Can't handle different file '%s'" % os.path.join(relpath, filename)
+            print "Assuming different files '%s' are executable, and using a selector to choose." % os.path.join(relpath, filename)
+            shutil.copy2(os.path.join(base_noarch, "..", "arch_selector"), out_path)
+
+            i386_base_path = os.path.join(base_universal, relpath, "i386")
+            if not os.path.exists(i386_base_path): os.makedirs(i386_base_path)
+            shutil.copy2(left_path, os.path.join(i386_base_path, filename))
+
+            x86_64_base_path = os.path.join(base_universal, relpath, "x86_64")
+            if not os.path.exists(x86_64_base_path): os.makedirs(x86_64_base_path)
+            shutil.copy2(right_path, os.path.join(x86_64_base_path, filename))
     
     for dirname in diff.common_dirs:
         recursive_diff(os.path.join(relpath, dirname))
