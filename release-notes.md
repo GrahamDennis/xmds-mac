@@ -1,5 +1,9 @@
 CSS: css/github.css
 
+# XMDS 2.2.1-1 "XMDS2 is a game of two halves" [version-2.2.1-1]
+
+XMDS 2.2.1-1 is a Mac OS X-specific release intended to fix a bug with HDF5 in XMDS 2.2.1.
+
 # XMDS 2.2.1 "XMDS2 is a game of two halves" [version-2.2.1]
 
 XMDS 2.2.1 contains minor bugfixes and updates. This includes documentation improvements, superior handling of external packages and more informative errors.
