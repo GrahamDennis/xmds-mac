@@ -1,5 +1,10 @@
 CSS: css/github.css
 
+# XMDS 2.2.1 "XMDS2 is a game of two halves" [version-2.2.1]
+
+XMDS 2.2.1 contains minor bugfixes and updates. This includes documentation improvements, superior handling of external packages and more informative errors.
+
+
 # XMDS 2.2.0-2 "Out of cheese error" [version-2.2.0-2]
 
 This is a Mac OS X-specific release intended to fix compatibility with Xcode 5.1.  Please send an email to <xmds-user@lists.sourceforge.net> if you have any problems.

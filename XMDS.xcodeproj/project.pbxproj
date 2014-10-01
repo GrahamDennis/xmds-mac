@@ -42,7 +42,7 @@
 		BF810E1214C12D670092F337 /* XMDSUpdateWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF810E1114C12D670092F337 /* XMDSUpdateWindowController.m */; };
 		BF810E1414C157AB0092F337 /* xpdeint_logo.pdf in Resources */ = {isa = PBXBuildFile; fileRef = BF810E1314C157AB0092F337 /* xpdeint_logo.pdf */; };
 		BF810E1614C2542F0092F337 /* xmds.icns in Resources */ = {isa = PBXBuildFile; fileRef = BF810E1514C2542F0092F337 /* xmds.icns */; };
-		BFE55A0514BFF18B00F840CF /* Sparkle.framework in Copy Sparkle Framework */ = {isa = PBXBuildFile; fileRef = BF7AF2FA14BED70E00B08CA3 /* Sparkle.framework */; };
+		BFE55A0514BFF18B00F840CF /* Sparkle.framework in Copy Sparkle Framework */ = {isa = PBXBuildFile; fileRef = BF7AF2FA14BED70E00B08CA3 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -249,9 +249,9 @@
 			children = (
 				BF7AF2FA14BED70E00B08CA3 /* Sparkle.framework */,
 				BF7AF2FC14BED70E00B08CA3 /* Sparkle Test App.app */,
-				BF7AF2FE14BED70E00B08CA3 /* Sparkle Unit Tests.octest */,
+				BF7AF2FE14BED70E00B08CA3 /* Sparkle Unit Tests.xctest */,
 				BF7AF30014BED70E00B08CA3 /* BinaryDelta */,
-				BF7AF30214BED70E00B08CA3 /* finish_installation.app */,
+				BF7AF30214BED70E00B08CA3 /* Autoupdate.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -288,7 +288,7 @@
 		BF7AF2B214BC308B00B08CA3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "Australian National University";
 			};
 			buildConfigurationList = BF7AF2B514BC308B00B08CA3 /* Build configuration list for PBXProject "XMDS" */;
@@ -330,10 +330,10 @@
 			remoteRef = BF7AF2FB14BED70E00B08CA3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		BF7AF2FE14BED70E00B08CA3 /* Sparkle Unit Tests.octest */ = {
+		BF7AF2FE14BED70E00B08CA3 /* Sparkle Unit Tests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = "Sparkle Unit Tests.octest";
+			path = "Sparkle Unit Tests.xctest";
 			remoteRef = BF7AF2FD14BED70E00B08CA3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -344,10 +344,10 @@
 			remoteRef = BF7AF2FF14BED70E00B08CA3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		BF7AF30214BED70E00B08CA3 /* finish_installation.app */ = {
+		BF7AF30214BED70E00B08CA3 /* Autoupdate.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
-			path = finish_installation.app;
+			path = Autoupdate.app;
 			remoteRef = BF7AF30114BED70E00B08CA3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -498,11 +498,15 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -516,11 +520,12 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -529,29 +534,33 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
-				SDKROOT = macosx;
 			};
 			name = Release;
 		};
 		BF7AF2DA14BC308B00B08CA3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XMDS/XMDS-Prefix.pch";
@@ -564,7 +573,6 @@
 		BF7AF2DB14BC308B00B08CA3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XMDS/XMDS-Prefix.pch";
