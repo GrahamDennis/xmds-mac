@@ -1,6 +1,7 @@
 #!/bin/bash
 
-XMDS_USR=`echo "$BASH_SOURCE" | sed -e 's|/share/xmds/xmds-postinst||'`
+export XMDS_USR=`echo "$BASH_SOURCE" | sed -e 's|/share/xmds/xmds-postinst||'`
+export HDF5_DIR="${XMDS_USR}"
 
 set +e
 
