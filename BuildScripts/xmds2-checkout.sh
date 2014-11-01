@@ -1,18 +1,20 @@
 #!/bin/bash
 
+set -o errexit
+
 REVISION=HEAD
 REPOSITORY=http://svn.code.sf.net/p/xmds/code/trunk/xpdeint
 
-SVN=/usr/local/Cellar/subversion16/1.6.23/bin/svn
+SVN="`pwd`/usr/bin/svn"
 
 cd build;
 if [ ! -d xmds2 ]; then
     mkdir xmds2
     cd xmds2
-    $SVN checkout -r $REVISION $REPOSITORY .
+    "$SVN" checkout -r $REVISION $REPOSITORY .
 else
     cd xmds2
-    $SVN update -r $REVISION
+    "$SVN" update -r $REVISION
 fi
 
 # Build the documentation
