@@ -28,7 +28,7 @@ PYTHON_VERSION=`python -c "import sys;print \"%i.%i\" % sys.version_info[0:2]"`
 ln -s /System/Library/Frameworks/Python.framework/Versions/${PYTHON_VERSION}/Extras/lib/python/{numpy,scipy}* "${XMDS_SUPPORT}/lib/python${PYTHON_VERSION}/site-packages/"
 
 echo "Installing XMDS2's python dependencies... (this can take a few minutes)"
-pip --quiet install "${XMDS_USR}/distfiles/xmds2-requirements.pybundle"
+pip --quiet install --no-index --find-links "${XMDS_USR}/distfiles" -r "${XMDS_USR}/share/xmds/requirements.txt"
 
 mkdir -p "${XMDS_SUPPORT}/src/xmds2"
 

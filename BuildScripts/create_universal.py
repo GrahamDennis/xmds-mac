@@ -85,22 +85,19 @@ def recursive_diff(relpath):
 def lipo_combine(relpath, filename):
     extension = os.path.splitext(filename)[1]
     if extension in ['.dylib', '.so', '']:
-        filename = fixup_lib_paths(relpath, filename)
+        fixup_lib_paths(relpath, filename)
     
     subprocess.call(["lipo", "-create", "-arch", "i386",   os.path.join(base_32, relpath, filename),
                                         "-arch", "x86_64", os.path.join(base_64, relpath, filename),
                                         "-output", os.path.join(base_universal, relpath, filename)])
 
 def fixup_lib_paths(relpath, filename):
-    new_filename = filename + ".fixed"
-    fixup_lib_paths_for(base_32, relpath, filename, new_filename)
-    fixup_lib_paths_for(base_64, relpath, filename, new_filename)
-    return new_filename
-    # return filename
+    fixup_lib_paths_for(base_32, relpath, filename)
+    fixup_lib_paths_for(base_64, relpath, filename)
 
 otool_regex = re.compile(r'\t(.*) \(compatibility.*\)$')
 
-def fixup_lib_paths_for(prefix, relpath, filename, new_filename):
+def fixup_lib_paths_for(prefix, relpath, filename):
     otool = subprocess.Popen(["otool", "-L", os.path.join(prefix, relpath, filename)], stdout=subprocess.PIPE)
     lines = otool.communicate()[0].splitlines()
     
@@ -110,9 +107,11 @@ def fixup_lib_paths_for(prefix, relpath, filename, new_filename):
     lib_paths = [match.group(1) for match in matches if match]
     lib_paths = [path for path in lib_paths if os.path.commonprefix([absolute_path, path]).startswith(absolute_path)]
     
-    shutil.copy2(os.path.join(prefix, relpath, filename), os.path.join(prefix, relpath, new_filename))
     if len(lib_paths) == 0:
         return 
+
+    new_filename = filename + ".fixed"
+    shutil.copy2(os.path.join(prefix, relpath, filename), os.path.join(prefix, relpath, new_filename))
 
     args = ['install_name_tool']
     for lib_path in lib_paths:
@@ -121,6 +120,7 @@ def fixup_lib_paths_for(prefix, relpath, filename, new_filename):
         args.extend(['-change', lib_path, "@loader_path/" + relative_path])
     args.append(os.path.join(prefix, relpath, new_filename))
     subprocess.check_call(args)
+    shutil.move(os.path.join(prefix, relpath, new_filename), os.path.join(prefix, relpath, filename))
 
 
 def header_combine(relpath, filename):

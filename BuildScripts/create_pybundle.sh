@@ -3,6 +3,6 @@
 set -o errexit
 
 cd build;
-pip bundle --no-use-wheel ../output/distfiles/xmds2-requirements.pybundle -r ../requirements.txt
+pip install --no-binary :all: --download ../output/distfiles -r ../output_noarch/share/xmds/requirements.txt
 
 rm -rf build-bundle
