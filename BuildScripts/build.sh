@@ -4,12 +4,13 @@
 
 set -o errexit
 
-OPENMPI_VERSION=1.8.3
+OPENMPI_VERSION=1.10.1
 FFTW_VERSION=3.3.4
-HDF5_VERSION=1.8.13
-GSL_VERSION=1.16
+HDF5_VERSION=1.8.16
+GSL_VERSION=2.1
 
-VIRTUALENV_VERSION=1.11.6
+VIRTUALENV_VERSION=13.1.2
+
 
 echo "Building architecture selector..."
 
@@ -30,7 +31,7 @@ echo "Downloading source packages..."
 
 set +e
 
-curl --remote-name --continue-at - --silent --location http://www.open-mpi.org/software/ompi/v${OPENMPI_VERSION:0:3}/downloads/openmpi-${OPENMPI_VERSION}.tar.bz2
+curl --remote-name --continue-at - --silent --location http://www.open-mpi.org/software/ompi/v${OPENMPI_VERSION:0:4}/downloads/openmpi-${OPENMPI_VERSION}.tar.bz2
 curl --remote-name --continue-at - --silent --location http://fftw.org/fftw-${FFTW_VERSION}.tar.gz
 curl --remote-name --continue-at - --silent --location http://www.hdfgroup.org/ftp/HDF5/current/src/hdf5-${HDF5_VERSION}.tar.bz2
 curl --remote-name --continue-at - --silent --location http://mirror.aarnet.edu.au/pub/gnu/gsl/gsl-${GSL_VERSION}.tar.gz
@@ -74,11 +75,8 @@ cd ../..;
 
 cd build;
 mkdir ../output/distfiles;
-tar -xzf ../source/virtualenv-${VIRTUALENV_VERSION}.tar.gz
-cd virtualenv-${VIRTUALENV_VERSION}
-cp virtualenv.py ../../output/share/xmds/
-cp virtualenv_support/{setuptools-*,pip-*} ../../output/distfiles/
-cd ../..
+cp ../source/virtualenv-${VIRTUALENV_VERSION}.tar.gz ../output/distfiles/virtualenv.tar.gz
+cd ..
 
 ./create_pybundle.sh
 

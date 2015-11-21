@@ -5,3 +5,4 @@ mpmath
 h5py
 Cheetah
 pyparsing!=2.0.0
+Cython>=0.22
